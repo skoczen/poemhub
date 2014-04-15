@@ -1,0 +1,27 @@
+dependencies:
+  override:
+    - pip install -r requirements.txt
+    
+test:
+  override:
+    - ./manage.py test --settings=envs.ci
+
+deployment:
+  staging:
+    branch: feature/*
+    commands:
+      - heroku maintenance:on --app poetr-staging
+      # - heroku scale celery=0 --app poetr-staging
+      - git push git@heroku.com:poetr-staging.git $CIRCLE_SHA1:master
+      - heroku run python manage.py syncdb --migrate --settings=envs.live --app poetr-staging
+      - heroku restart --app poetr-staging
+      - heroku maintenance:off --app poetr-staging
+  production:
+    branch: master
+    commands:
+      - heroku maintenance:on --app poetr
+      # - heroku scale celery=0 --app poetr
+      - git push git@heroku.com:poetr.git $CIRCLE_SHA1:master
+      - heroku run python manage.py syncdb --migrate --settings=envs.live --app poetr
+      - heroku restart --app poetr
+      - heroku maintenance:off --app poetr

@@ -1,0 +1,14 @@
+*.pyc
+.DS_Store
+project.db
+*.sqlite3
+collected_static
+*.sublime-workspace
+keys_and_passwords_private.py
+project/media_root/*
+chromedriver.log
+ghostdriver.log
+celerybeat-schedule
+venv/*
+source/*
+

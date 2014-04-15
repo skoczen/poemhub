@@ -1,0 +1,64 @@
+{% load compress analytical %}<!doctype html>
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{% block title %}{% endblock %}</title>
+  <meta name="description" content="{% block description %}{% endblock %}">
+  <meta name="author" content="{% block author %}Steven Skoczen{% endblock %}">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  {% analytical_head_top %}
+
+  {% block css %}
+  {% compress css %}
+  <link rel="stylesheet" href="{{STATIC_URL}}base/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}base/css/animate.css">
+  {% endcompress %}
+  <link href='http://fonts.googleapis.com/css?family=Average|Amethysta|IM+Fell+English:400,400italic|Jacques+Francois|Special+Elite|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
+
+  {% endblock %}
+
+  <script src="{{STATIC_URL}}base/js/libs/modernizr-2.0.6.min.js"></script>
+  {% analytical_head_bottom %}
+</head>
+
+<body>
+  {% analytical_body_top %}
+  {% block full_body %}
+  <div id="container">
+    <div id="nav">
+        {% block nav %}{% endblock %}
+    </div>
+    <div id="main" role="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+    	{% block content %}
+
+    	{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+  </div> 
+  {% endblock %}
+
+  {% block js %}
+    {% compress js %}
+    <script src="{{STATIC_URL}}base/js/jquery-1.10.2.js"></script>
+    <script src="{{STATIC_URL}}base/js/bootstrap.min.js"></script>
+    {% endcompress %}
+  {% endblock %}
+
+  <!--[if lt IE 7 ]>
+    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+  <![endif]-->
+  {% analytical_body_bottom %}
+</body>
+</html>

@@ -1,0 +1,275 @@
+* {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    user-select: none;
+}
+/*
+Headers:;
+font-family: 'Special Elite', cursive;
+font-family: 'IM Fell English SC', serif;
+
+Body
+font-family: 'Average', serif;
+font-family: 'Amethysta', serif;
+font-family: 'Jacques Francois', serif;
+
+Buttons:
+font-family: 'Open Sans', serif;
+font-family: 'PT Sans Caption', serif;
+*/
+
+html {
+    font-family: 'Average', serif;
+    background: url("../../main_site/img/wood-background-1.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover; /* For WebKit*/
+    -moz-background-size: cover;    /* Mozilla*/
+    -o-background-size: cover;      /* Opera*/
+    background-size: cover;         /* Generic*/
+    height: 100%;
+    overflow: hidden;
+}
+body {
+    background: none;
+    height:100%;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Special Elite', serif;
+}
+
+nav {
+
+}
+nav .logo {
+    background: url("../../main_site/img/logo_watermark.png");
+    width: 120px;
+    height: 120px;
+    left: 0;
+    top: 0;
+    position: fixed;
+    opacity: 0.8;
+}
+.logo_watermark {
+    background: url("../../main_site/img/logo_watermark.png");
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+}
+
+
+.home_page h1 { 
+    text-align: right;
+    margin: 80px auto 20px auto;
+    width: 80%;
+    max-width: 800px;
+
+    text-shadow: -1px -2px 3px rgba(255, 255, 255, 0.3);
+    color: #000;
+    color: rgba(0,0,0,0.8);
+}
+
+.home_page p {
+    font-size: 18px;
+    margin: 0 auto 1em auto;
+}
+.bubble {
+    display: block;
+    width: 80%;
+    max-width: 800px;
+
+    border-radius: 4px;
+    background: #FFF;
+    background: rgba(255,255,255,0.97);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-bottom-color: rgba(255,255,255,0.97);
+    border-right-color: rgba(255,255,255,0.97);
+    padding: 30px 4%;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
+}
+.home_page .main.bubble {
+    margin: 0 auto 100px auto;
+}
+
+.bubble.article {
+    position: relative;
+    overflow: auto;
+    left: 30%;
+    width: 40%;
+    top: 100px;
+    padding: 10px;
+}
+.bubble.article .thumb_and_link {
+    float: left;
+    width: 180px;
+    padding: 10px;
+}
+.bubble.article .thumb_and_link .url {
+    font-family: Arial, sans-serif;
+    display: block;
+    border: 1px solid #FFF;
+    border-radius: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 2px;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+.bubble.article .thumb_and_link .url a{
+    /*color: #FFF;*/
+    
+}
+.bubble.article .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+.bubble.article .info {
+    margin-left: 180px;
+    padding: 0 10px;
+}
+
+.bubble.comments.floating {
+    padding: 10px;
+
+}
+.bubble.comments.floating .comment {
+    border: 1px solid #CCC;
+    border-width: 0 0 1px 0;
+    margin: 0 0 10px 0;
+    padding: 5px;
+}
+.bubble.comments.floating .comment .author {
+    background-size: cover;
+    border-radius: 30px;
+    height: 50px;
+    width: 50px;
+    margin: 0 10px 2px 0;
+    float: left;
+}
+.bubble.comments.right_side {
+    position: absolute;
+    margin: 0;
+    right: 5%;
+    width: 20%;
+}
+.button, a.button {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 12px;
+    font-family: "Open Sans", sans-serif;
+    padding: 4px 6px;
+    border-radius: 3em;
+    background: #e68726;
+    color: #FFF;
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
+}
+.button:hover, a.button:hover {
+    background: #e99029;
+}
+.bubble .button, .bubble a.button {
+    box-shadow: none;
+}
+.new_conversation {
+    margin-left: 5%;
+    margin-top: 5%;
+}
+
+
+.ideas {
+    width: 70%;
+    margin-left: 5%;
+}
+.overheard {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 30%;
+}
+.ideas h1 {
+    color: #000;
+}
+.ideas .bubble {
+    padding: 10px;
+    margin: 0 0 25px 0;
+    color: #000;
+}
+
+.ideas .bubble.idea {
+    position: relative;
+    overflow: auto;
+    text-decoration: none;
+}
+.ideas .bubble.idea .thumb_and_link {
+    float: left;
+    width: 180px;
+    padding: 0px;
+}
+.ideas .bubble.idea .thumb_and_link .url {
+    font-family: Arial, sans-serif;
+    display: block;
+    border: 1px solid #FFF;
+    border-radius: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 2px 2px;
+    width: 100%;
+    margin: 20px 0 0 0;
+}
+.ideas .bubble.idea .thumb_and_link .url a{
+    /*color: #FFF;*/
+    
+}
+.ideas .bubble.idea .title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #222;
+}
+.ideas .bubble.idea .info {
+    margin-left: 180px;
+    padding: 0 10px;
+    color: #454545;
+}
+.overheard .comment.bubble.recent {
+    opacity: 0.7;
+}
+.overheard .comment.bubble {
+    position: relative;
+    padding: 10px;
+    width: 90%;
+    margin: 10px 0 10px 0;
+    cursor: default;
+
+    opacity: 0.3;
+    border: none;
+}
+.overheard .comment.bubble:hover {
+
+    opacity: 1;
+    -webkit-transition: opacity 0.5s; /* For Safari 3.1 to 6.0 */
+    transition: opacity 0.5s;
+}
+.fancy_quote {
+    font-size: 40px;
+    color: #CCC;
+}
+.fancy_quote.left {
+    float: left;
+    margin: 10px 5px 0 0;
+    left: 10px;
+    line-height: 10px;
+}
+.fancy_quote.right {
+    position: absolute;
+    bottom: -0.7em;
+    right: 10px;
+}

@@ -1,0 +1,24 @@
+beautifulsoup
+boto
+django-celery-with-redis
+django<1.6
+django-analytical>=0.12.1
+django-annoying
+django_compressor
+django-heroku-memcacheify
+django-heroku-postgresify
+django-extensions
+django-nose
+django-selector
+django-staticfiles
+django-storages
+django-ses
+fabric
+gunicorn
+psycopg2
+south
+splinter
+versiontools
+
+# Dev only
+django-debug-toolbar
