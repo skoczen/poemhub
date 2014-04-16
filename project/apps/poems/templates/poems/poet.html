@@ -16,18 +16,22 @@
 
 {% block content %}
 <div class="page_content poet">
-<h1>{{poet.name}}</h1>
+<h1>{{poet.name}}{% if is_me %} <span class="is_me bubble">me!</span>{% endif %}</h1>
+<h2>Collections</h2>
+<div class="work_group">
+    <p class="none_yet">No collections yet.</p>
+</div>
+<h2>All Poems</h2>
+<div class="work_group">
+<ul>
+{% for poem in poems %}
     {% ifchanged poem.date.year %}
-    <ul class="poems">
-        <h2>{{poem.date.year}}</h2>
-    {% endifchanged %}
-    {% for poem in poems %}
-        {% if forloop.first %}
-        <ul class="poems">
-            <h2>{{poem.date.year}}</h2>
-        {% endif %}
-    <li><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft">DRAFT</span> {% endif %}</li>
-    {% endfor %}
     </ul>
+    <h3>{{poem.date.year}}</h3>
+    <ul class="poems">    
+    {% endifchanged %}
+<li><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft bubble">DRAFT</span> {% endif %}</li>
+{% endfor %}
 </ul>
+</div>
 {% endblock %}

@@ -1,11 +1,28 @@
 
 .poet .poems .draft {
-    background-color: red;
-    display: inline-block;
-    border-radius: 4px;
-    color: #FFF;
-    font-size: 10px;
-    text-transform: uppercase;
-    padding: 2px 4px;
-    font-weight: bold;
+    background-color: #c60210;
+}
+
+h2 {
+    margin-top: 20px;
+}
+h3 {
+    border: 1px solid #EEE;
+    border-width: 0 0 1px 0;
+}
+.work_group {
+    margin-left: 20px;
+}
+.none_yet {
+    color: #999;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    margin: 0;
+}
+.is_me {
+    background-color: green;
 }

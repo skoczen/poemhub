@@ -36,7 +36,8 @@ body {
     outline-width: 0;
 }
 .poem .title { 
-    margin-bottom: 20px;
+    margin: 20px 0;
+    font-weight: 400;
     font-family: 'Special Elite', serif;
 }
 .poem .body {
