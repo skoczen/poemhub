@@ -115,6 +115,7 @@ INSTALLED_APPS = (
     "south",
 
     "main_site",
+    "poems",
     "utils",
 
 
@@ -135,7 +136,7 @@ import djcelery
 djcelery.setup_loader()
 BROKER_URL = 'redis://localhost:6379/6'
 
-
+AUTH_PROFILE_MODULE = "poems.Poet"
 STATICFILES_EXCLUDED_APPS = []
 COMPRESS_ROOT = STATIC_ROOT
 

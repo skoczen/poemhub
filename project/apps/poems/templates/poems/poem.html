@@ -1,0 +1,41 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
+<link rel="stylesheet" href="{{STATIC_URL}}poems/css/poems.css">
+{% endcompress %}
+{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="poem {% if poem.is_draft %}draft{% endif %}">
+    <div class="draft_badge"></div>
+    <h1 class="title">{{poem.title}}</h1>
+
+    <div class="body">{{poem.body|safe}}</div>
+</div>
+<div class="author">by {{poem.author.name}}</div>
+{% if not poem.is_draft %}
+<div class="kudos">
+    <a href="#" class="fantastic_button"><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</a>
+</div>
+{% endif %}
+
+
+<div class="timeline">
+    <div class="published">
+        {% if poem.is_draft %}Draft.{% else %}Published {{poem.published_at|date}},{% endif %}
+        {% if poem.revisions_visible %}
+            {% if poem.has_been_revised %}Last <a href="{% url "poems:revisions" poem.author.slug poem.slug %}">revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

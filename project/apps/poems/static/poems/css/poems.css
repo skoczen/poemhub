@@ -1,0 +1,82 @@
+body {
+    background: #AAA;
+}
+.author {
+    margin: 10px 0 60px 0;
+    text-align: center;
+    color: #777;
+    font-weight: 300;
+}
+.poem {
+    position: relative;
+    width: 960px;
+    background: #FFF;
+    padding: 40px 80px 80px 80px;
+    margin: 80px auto 0px auto;
+
+    border: 1px solid rgba(0,0,0,0.3);
+    border-bottom-color: rgba(255,255,255,0.97);
+    border-right-color: rgba(255,255,255,0.97);
+    box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
+}
+.poem .title, .poem .body {
+    white-space: pre; /* CSS2 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+}
+.poem .body {
+    font-weight: 400;
+    font-size: 16px;
+}
+.poem .draft_badge {
+    display: none;
+}
+.poem.draft .draft_badge {
+    z-index: 200;
+    display: block;
+    position: absolute;
+    top: -1px;
+    right: -2px;
+    width: 200px;
+    height: 200px;
+    background: url("../../poems/img/draft-badge.png");
+    background-repeat: no-repeat;
+    background-position: top right;
+}
+
+.timeline {
+    text-align: center;
+    margin: 80px 0;
+    color: #DDD;
+    font-weight: 200;
+}
+.timeline a {
+    color: #DDD;
+    text-decoration: underline;
+}
+.kudos {
+    text-align: center;
+}
+.kudos .fantastic_button {
+    border: 1px solid #999;
+    color: #DDD;
+    background-color: #B2B2B2;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 20px;
+}
+.kudos .fantastic_button.clicked {
+    background-color: #777;
+    color: #EEE;
+    border-color: #777;
+}
+.kudos .fantastic_button .clicked_star {
+    display: none;
+}
+.kudos .fantastic_button.clicked .clicked_star {
+    display: inline;
+}
+.kudos .fantastic_button.clicked .unclicked_star {
+    display: none;
+}
