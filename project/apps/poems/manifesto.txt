@@ -9,10 +9,10 @@ My notes:
 - pull in all public domain poetry
 - "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
 - big questions: can you unpublish?  delete your account?
+- "show me another poem like this"
 
 
-
-Manifesto, too:
+Manifesto, (for writers), too:
 I'm pretty sure you don't write poetry so you can sit and send submissions to journals, hoping you don't get a ding letter back. I'm pretty sure you write poetry to connect with people.  To get your ideas and visions and emotions and world out of your head and interacting with another human, somewhere.  Me too.  So let's cut out the middle-man.
 
 Poetr aims to be the best place to revise, edit, publish, and share your poetry.  We don't keep your copyrights or have silly publication limitations.  They're your words.  Take them wherever you'd like.
@@ -27,9 +27,11 @@ For writers:
 
 We aim to be the best place to revise, edit, and publish your poetry.  Poetr keeps revisions of all your changes, automatically, and lets you easily look back.  It also lets you share those revisions with your audience, if you choose.
 
-It gives you one-click publishing that looks <i>fantastic</i>, and automatic analytics on which pieces are most popular.
+It gives you one-click publishing that looks <i>fantastic</i>, and automatic analytics on which pieces are most popular. 
 
-And, for premium members, it gives you helpful goodies, like monthly emailed backups of all your writing, custom URLs, and more.
+And, for premium members, it gives you helpful goodies, like monthly emailed backups of all your writing (no more only-copy worry), custom URLs, and more.
+
+
 
 
 For readers:
@@ -39,23 +41,14 @@ We aim to be the best place for you to find and read poetry.  From new work from
 Readers can also (soon!) subscribe to have a selection of poems delivered to their inbox once a week.
 
 
-
-Manifesto one point five:
-
-To be fair, poetry journals once were necessary, and did a lot of good.  Books were once the only practical way to distribute poems, and since they cost money to make and ship, you simply couldn't print everything.  Thus was born editors, journals, and ding letters.
-
-But with the advent of the internet, things have changed.  Distribution is nearly free (poetr runs on voluntary premium memberships that are five bucks a year.) Authors and readers can now be connected directly. 
-Justifying the continuation of poetry journals in the face of these benefits is like arguing that all writing must be transcribed by hand, in the face of printing presses.  You can do it, and many journals will, but in the end, better economics and access will win.
-
-In the long view, there will be lots of sites and apps like poetr.  Some of them will even be better. That's as it should be.  The big thing is that poetry belongs to all of us, and it's time we got it back.
-
 Thanks for using Poetr.
 
 -Steven
 
 
 
-Manifesto, part one:
+The Poetr Manifesto
+
 It's time to acknowledge the elephant in the room: 99% of all poetry journals are bullshit.
 
 It's true. 99% of them are a circle-jerk of frou-frou writing that your mom wouldn't understand, and they're run by the same folks that convince writers they need an MBA to be a poet.  You don't.
@@ -64,8 +57,15 @@ To be a poet, you need to:
 a) write a poem, and
 b) put it into the world.
 
-Poetr is a free-for-all of poetry.  It pulls the decisions of what makes "good poetry" out of (old, white, male) editorial committees, and back where they belong - with readers.
+The End.
 
-It's a set of tools to let you work on, revise, and release your poetry - and it lets you engage with <i>your</i> readers - on <i>your</i> terms.  And speaking of your readers, here's a nice perk - with poetr, you can finally know how many people actually <i>read</i> your pieces.
+Poetr is a free-for-all of poetry.  It pulls the decisions of what makes "good poetry" out of (largely old, white, male) editorial committees, and back where they belong - with readers.
+
+To be fair, poetry journals once were necessary, and did a lot of good.  Books were once the only practical way to distribute poems, and since they cost money to make and ship, you simply couldn't print everything.  Thus was born editors, journals, and ding letters.
+
+But with the advent of the internet, things have changed.  Distribution is nearly free (poetr runs on voluntary premium memberships that are just five bucks a year.) Authors and readers can now be connected directly. 
+Justifying the continuation of bullshit poetry journals in the face of these benefits is like arguing that all writing is better when transcribed by hand, in the face of printing presses.  You can do it, and many journals will, but in the end, better economics and better access will win.
+
+In the long view, there will be lots of sites and apps like poetr.  Some of them will even be better. That's as it should be.  The big thing is that poetry belongs to all of us, and it's time we got it back.
 
 It's 2014.  Poetry, welcome to the internet.

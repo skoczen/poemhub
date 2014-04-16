@@ -58,6 +58,7 @@
 
   {% block js %}
     {% compress js %}
+    <script>var STATIC_URL = "{{STATIC_URL}}";</script>
     <script src="{{STATIC_URL}}base/js/jquery-1.10.2.js"></script>
     <script src="{{STATIC_URL}}base/js/bootstrap.min.js"></script>
     {% endcompress %}

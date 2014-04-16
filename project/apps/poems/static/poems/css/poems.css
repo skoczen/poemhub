@@ -26,11 +26,14 @@ body {
     border-right-color: rgba(255,255,255,0.97);
     box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
 }
-.poem .title, .poem .body {
+.poem .title, .poem .body, .nicEdit-main, .editable {
     white-space: pre; /* CSS2 */
     white-space: pre-wrap; /* CSS 2.1 */
     white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
     word-wrap: break-word; /* IE */
+    outline: none;
+    outline-style: none;
+    outline-width: 0;
 }
 .poem .title { 
     margin-bottom: 20px;
@@ -39,7 +42,7 @@ body {
     font-weight: 400;
     font-size: 16px;
 }
-.poem .draft_badge {
+.poem .draft_badge, .poem.draft.editing .draft_badge {
     display: none;
 }
 .poem.draft .draft_badge {

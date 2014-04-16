@@ -9,6 +9,8 @@
 {% block js %}{{block.super}}
 {% compress js %}
 <script src="{{STATIC_URL}}main_site/js/site.js"></script>
+<script src="{{STATIC_URL}}poems/js/nicEdit.js"></script>
+<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 {% endcompress %}
 {% endblock %}
 
@@ -17,7 +19,7 @@
 {% if is_mine %}
     <div class="edit_bar">
         {% if poem.is_draft %}
-        <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Save Draft</a>
+        <a href="#" class="button currently_editing_button save_draft_button"><i class="icon-edit" ></i> Save Draft</a>
         <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Publish</a>
         {% else %}
         <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Publish New Version</a>
@@ -28,9 +30,9 @@
 {% endif %}
 <div class="poem {% if poem.is_draft %}draft{% endif %}">
     <div class="draft_badge"></div>
-    <h1 class="title">{{poem.title}}</h1>
+    <h1 class="title"><div class="editable" id="poem_title">{{poem.title}}</div></h1>
 
-    <div class="body">{{poem.body|safe}}</div>
+    <div class="body"><div class="editable" id="poem_body">{{poem.body|safe}}</div></div>
     <div class="author">by <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a></div>
 </div>
 
