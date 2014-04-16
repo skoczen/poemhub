@@ -4,10 +4,10 @@ from annoying.decorators import render_to
 def home(request):
     return locals()
 
-@render_to("main_site/ui-mock.html")
-def ui_mock(request):
+@render_to("main_site/manifesto.html")
+def manifesto(request):
     return locals()
 
-@render_to("main_site/detail-mock.html")
-def detail_mock(request):
+@render_to("main_site/faq.html")
+def faq(request):
     return locals()

@@ -89,6 +89,13 @@ class Poem(AbstractPoem):
             PoemRevision.objects.create(**poem_dict)
 
     @property
+    def date(self):
+        if not self.is_draft:
+            return self.published_at
+        else:
+            return self.most_recent_revision.revised_at
+
+    @property
     def most_recent_revision(self):
         return self.poemrevision_set.all().order_by("revised_at")[0]
 

@@ -1,0 +1,51 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
+{% endcompress %}
+{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="page_content">
+    <h1>Frequently Asked Questions</h1>
+
+    <h2>So why should I trust you guys?</h2>
+
+    <p>Hey, I'm Steven.  I'm the guy who wrote Poetr. You should trust me mostly because I'm a poet and a reader too.  I built poetr because I was frustrated with the rat-race of journal submissions and poetier-than-thou games.  I built it because I <i>personally know</i> writers who are better than most of the stuff that gets published, but who don't submit because their work would get buried in a journal somewhere that nobody reads.  Finally, I built poetr because I'm horrible at organizing my writing - keeping track of where in the pile of papers and folders the latest draft is was a full-time nightmare.</p>
+
+    <p>All that to say, you should trust me because whether you're a reader or a writer, I'm a lot like you.</p>
+
+
+    <h2>Ok, but you're a poet, right?  Is this site going to crash and be buggy?</h2>
+
+    <p>Nah, it's good. From a tech perspective, you should trust Poetr because building stupendous web applications is what I do for a living, and I've got great friends and colleagues (and maybe someday even staff) to help out.</p>
+
+
+    <h2>How do I know you're not going to steal all my poems and run off?</h2>
+
+    <p>Because I think it's morally wrong for an organization to claim ownership of someone's work.  Yes, I'm ripping on journals again, but it's justified.  You wrote the poem. You made the work. They're distributing it, and they need rights to do that, but the silly "we won't publish it if it's been published somewhere else" is a second-grader's game, and everybody knows it.  If it's good poetry, it should be published.  The end.</p>
+
+    <p>You should also trust poetr to not run off with all your work because we've put a ton of effort into making it easy for you to get all your work out.  You can download a zip file at any time with all your poems and revisions.  If you become a poetr supporter for 5 bucks a year (seriously.), we'll email you that file every month, so you've always got a current backup. No one should hold someone's work hostage, and we're not doing it with yours.</p>
+
+    <p>Finally, on a personal note, I think you should trust poetr with your poetry because I trust it with all of mine - and those poems are as precious to me as anything in the world.</p>
+
+
+    <h2>What do you mean "how many people have <i>actually</i> read my work? How do you know?</h2>
+
+    <p>Because we're being a bit clever.  Poetr counts a "read" when a reader has spent enough time on a page to have actually read the entire piece (depends on length), and when they've scrolled down far enough that they could actually have *seen* the whole piece.  So, we don't know for sure - but we're pretty darn close.</p>
+
+
+    <h2>But I've got another question!</h2>
+    <p>Drop me a note at steven at poetr.com.  If it's a general question, I'll post the answer up here, and either way, you'll get an email reply.</p>
+
+</div>
+{% endblock %}

@@ -1,0 +1,11 @@
+
+.poet .poems .draft {
+    background-color: red;
+    display: inline-block;
+    border-radius: 4px;
+    color: #FFF;
+    font-size: 10px;
+    text-transform: uppercase;
+    padding: 2px 4px;
+    font-weight: bold;
+}

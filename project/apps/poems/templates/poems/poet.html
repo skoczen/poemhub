@@ -1,5 +1,12 @@
 {% extends "base.html" %}{% load compress %}
 
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}poems/css/poet.css">
+{% endcompress %}
+{% endblock %}
+
+
 {% block js %}{{block.super}}
 {% compress js %}
 <script src="{{STATIC_URL}}main_site/js/site.js"></script>
@@ -8,12 +15,19 @@
 
 
 {% block content %}
-<div class="page_content">
+<div class="page_content poet">
 <h1>{{poet.name}}</h1>
-
-<ul>
+    {% ifchanged poem.date.year %}
+    <ul class="poems">
+        <h2>{{poem.date.year}}</h2>
+    {% endifchanged %}
     {% for poem in poems %}
+        {% if forloop.first %}
+        <ul class="poems">
+            <h2>{{poem.date.year}}</h2>
+        {% endif %}
     <li><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft">DRAFT</span> {% endif %}</li>
     {% endfor %}
+    </ul>
 </ul>
 {% endblock %}

@@ -4,6 +4,6 @@ from main_site import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
-    url(r'^ui-mock$', views.ui_mock, name='ui_mock'),
-    url(r'^detail-mock$', views.detail_mock, name='detail_mock'),
+    url(r'^faq$', views.faq, name='faq'),
+    url(r'^the-poetr-manfiesto$', views.manifesto, name='manifesto'),
 )

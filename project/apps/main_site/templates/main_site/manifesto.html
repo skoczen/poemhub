@@ -1,0 +1,43 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
+<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
+{% endcompress %}
+{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="page_content">
+    <h1>The Poetr Manifesto.</h1>
+
+    <p>It's time to acknowledge the elephant in the room: 99% of all poetry journals are bullshit.</p>
+
+    <p>It's true. 99% of them are a circle-jerk of frou-frou writing that your mom wouldn't understand, and they're run by the same folks that convince writers they need an MBA to be a poet.  You don't.</p>
+
+    <p>To be a poet, you need to:<br/>
+    a) write a poem, and<br/>
+    b) put it into the world.
+    </p>
+
+    <p>The End.</p>
+
+    <p>Poetr is a free-for-all of poetry.  It pulls the decisions of what makes "good poetry" out of (largely old, white, male) editorial committees, and back where they belong - with readers.</p>
+
+    <p>To be fair, poetry journals once were necessary, and did a lot of good.  Books were once the only practical way to distribute poems, and since books cost money to make and ship, you simply couldn't print everything.  Thus were born editors, journals, and ding letters.</p>
+
+    <p>But with the advent of the internet, things have changed.  Distribution is nearly free (poetr runs on voluntary premium memberships that are just five bucks a year.) Authors and readers can now be connected directly. 
+    Justifying the continuation of bullshit poetry journals in the face of these benefits is like arguing that all writing is better when transcribed by hand in the face of printing presses.  You can do it, and many journals will, but in the end, better economics and better access will win.</p>
+
+    <p>In the long view, there will be lots of sites and apps like poetr.  Some of them will even be better. That's as it should be.  The big thing is that poetry belongs to all of us, and it's time we got it back.</p>
+
+    <p>It's 2014.  Poetry, welcome to the internet.</p>
+</div>
+{% endblock %}

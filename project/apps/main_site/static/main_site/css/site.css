@@ -42,10 +42,11 @@ body {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
-
-
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Special Elite', serif;
+    font-weight: 300;
+}
+p {
+    font-size: 16px;
 }
 
 #nav {
@@ -75,4 +76,57 @@ h1, h2, h3, h4, h5, h6 {
     width: 80%;
     margin: 0 auto;
     max-width: 1200px;
+}
+
+.button, .button:hover, a.button, a.button:hover {
+    border: 1px solid #999;
+    color: #DDD;
+    background-color: #B2B2B2;
+    text-decoration: none;
+    padding: 12px 18px;
+    border-radius: 20px;
+}
+.button:hover, a.button:hover {
+    background-color: #999;
+}
+
+.home_buttons {
+    text-align: center;
+    margin: 0 0 60px 0;
+}
+.home_buttons a {
+    margin: 0 20px;
+    /*background-color: #ff580e;*/
+    /*background-color: #4369ff;*/
+    background-color: #4f66ff;
+    color: #d1daff;
+    border: 0;
+}
+.home_buttons a:hover, .home_buttons a.current {
+    background-color: #3a53ff;
+    color: #FFF;
+    border: 0;
+
+}
+.home h1 {
+    text-align: center;
+    margin: 60px 0 80px 0;
+}
+h1 {
+    margin: 40px 0 30px 0;
+}
+.home .detail_section {
+    width: 640px;
+    margin: 0 auto;
+    display: none;
+}
+
+.footer {
+    width: 100%;
+    text-align: center;
+    margin-top: 300px;
+}
+.footer a {
+    display: inline-block;
+    margin: 0 10px;
 }

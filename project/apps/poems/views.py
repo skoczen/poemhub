@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from annoying.decorators import render_to
 from poems.models import Poem, Poet
 
@@ -30,6 +31,8 @@ def poet(request, poet=None):
 def poem(request, poet=None, title=None):
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
+    if not is_mine and poem.is_draft:
+        raise Http404("Poem not found. Maybe it never was, maybe it's a draft and you're not logged in!")
     return locals()
 
 

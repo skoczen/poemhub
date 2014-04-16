@@ -37,6 +37,7 @@ body {
 }
 .poem .title { 
     margin-bottom: 20px;
+    font-family: 'Special Elite', serif;
 }
 .poem .body {
     font-weight: 400;
@@ -72,18 +73,7 @@ body {
     margin-top: 60px;
     text-align: center;
 }
-.button, .kudos .fantastic_button, .button:hover {
-    border: 1px solid #999;
-    color: #DDD;
-    background-color: #B2B2B2;
-    text-decoration: none;
-    padding: 12px 18px;
-    border-radius: 20px;
-    text-decoration: none;
-}
-.button:hover {
-    background-color: #999;
-}
+
 .kudos .fantastic_button.clicked {
     background-color: #777;
     color: #EEE;
@@ -115,4 +105,10 @@ body {
 }
 .edit_bar.editing .edit_button {
     display: none;
+}
+
+.poet .poems .draft {
+    background-color: red;
+    display: inline-block;
+    border-radius: 2px;
 }
