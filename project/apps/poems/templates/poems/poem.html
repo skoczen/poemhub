@@ -2,8 +2,6 @@
 
 {% block css %}{{block.super}}
 {% compress css %}
-<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
-<link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
 <link rel="stylesheet" href="{{STATIC_URL}}poems/css/poems.css">
 {% endcompress %}
 {% endblock %}
@@ -16,14 +14,27 @@
 
 
 {% block content %}
+{% if is_mine %}
+    <div class="edit_bar">
+        {% if poem.is_draft %}
+        <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Save Draft</a>
+        <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Publish</a>
+        {% else %}
+        <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Publish New Version</a>
+        {% endif %}
+        <a href="#" class="button toggle_editing_button currently_editing_button cancel_button"><i class="icon-edit" ></i> Cancel</a>
+        <a href="#" class="button toggle_editing_button edit_button"><i class="icon-edit" ></i> Edit</a>
+    </div>
+{% endif %}
 <div class="poem {% if poem.is_draft %}draft{% endif %}">
     <div class="draft_badge"></div>
     <h1 class="title">{{poem.title}}</h1>
 
     <div class="body">{{poem.body|safe}}</div>
+    <div class="author">by <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a></div>
 </div>
-<div class="author">by {{poem.author.name}}</div>
-{% if not poem.is_draft %}
+
+{% if not poem.is_draft and not is_mine %}
 <div class="kudos">
     <a href="#" class="fantastic_button"><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</a>
 </div>
@@ -37,5 +48,6 @@
             {% if poem.has_been_revised %}Last <a href="{% url "poems:revisions" poem.author.slug poem.slug %}">revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
         {% endif %}
     </div>
+    <div class="copyright">Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.</div>
 </div>
 {% endblock %}

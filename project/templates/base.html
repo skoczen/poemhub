@@ -18,6 +18,8 @@
   {% compress css %}
   <link rel="stylesheet" href="{{STATIC_URL}}base/css/bootstrap.min.css">
   <link rel="stylesheet" href="{{STATIC_URL}}base/css/animate.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css"> 
+  <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
   {% endcompress %}
   <link href='http://fonts.googleapis.com/css?family=Average|Amethysta|IM+Fell+English:400,400italic|Jacques+Francois|Special+Elite|Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800|PT+Sans+Caption:400,700' rel='stylesheet' type='text/css'>
 
@@ -32,7 +34,19 @@
   {% block full_body %}
   <div id="container">
     <div id="nav">
-        {% block nav %}{% endblock %}
+        {% block nav %}
+        <a href="{% url "main_site:home" %}">Poetr</a>
+        <a href="{% url "main_site:home" %}">Explore</a>
+        <a href="{% url "poems:my_writing" %}">My Writing</a>
+        <div class="account_links">
+            {% if request.user.is_authenticated %}
+            <a href="#">Account</a>
+            <a href="{% url "logout" %}">Logout</a>
+            {% else %}
+            <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+            {% endif %}
+        </div>
+        {% endblock %}
     </div>
     <div id="main" role="main">
     	{% block content %}

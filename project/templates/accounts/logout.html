@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Logged out of Poemr{% endblock %}
+
+{% block content %}
+<div class="page_content">
+    <h1>Logged Out.</h1>
+    <div class="log_out_message">
+    You're logged out. We hope you enjoyed using poemr, and have a great rest of your day!
+    </div>
+    <div class="log_back_in">Want to <a href="{% url "django.contrib.auth.views.login" %}">log back in</a>?</div>
+</div>
+{% endblock %}
+

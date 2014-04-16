@@ -1,0 +1,19 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="page_content">
+<h1>{{poet.name}}</h1>
+
+<ul>
+    {% for poem in poems %}
+    <li><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft">DRAFT</span> {% endif %}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

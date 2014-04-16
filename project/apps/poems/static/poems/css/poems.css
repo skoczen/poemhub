@@ -1,18 +1,25 @@
 body {
     background: #AAA;
 }
+#main {
+    padding: 80px 0 0 0;
+}
 .author {
-    margin: 10px 0 60px 0;
+    display: block;
+    margin: 60px 0 0 0;
     text-align: center;
-    color: #777;
+    color: #BBB;
     font-weight: 300;
+}
+.author a {
+    color: #AAA;
 }
 .poem {
     position: relative;
     width: 960px;
     background: #FFF;
-    padding: 40px 80px 80px 80px;
-    margin: 80px auto 0px auto;
+    padding: 40px 80px 20px 80px;
+    margin: 0 auto;
 
     border: 1px solid rgba(0,0,0,0.3);
     border-bottom-color: rgba(255,255,255,0.97);
@@ -24,6 +31,9 @@ body {
     white-space: pre-wrap; /* CSS 2.1 */
     white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
     word-wrap: break-word; /* IE */
+}
+.poem .title { 
+    margin-bottom: 20px;
 }
 .poem .body {
     font-weight: 400;
@@ -56,15 +66,20 @@ body {
     text-decoration: underline;
 }
 .kudos {
+    margin-top: 60px;
     text-align: center;
 }
-.kudos .fantastic_button {
+.button, .kudos .fantastic_button, .button:hover {
     border: 1px solid #999;
     color: #DDD;
     background-color: #B2B2B2;
     text-decoration: none;
     padding: 12px 18px;
     border-radius: 20px;
+    text-decoration: none;
+}
+.button:hover {
+    background-color: #999;
 }
 .kudos .fantastic_button.clicked {
     background-color: #777;
@@ -78,5 +93,23 @@ body {
     display: inline;
 }
 .kudos .fantastic_button.clicked .unclicked_star {
+    display: none;
+}
+
+.edit_bar {
+    position: absolute;
+    right: 5%;
+    top: 16px;
+}
+.edit_bar .edit_button {
+    display: inline-block;
+}
+.edit_bar .currently_editing_button {
+    display: none;
+}
+.edit_bar.editing .currently_editing_button {
+    display: inline-block;
+}
+.edit_bar.editing .edit_button {
     display: none;
 }

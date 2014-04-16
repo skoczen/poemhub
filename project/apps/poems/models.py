@@ -43,6 +43,7 @@ class AbstractPoem(BaseModel):
     body = models.TextField(blank=True, null=True)
 
     is_draft = models.BooleanField(default=True)
+    display_type = models.CharField(max_length=50, choices=POEM_DISPLAY_TYPES, default=POEM_DISPLAY_TYPES[0][0])
     allow_comments = models.BooleanField(default=True)
     show_draft_revisions = models.BooleanField(default=True)
     show_published_revisions = models.BooleanField(default=True)

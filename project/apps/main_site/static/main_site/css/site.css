@@ -27,7 +27,7 @@ font-family: 'PT Sans Caption', serif;
 */
 
 html {
-    font-family: 'Average', serif;
+    font-family: 'Average', sans-serif;
     /*background: url("../../main_site/img/wood-background-1.jpg") no-repeat center center fixed;*/
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover;    /* Mozilla*/
@@ -46,4 +46,33 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Special Elite', serif;
+}
+
+#nav {
+    height: 40px;
+    width: 100%;
+    background-color: #454545;
+}
+#nav a {
+    display: inline-block;
+    color: #888;
+    /*width: 100px;*/
+    padding: 10px 25px;
+    height: 20px;
+    text-decoration: none;
+}
+#nav a:hover {
+    color: #EEE;
+}
+#nav .account_links {
+    float: right;
+}
+#main {
+    top: 0;
+    position: relative;
+}
+.page_content {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 1200px;
 }

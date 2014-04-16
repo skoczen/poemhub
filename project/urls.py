@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     url(r'', include('main_site.urls', namespace="main_site", app_name="main_site")),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'administration/', include(admin.site.urls), name="admin"),
-
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
+    url(r'^logged-out/$', 'django.contrib.auth.views.logout', {'template_name': 'accounts/logout.html'}, name="logout"),
 
     url(r'^fonts/(?P<path>.*)$', 'django.views.static.serve', {
             'document_root': "%s/main_site/fonts" % settings.STATIC_ROOT,

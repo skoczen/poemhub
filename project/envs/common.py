@@ -137,6 +137,7 @@ djcelery.setup_loader()
 BROKER_URL = 'redis://localhost:6379/6'
 
 AUTH_PROFILE_MODULE = "poems.Poet"
+LOGIN_REDIRECT_URL = "/my-writing/"
 STATICFILES_EXCLUDED_APPS = []
 COMPRESS_ROOT = STATIC_ROOT
 
