@@ -173,3 +173,7 @@ body {
 .poem_form.show_options {
     left: -600px;
 }
+.revised_text {
+    display: inline-block;
+    margin-left: 20px;
+}

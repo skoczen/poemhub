@@ -61,6 +61,7 @@ class AbstractPoem(BaseModel):
 class Poem(AbstractPoem):
     started_at = models.DateTimeField(blank=True, null=True, editable=False, auto_now_add=True)
     published_at = models.DateTimeField(blank=True, null=True, editable=False)
+    written_on = models.DateField(blank=True, null=True, default=datetime.date.today())
     slug = models.CharField(max_length=800, blank=True, verbose_name="url")
 
     def save(self, *args, **kwargs):
@@ -80,7 +81,7 @@ class Poem(AbstractPoem):
         super(Poem, self).save(*args, **kwargs)
 
         if make_revision:
-            INVALID_FIELDS = ["started_at", "published_at", "id", "pk", "slug"]
+            INVALID_FIELDS = ["date_written", "started_at", "published_at", "id", "pk", "slug"]
             poem_dict = {}
             for k, v in self.__dict__.items():
                 if k not in INVALID_FIELDS and k[0] != "_":

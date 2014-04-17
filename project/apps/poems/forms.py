@@ -5,7 +5,7 @@ from poems.models import Poem
 class PoemForm(forms.ModelForm):
     title = forms.CharField(required=False, widget=forms.HiddenInput())
     body = forms.CharField(required=False, widget=forms.HiddenInput())
-    is_draft = forms.BooleanField(widget=forms.HiddenInput())
+    is_draft = forms.BooleanField(required=False, widget=forms.HiddenInput())
     audio_url = forms.CharField(required=False, widget=forms.TextInput())
     video_url = forms.CharField(required=False, widget=forms.TextInput())
 
@@ -15,6 +15,7 @@ class PoemForm(forms.ModelForm):
             "title",
             "body",
             # "slug",
+            "written_on",
             "is_draft",
             # "display_type",
             "allow_comments",

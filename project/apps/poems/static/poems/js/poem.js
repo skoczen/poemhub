@@ -59,44 +59,27 @@ $(function(){
         });
     };
 
-    Poemr.poem.actions.save_revision = function() {
-        if (Poemr.poem.state.title != nicEditors.findEditor("poem_title").getContent() ||
-            Poemr.poem.state.body != nicEditors.findEditor("poem_body").getContent()) {
-            $.ajax({
-                url: Poemr.urls.save_revision,
-                type: "post",
-                dataType: "json",
-                data: {
-                    "title": nicEditors.findEditor("poem_title").getContent(),
-                    "body": nicEditors.findEditor("poem_body").getContent()
-                },
-                params: {
-                    'csrf_token': Poemr.tokens.csrf,
-                    'csrf_name': 'csrfmiddlewaretoken',
-                    'csrf_xname': 'X-CSRFToken'
-                },
-                success: function(json){
-                    alert("saved!");
-                    Poemr.poem.state.title = nicEditors.findEditor("poem_title").getContent();
-                    Poemr.poem.state.body = nicEditors.findEditor("poem_body").getContent();
-                }
-            });
-        }
-        return false;
-    };
     Poemr.poem.actions.init = function() {
-        Poemr.poem.state.title = $("#poem_title").html();
-        Poemr.poem.state.body = $("#poem_body").html();
 
         $(".poem_form").ajaxForm({
+            beforeSerialize: function() {
+                console.log("beforeSerialize")
+                $("#id_title").val(nicEditors.findEditor("poem_title").getContent());
+                $("#id_body").val(nicEditors.findEditor("poem_body").getContent());
+            },
             success: function(json) {
                 alert("saved!");
-                Poemr.poem.state.title = nicEditors.findEditor("poem_title").getContent();
-                Poemr.poem.state.body = nicEditors.findEditor("poem_body").getContent();
             }
         });
         // Handlers
         // $(".save_revision_button").click(Poemr.poem.actions.save_revision);
+        $(".publish_button").click(function(){
+            if (confirm("This will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?")) {
+                $("#id_is_draft").val("False");
+                $(".poem_form").submit();
+            }
+            return false;
+        });
         $(".start_editing_button").click(Poemr.poem.editor.start_editing);
         $(".cancel_editing_button").click(Poemr.poem.editor.cancel_editing);
         $(".options_button").click(Poemr.poem.editor.toggle_options);

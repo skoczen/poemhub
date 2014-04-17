@@ -28,7 +28,7 @@
 {% if is_mine %}
     {% if poem.is_draft %}
     <button type="submit" href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Save Draft</button>
-    <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish</a>
+    <a href="#" class="button currently_editing_button publish_button"><i class="icon-edit" ></i> Publish</a>
     {% else %}
     <button type="submit" href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish New Version</button>
     {% endif %}
@@ -66,9 +66,10 @@
 
 <div class="timeline">
     <div class="published">
-        {% if poem.is_draft %}Draft.{% else %}Published {{poem.published_at|date}},{% endif %}
+        {% if poem.is_draft %}Draft.{% else %}Written on {{poem.written_on|date}}.{% endif %}
         {% if poem.revisions_visible or is_mine %}
-            {% if poem.has_been_revised %}Last <a href="{% url "poems:revisions" poem.author.slug poem.slug %}">revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
+            <span class="revised_text">{% if poem.has_been_revised %}<a href="{% url "poems:revisions" poem.author.slug poem.slug %}">Last revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
+            </span>
         {% endif %}
     </div>
     <div class="copyright">Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.</div>
