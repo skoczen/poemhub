@@ -26,6 +26,7 @@ $(function(){
         $(".edit_bar").addClass("editing");
         $(".poem").addClass("editing");
         $(".poem_form").addClass("editing");
+        $(".revisions_button").hide();
         Poemr.poem.editor.add_nicedit_editors();
         return false;
     };
@@ -45,6 +46,7 @@ $(function(){
         $(".poem").removeClass("editing");
         $(".poem_form").removeClass("editing");
         $(".poem_form").removeClass("show_options");
+        $(".revisions_button").show();
         Poemr.poem.editor.remove_nicedit_editors();
         return false;
     };

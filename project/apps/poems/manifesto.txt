@@ -1,10 +1,10 @@
 
 My notes:
-- default to drafts
+        - default to drafts
 - separate manager for published.
 - pull in all public domain poetry
-- "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
-- big questions: can you unpublish?  delete your account?
+        - "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
+- big questions: can you unpublish? (no..)  delete your account?  (yes?  what happens to your poems?)
 - "show me another poem like this"
 - build signup "what name do you want to publish your work under?"
 - style login, carry next through
@@ -12,10 +12,11 @@ My notes:
 - build backup
 - build account (change email, password)
 - build explore
-- wire up edit
+        - wire up edit
 - sticky footer
 - terms/agree on signup
-
+- emphasize mobile - have the latest version of all your poems with you, whereever you go.
+- tour
 
 
 Manifesto, (for writers), too:

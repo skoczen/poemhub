@@ -95,7 +95,7 @@ body {
 
 .edit_bar {
     /*position: absolute;*/
-    width: 90%;
+    width: 64em;
     margin: 0 auto;
     text-align: right;
     margin-top: 16px;
@@ -112,6 +112,9 @@ body {
 }
 .edit_bar.editing .edit_button {
     display: none;
+}
+.edit_bar .revisions_button {
+    /*float: left;*/
 }
 
 .poet .poems .draft {
