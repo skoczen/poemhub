@@ -78,15 +78,18 @@ p {
     max-width: 1024px;
 }
 
-.button, .button:hover, a.button, a.button:hover {
+.button, .button:hover, a.button, a.button:hover, button.button, button.button:hover {
     border: 1px solid #999;
     color: #DDD;
     background-color: #B2B2B2;
     text-decoration: none;
     padding: 12px 18px;
     border-radius: 20px;
+    outline: none;
+    outline-style: none;
+    outline-width: 0;
 }
-.button:hover, a.button:hover {
+.button:hover, a.button:hover, button.button:hover {
     background-color: #999;
 }
 

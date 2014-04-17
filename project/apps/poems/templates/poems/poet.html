@@ -23,6 +23,7 @@
 {# </div> #}
 {# <h2>All Poems</h2> #}
 <div class="work_group">
+    <a href="{% url "poems:new" %}">Start a new draft</a>
 <ul>
 {% for poem in poems %}
     {% ifchanged poem.date.year %}

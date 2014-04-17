@@ -1,8 +1,9 @@
 body {
     background: #AAA;
+    overflow-x: hidden;
 }
 #main {
-    padding: 80px 0 0 0;
+    padding: 0;
 }
 .author {
     display: block;
@@ -15,11 +16,13 @@ body {
     color: #AAA;
 }
 .poem {
+    display: block;
     position: relative;
-    width: 960px;
+    width: 64em;
     background: #FFF;
     padding: 40px 80px 20px 80px;
     margin: 0 auto;
+    /*top: 80px;*/
 
     border: 1px solid rgba(0,0,0,0.3);
     border-bottom-color: rgba(255,255,255,0.97);
@@ -91,9 +94,12 @@ body {
 }
 
 .edit_bar {
-    position: absolute;
-    right: 5%;
-    top: 16px;
+    /*position: absolute;*/
+    width: 90%;
+    margin: 0 auto;
+    text-align: right;
+    margin-top: 16px;
+    height: 80px;
 }
 .edit_bar .edit_button {
     display: inline-block;
@@ -125,4 +131,45 @@ body {
     margin: 20px 0 0 34%;
     color: #CCC;
     background-color: #9F9F9F;
+}
+.poem_form {
+    position: relative;
+    top: 0;
+    left: 0;
+    -webkit-transition: left 0.25s linear;
+    -moz-transition: left 0.25s linear;
+    -ms-transition: left 0.25s linear;
+    -o-transition: left 0.25s linear;
+    transition: left 0.25s linear;
+}
+.poem_meta {
+    position: absolute;
+    top: 120px;
+    right: -400px;
+    display: none;
+}
+.options_toggle {
+    display: none;
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    height: 30px;
+    padding: 0 20px;
+}
+.options_toggle a {
+    display: block;
+    font-size: 50px;
+    line-height: 0;
+    color: #999;
+    text-decoration: none;   
+}
+.poem_form.editing .options_toggle {
+    display: block;
+}
+.poem_form.editing .poem_meta {
+    display: block;
+}
+
+.poem_form.show_options {
+    left: -600px;
 }

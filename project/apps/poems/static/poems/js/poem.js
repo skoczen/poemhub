@@ -17,14 +17,20 @@ $(function(){
         $(this).toggleClass("clicked");
     });
 
+    Poemr.poem.editor.toggle_options = function() {
+        $(".poem_form").toggleClass("show_options");
+        return false;
+    };
+
     Poemr.poem.editor.start_editing = function() {
         $(".edit_bar").addClass("editing");
         $(".poem").addClass("editing");
+        $(".poem_form").addClass("editing");
         Poemr.poem.editor.add_nicedit_editors();
         return false;
     };
     Poemr.poem.editor.add_nicedit_editors = function() {
-        $(".editable").each(function(){
+        $(".poem .editable").each(function(){
             id = $(this).attr("id");
             ed = new nicEditor({
                 fullPanel : false,
@@ -37,11 +43,13 @@ $(function(){
     Poemr.poem.editor.cancel_editing = function() {
         $(".edit_bar").removeClass("editing");
         $(".poem").removeClass("editing");
+        $(".poem_form").removeClass("editing");
+        $(".poem_form").removeClass("show_options");
         Poemr.poem.editor.remove_nicedit_editors();
         return false;
     };
     Poemr.poem.editor.remove_nicedit_editors = function() {
-        $(".editable").each(function(){
+        $(".poem .editable").each(function(){
             id = $(this).attr("id");
             editor = Poemr.poem.editor.editing_nodes[id];
             var new_html = nicEditors.findEditor(id).getContent();
@@ -60,12 +68,12 @@ $(function(){
                 dataType: "json",
                 data: {
                     "title": nicEditors.findEditor("poem_title").getContent(),
-                    "body": nicEditors.findEditor("poem_body").getContent(),
+                    "body": nicEditors.findEditor("poem_body").getContent()
                 },
                 params: {
                     'csrf_token': Poemr.tokens.csrf,
                     'csrf_name': 'csrfmiddlewaretoken',
-                    'csrf_xname': 'X-CSRFToken',
+                    'csrf_xname': 'X-CSRFToken'
                 },
                 success: function(json){
                     alert("saved!");
@@ -74,15 +82,24 @@ $(function(){
                 }
             });
         }
+        return false;
     };
     Poemr.poem.actions.init = function() {
         Poemr.poem.state.title = $("#poem_title").html();
         Poemr.poem.state.body = $("#poem_body").html();
 
+        $(".poem_form").ajaxForm({
+            success: function(json) {
+                alert("saved!");
+                Poemr.poem.state.title = nicEditors.findEditor("poem_title").getContent();
+                Poemr.poem.state.body = nicEditors.findEditor("poem_body").getContent();
+            }
+        });
         // Handlers
-        $(".save_revision_button").click(Poemr.poem.actions.save_revision);
+        // $(".save_revision_button").click(Poemr.poem.actions.save_revision);
         $(".start_editing_button").click(Poemr.poem.editor.start_editing);
         $(".cancel_editing_button").click(Poemr.poem.editor.cancel_editing);
+        $(".options_button").click(Poemr.poem.editor.toggle_options);
 
         bkLib.onDomLoaded(nicEditors.allTextAreas);
     };

@@ -2,8 +2,8 @@ from django.contrib import admin
 from poems.models import Poem, PoemRevision, Poet
 
 BASE_POEM_LIST_DISPLAY = [
-    "author",
     "title",
+    "author",
     "is_draft",
     "allow_comments",
     "show_draft_revisions",
@@ -20,7 +20,7 @@ admin.site.register(Poem, PoemAdmin)
 
 
 class PoemRevisionAdmin(admin.ModelAdmin):
-    list_display = ["revised_at",] + BASE_POEM_LIST_DISPLAY
+    list_display = ["revised_at", ] + BASE_POEM_LIST_DISPLAY
     model = PoemRevision
 
 

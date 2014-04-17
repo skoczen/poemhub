@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-from django.template.defaultfilters import slugify
+from utils.slughifi import unique_slug
 from main_site.models import BaseModel
 
 POEM_DISPLAY_TYPES = [
@@ -17,7 +17,7 @@ class Poet(BaseModel):
     slug = models.CharField(max_length=255, blank=True, editable=False)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
+        self.slug = unique_slug(self, 'name', 'slug')
         super(Poet, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -30,7 +30,7 @@ class Collection(BaseModel):
     slug = models.CharField(max_length=800, blank=True, editable=False)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = unique_slug(self, 'title', 'slug')
         super(Collection, self).save(*args, **kwargs)
 
     def __unicode__(self):
@@ -39,8 +39,8 @@ class Collection(BaseModel):
 
 class AbstractPoem(BaseModel):
     author = models.ForeignKey(Poet)
-    title = models.TextField(blank=True, null=True)
-    body = models.TextField(blank=True, null=True)
+    title = models.TextField(blank=True, null=True, default="Title")
+    body = models.TextField(blank=True, null=True, default="Body")
 
     is_draft = models.BooleanField(default=True)
     display_type = models.CharField(max_length=50, choices=POEM_DISPLAY_TYPES, default=POEM_DISPLAY_TYPES[0][0])
@@ -61,10 +61,10 @@ class AbstractPoem(BaseModel):
 class Poem(AbstractPoem):
     started_at = models.DateTimeField(blank=True, null=True, editable=False, auto_now_add=True)
     published_at = models.DateTimeField(blank=True, null=True, editable=False)
-    slug = models.CharField(max_length=800, blank=True, editable=False)
+    slug = models.CharField(max_length=800, blank=True, verbose_name="url")
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
+        self.slug = unique_slug(self, 'title', 'slug')
 
         if not self.published_at and not self.is_draft:
             self.published_at = datetime.datetime.now()
@@ -74,8 +74,8 @@ class Poem(AbstractPoem):
             make_revision = True
         else:
             old_me = Poem.objects.get(pk=self.pk)
-        if old_me.title != self.title or old_me.body != self.body:
-            make_revision = True
+            if old_me.title != self.title or old_me.body != self.body:
+                make_revision = True
 
         super(Poem, self).save(*args, **kwargs)
 
@@ -117,6 +117,8 @@ class Poem(AbstractPoem):
     def __unicode__(self):
         return "%s" % self.title
 
+    class Meta:
+        ordering = ("-started_at",)
 
 class PoemRevision(AbstractPoem):
     revised_at = models.DateTimeField(auto_now_add=True, editable=False)

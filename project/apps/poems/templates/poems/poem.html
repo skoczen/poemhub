@@ -8,6 +8,7 @@
 
 {% block js %}{{block.super}}
 {% compress js %}
+<script src="{{STATIC_URL}}base/js/ajaxForm.js"></script>
 <script src="{{STATIC_URL}}poems/js/nicEdit.js"></script>
 <script type="text/javascript">
     window.Poemr = window.Poemr || {};
@@ -22,18 +23,20 @@
 
 
 {% block content %}
+<form action="{% url "poems:save_revision" poem.author.slug poem.slug %}" class="poem_form" method="POST">
+<div class="edit_bar">
 {% if is_mine %}
-    <div class="edit_bar">
-        {% if poem.is_draft %}
-        <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Save Draft</a>
-        <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish</a>
-        {% else %}
-        <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish New Version</a>
-        {% endif %}
-        <a href="#" class="button currently_editing_button cancel_editing_button"><i class="icon-edit" ></i> Cancel</a>
-        <a href="#" class="button start_editing_button edit_button"><i class="icon-edit" ></i> Edit</a>
-    </div>
+    {% if poem.is_draft %}
+    <button type="submit" href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Save Draft</button>
+    <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish</a>
+    {% else %}
+    <button type="submit" href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish New Version</button>
+    {% endif %}
+    <button type="revert" href="#" class="button currently_editing_button cancel_editing_button"><i class="icon-edit" ></i> Cancel</button>
+    <a href="#" class="button start_editing_button edit_button"><i class="icon-edit" ></i> Edit</a>
 {% endif %}
+</div>
+
 <div class="poem {% if poem.is_draft %}draft{% endif %}">
     <div class="draft_badge"></div>
     <h1 class="title"><div class="editable" id="poem_title">{{poem.title}}</div></h1>
@@ -42,6 +45,18 @@
     <div class="author">by <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a></div>
 </div>
 
+{% if is_mine %}
+<div class="options_toggle">
+    <a href="#" class="options_button">⚙</a>
+</div>
+<div class="poem_meta">
+    <table>
+    {{form.as_table}}
+    </table>
+    {% csrf_token %}
+</div>
+{% endif %}
+</form>
 {% if not poem.is_draft and not is_mine %}
 <div class="kudos">
     <a href="#" class="fantastic_button button"><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</a>

@@ -4,6 +4,7 @@ from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
 from poems.models import Poem, Poet, PoemRevision
+from poems.forms import PoemForm
 
 
 @render_to("poems/home.html")
@@ -34,26 +35,29 @@ def poet(request, poet=None):
 def poem(request, poet=None, title=None):
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
+    if is_mine:
+        form = PoemForm(instance=poem)
     if not is_mine and poem.is_draft:
         raise Http404("Poem not found. Maybe it never was, maybe it's a draft and you're not logged in!")
     return locals()
 
 
 @ajax_request
-@csrf_exempt
 def save_revision(request, poet=None, title=None):
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
     if not is_mine:
-        raise Http403("Either this isn't your poem, or you're not logged in!")
-    data = request.POST
-    if "body" not in data or "title" not in data:
-        raise Exception("Hm, you're missing either the title, or the body.")
-    poem.title = data["title"]
-    poem.body = data["body"]
-    poem.save()
+        raise Exception("Either this isn't your poem, or you're not logged in!")
 
-    return {"success": True}
+    success = False
+    form = PoemForm(request.POST, instance=poem)
+    if form.is_valid():
+        form.save()
+        success = True
+    else:
+        print form
+
+    return {"success": success}
 
 
 @render_to("poems/revisions.html")
@@ -83,3 +87,9 @@ def revision(request, poet=None, pk=None):
     assert is_mine
 
     return locals()
+
+
+def new(request):
+    poet = Poet.objects.get(user=request.user)
+    poem = Poem.objects.create(author=poet)
+    return HttpResponseRedirect(reverse("poems:poem", args=(poem.author.slug, poem.slug,)))
