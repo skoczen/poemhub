@@ -17,11 +17,11 @@
 {% block content %}
 <div class="page_content poet">
 <h1>{{poet.name}}{% if is_me %} <span class="is_me bubble">me!</span>{% endif %}</h1>
-<h2>Collections</h2>
-<div class="work_group">
-    <p class="none_yet">No collections yet.</p>
-</div>
-<h2>All Poems</h2>
+{# <h2>Collections</h2> #}
+{# <div class="work_group"> #}
+    {# <p class="none_yet">No collections yet.</p> #}
+{# </div> #}
+{# <h2>All Poems</h2> #}
 <div class="work_group">
 <ul>
 {% for poem in poems %}

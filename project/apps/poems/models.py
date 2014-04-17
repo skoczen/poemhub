@@ -97,7 +97,7 @@ class Poem(AbstractPoem):
 
     @property
     def most_recent_revision(self):
-        return self.poemrevision_set.all().order_by("revised_at")[0]
+        return self.poemrevision_set.all().order_by("-revised_at")[0]
 
     @property
     def has_been_revised(self):

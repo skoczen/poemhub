@@ -60,7 +60,19 @@ def save_revision(request, poet=None, title=None):
 def revisions(request, poet=None, title=None):
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
-    revisions = poem.revisions
+    if is_mine:
+        revisions = poem.revisions
+    elif poem.show_draft_revisions:
+        if (poem.show_published_revisions):
+            revisions = poem.revisions
+        else:
+            revisions = poem.revisions.filter(is_draft=True)
+    else:
+        if poem.show_published_revisions:
+            revisions = poem.revisions.filter(is_draft=False)
+        else:
+            revisions = poem.revisions.none()
+
     return locals()
 
 
