@@ -1,7 +1,3 @@
-Note: 
-Robyn says - you should be able to get to another poem!  
-And ford mustangs.
-
 
 My notes:
 - default to drafts
@@ -10,6 +6,16 @@ My notes:
 - "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
 - big questions: can you unpublish?  delete your account?
 - "show me another poem like this"
+- build signup "what name do you want to publish your work under?"
+- style login, carry next through
+- style logout
+- build backup
+- build account (change email, password)
+- build explore
+- wire up edit
+- sticky footer
+- terms/agree on signup
+
 
 
 Manifesto, (for writers), too:

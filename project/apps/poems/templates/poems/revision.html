@@ -1,0 +1,22 @@
+{% extends "base.html" %}{% load compress %}
+
+{% block css %}{{block.super}}
+{% compress css %}
+<link rel="stylesheet" href="{{STATIC_URL}}poems/css/poems.css">
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="revision_badge">Revision - {{poem.revised_at|date}} {{poem.revised_at|time}}</div>
+<div class="poem">
+    <h1 class="title"><div class="editable" id="poem_title">{{poem.title}}</div></h1>
+
+    <div class="body"><div class="editable" id="poem_body">{{poem.body|safe}}</div></div>
+    <div class="author">by <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a></div>
+</div>
+
+<div class="timeline">
+    <div class="copyright">Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.</div>
+</div>
+{% endblock %}

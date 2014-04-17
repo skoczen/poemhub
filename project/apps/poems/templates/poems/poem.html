@@ -8,9 +8,15 @@
 
 {% block js %}{{block.super}}
 {% compress js %}
-<script src="{{STATIC_URL}}main_site/js/site.js"></script>
 <script src="{{STATIC_URL}}poems/js/nicEdit.js"></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
+<script type="text/javascript">
+    window.Poemr = window.Poemr || {};
+    Poemr.urls = Poemr.urls || {};
+    Poemr.urls.save_revision = "{% url "poems:save_revision" poem.author.slug poem.slug %}";
+    Poemr.tokens = Poemr.tokens || {};
+    Poemr.tokens.csrf = "{{ csrf_token }}";
+</script>
+<script src="{{STATIC_URL}}poems/js/poem.js"></script>
 {% endcompress %}
 {% endblock %}
 
@@ -19,13 +25,13 @@
 {% if is_mine %}
     <div class="edit_bar">
         {% if poem.is_draft %}
-        <a href="#" class="button currently_editing_button save_draft_button"><i class="icon-edit" ></i> Save Draft</a>
-        <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Publish</a>
+        <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Save Draft</a>
+        <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish</a>
         {% else %}
-        <a href="#" class="button currently_editing_button"><i class="icon-edit" ></i> Publish New Version</a>
+        <a href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Publish New Version</a>
         {% endif %}
-        <a href="#" class="button toggle_editing_button currently_editing_button cancel_button"><i class="icon-edit" ></i> Cancel</a>
-        <a href="#" class="button toggle_editing_button edit_button"><i class="icon-edit" ></i> Edit</a>
+        <a href="#" class="button currently_editing_button cancel_editing_button"><i class="icon-edit" ></i> Cancel</a>
+        <a href="#" class="button start_editing_button edit_button"><i class="icon-edit" ></i> Edit</a>
     </div>
 {% endif %}
 <div class="poem {% if poem.is_draft %}draft{% endif %}">
@@ -46,7 +52,7 @@
 <div class="timeline">
     <div class="published">
         {% if poem.is_draft %}Draft.{% else %}Published {{poem.published_at|date}},{% endif %}
-        {% if poem.revisions_visible %}
+        {% if poem.revisions_visible or is_mine %}
             {% if poem.has_been_revised %}Last <a href="{% url "poems:revisions" poem.author.slug poem.slug %}">revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
         {% endif %}
     </div>

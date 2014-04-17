@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.http import Http404
-from annoying.decorators import render_to
-from poems.models import Poem, Poet
+from django.views.decorators.csrf import csrf_exempt
+from annoying.decorators import render_to, ajax_request
+from poems.models import Poem, Poet, PoemRevision
 
 
 @render_to("poems/home.html")
@@ -38,9 +39,35 @@ def poem(request, poet=None, title=None):
     return locals()
 
 
+@ajax_request
+@csrf_exempt
+def save_revision(request, poet=None, title=None):
+    poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
+    is_mine = poem.author.user == request.user
+    if not is_mine:
+        raise Http403("Either this isn't your poem, or you're not logged in!")
+    data = request.POST
+    if "body" not in data or "title" not in data:
+        raise Exception("Hm, you're missing either the title, or the body.")
+    poem.title = data["title"]
+    poem.body = data["body"]
+    poem.save()
+
+    return {"success": True}
+
+
 @render_to("poems/revisions.html")
 def revisions(request, poet=None, title=None):
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
     revisions = poem.revisions
+    return locals()
+
+
+@render_to("poems/revision.html")
+def revision(request, poet=None, pk=None):
+    poem = PoemRevision.objects.get(pk=pk, author__slug__iexact=poet)
+    is_mine = poem.author.user == request.user
+    assert is_mine
+
     return locals()

@@ -75,7 +75,7 @@ p {
 .page_content {
     width: 80%;
     margin: 0 auto;
-    max-width: 1200px;
+    max-width: 1024px;
 }
 
 .button, .button:hover, a.button, a.button:hover {
@@ -139,5 +139,7 @@ h1 {
     text-transform: uppercase;
     padding: 2px 6px;
     font-weight: 300;
-
+}
+.manifesto.page_content {
+    max-width: 880px;
 }

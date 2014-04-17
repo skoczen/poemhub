@@ -122,6 +122,8 @@ class PoemRevision(AbstractPoem):
     revised_at = models.DateTimeField(auto_now_add=True, editable=False)
     poem = models.ForeignKey(Poem)
 
+    class Meta:
+        ordering = ("-revised_at",)
 
     def __unicode__(self):
         return "%s (%s)" % (self.title, self.revised_at)
