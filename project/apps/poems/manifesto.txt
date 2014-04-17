@@ -17,6 +17,12 @@ My notes:
 - terms/agree on signup
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
 - tour
+- save "diff" from title and body
+- add intercom.io
+- about page (bottom link) (lead with haiku :) )
+- "my reading" - list of everything you've read, when, and whether you fantastic'd it. searchable.
+
+name: "Poem" ?
 
 
 Manifesto, (for writers), too:
