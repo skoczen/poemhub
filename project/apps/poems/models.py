@@ -1,6 +1,6 @@
 import datetime
 from django.db import models
-from utils.slughifi import unique_slug
+from utils.slughifi import unique_slug, slughifi
 from main_site.models import BaseModel
 
 POEM_DISPLAY_TYPES = [
@@ -65,16 +65,18 @@ class Poem(AbstractPoem):
     slug = models.CharField(max_length=800, blank=True, verbose_name="url")
 
     def save(self, *args, **kwargs):
-        self.slug = unique_slug(self, 'title', 'slug')
-
         if not self.published_at and not self.is_draft:
             self.published_at = datetime.datetime.now()
 
         make_revision = False
         if not self.pk:
             make_revision = True
+            self.slug = unique_slug(self, 'title', 'slug', generate_new=True)
         else:
             old_me = Poem.objects.get(pk=self.pk)
+            if slughifi(old_me.title) != slughifi(self.title):
+                self.slug = unique_slug(self, 'title', 'slug', generate_new=True)
+
             if old_me.title != self.title or old_me.body != self.body:
                 make_revision = True
 

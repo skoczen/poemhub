@@ -72,7 +72,11 @@ $(function(){
             },
             success: function(json) {
                 // alert("saved!");
+                console.log(json);
                 Poemr.poem.editor.cancel_editing();
+                if (json.new_url) {
+                    document.location = json.new_url;
+                }
             }
         });
         // Handlers

@@ -44,7 +44,9 @@ def poem(request, poet=None, title=None):
 
 @ajax_request
 def save_revision(request, poet=None, title=None):
+    new_url = None
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
+    old_slug = poem.slug
     is_mine = poem.author.user == request.user
     if not is_mine:
         raise Exception("Either this isn't your poem, or you're not logged in!")
@@ -52,12 +54,16 @@ def save_revision(request, poet=None, title=None):
     success = False
     form = PoemForm(request.POST, instance=poem)
     if form.is_valid():
-        form.save()
+        new_poem = form.save()
         success = True
+        print old_slug
+        print new_poem.slug
+        if old_slug != new_poem.slug:
+            new_url = reverse("poems:poem", args=(poem.author.slug, new_poem.slug,))
     else:
         print form
 
-    return {"success": success}
+    return {"success": success, "new_url": new_url}
 
 
 @render_to("poems/revisions.html")

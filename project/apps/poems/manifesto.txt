@@ -13,6 +13,7 @@ My notes:
 - build account (change email, password)
 - build explore
         - wire up edit
+- TODO: strip HTML
 - sticky footer
 - terms/agree on signup
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
@@ -25,6 +26,21 @@ My notes:
 
 
 name: "Poem" ?
+Binding?
+The Binding?
+the press?
+poempress?
+poembook?
+poemhome
+poemjournal
+poemtable
+poemshelf
+poempaper
+poemapp
+poems
+ourpoems
+mypoems
+
 
 
 Manifesto, (for writers), too:

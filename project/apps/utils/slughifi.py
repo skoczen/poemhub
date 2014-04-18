@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-# This I found years ago, floating around django snippets.
+# This I found years ago, floating around django snippets, then modified it for poetr's needs.
 # If anyone knows the proper attribution, please email me.
 # at skoczen at gmail, and I'll update t!
 
 import re
 from types import UnicodeType
+from compressor.parser.beautifulsoup import BeautifulSoupParser
 
 from django.template.defaultfilters import slugify
 
@@ -46,6 +47,8 @@ def slughifi(value, do_slugify=True, overwrite_char_map={}):
     # unicodification
     if type(value) != UnicodeType:
         value = unicode(value, 'utf-8', 'ignore')
+
+    # TODO: strip HTML
 
     # overwrite chararcter mapping
     char_map.update(overwrite_char_map)
