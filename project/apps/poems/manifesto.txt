@@ -21,6 +21,8 @@ My notes:
 - add intercom.io
 - about page (bottom link) (lead with haiku :) )
 - "my reading" - list of everything you've read, when, and whether you fantastic'd it. searchable.
+- collections are important sooner rather than later, for pacing reasons.
+
 
 name: "Poem" ?
 

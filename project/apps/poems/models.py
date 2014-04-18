@@ -81,7 +81,7 @@ class Poem(AbstractPoem):
         super(Poem, self).save(*args, **kwargs)
 
         if make_revision:
-            INVALID_FIELDS = ["date_written", "started_at", "published_at", "id", "pk", "slug"]
+            INVALID_FIELDS = ["written_on", "started_at", "published_at", "id", "pk", "slug"]
             poem_dict = {}
             for k, v in self.__dict__.items():
                 if k not in INVALID_FIELDS and k[0] != "_":

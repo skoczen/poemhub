@@ -11,6 +11,7 @@ $(function(){
     Poemr.poem.editor.is_editing = false;
     Poemr.poem.state.title = "";
     Poemr.poem.state.body = "";
+    var ed;
 
     // Fantastic button is totally fake. For now.
     $(".fantastic_button").click(function(){
@@ -26,17 +27,19 @@ $(function(){
         $(".edit_bar").addClass("editing");
         $(".poem").addClass("editing");
         $(".poem_form").addClass("editing");
-        $(".revisions_button").hide();
+        // $(".revisions_button").hide();
         Poemr.poem.editor.add_nicedit_editors();
         return false;
     };
     Poemr.poem.editor.add_nicedit_editors = function() {
+        Poemr.poem.editor.editing_node = new nicEditor({
+                fullPanel : false,
+                buttonList : ['bold','italic','underline']
+                // Currently broke as fuck.  ,'left','center','right'
+        }).panelInstance("edit_pane", {hasPanel: true});
         $(".poem .editable").each(function(){
             id = $(this).attr("id");
-            ed = new nicEditor({
-                fullPanel : false,
-                buttonList : ['bold','italic','underline','left','center','right']
-            }).panelInstance(id, {hasPanel : true});
+            Poemr.poem.editor.editing_node.addInstance(id, {hasPanel : true});
             Poemr.poem.editor.editing_nodes[id] = ed;
         });
         $(".title .nicEdit-main").focus();
@@ -46,31 +49,30 @@ $(function(){
         $(".poem").removeClass("editing");
         $(".poem_form").removeClass("editing");
         $(".poem_form").removeClass("show_options");
-        $(".revisions_button").show();
+        // $(".revisions_button").show();
         Poemr.poem.editor.remove_nicedit_editors();
         return false;
     };
     Poemr.poem.editor.remove_nicedit_editors = function() {
         $(".poem .editable").each(function(){
             id = $(this).attr("id");
-            editor = Poemr.poem.editor.editing_nodes[id];
             var new_html = nicEditors.findEditor(id).getContent();
-            editor.removeInstance(id);
-            editor = null;
             $(this).html(new_html);
         });
+        Poemr.poem.editor.editing_node.removeInstance("edit_pane");
+        Poemr.poem.editor.editing_node = null;
     };
 
     Poemr.poem.actions.init = function() {
 
         $(".poem_form").ajaxForm({
             beforeSerialize: function() {
-                console.log("beforeSerialize")
                 $("#id_title").val(nicEditors.findEditor("poem_title").getContent());
                 $("#id_body").val(nicEditors.findEditor("poem_body").getContent());
             },
             success: function(json) {
-                alert("saved!");
+                // alert("saved!");
+                Poemr.poem.editor.cancel_editing();
             }
         });
         // Handlers

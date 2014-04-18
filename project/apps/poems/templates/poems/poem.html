@@ -24,9 +24,10 @@
 
 {% block content %}
 <form action="{% url "poems:save_revision" poem.author.slug poem.slug %}" class="poem_form" method="POST">
-<div class="edit_bar">
+
 {% if is_mine %}
-    <a href="{% url "poems:revisions" poem.author.slug poem.slug %}" class="button revisions_button"><i class="icon-revisions" ></i> Revisions</a>
+<div class="edit_bar">
+    <a href="{% url "poems:revisions" poem.author.slug poem.slug %}" class="button revisions_button" target="_blank"><i class="icon-revisions" ></i> Revisions</a>
     {% if poem.is_draft %}
     <button type="submit" href="#" class="button currently_editing_button save_revision_button"><i class="icon-edit" ></i> Save Draft</button>
     <a href="#" class="button currently_editing_button publish_button"><i class="icon-edit" ></i> Publish</a>
@@ -35,12 +36,14 @@
     {% endif %}
     <button type="revert" href="#" class="button currently_editing_button cancel_editing_button"><i class="icon-edit" ></i> Cancel</button>
     <a href="#" class="button start_editing_button edit_button"><i class="icon-edit" ></i> Edit</a>
-{% endif %}
 </div>
+{% endif %}
+
 
 <div class="poem {% if poem.is_draft %}draft{% endif %}">
+    <div id="edit_pane_area"><div id="edit_pane"></div></div>
     <div class="draft_badge"></div>
-    <h1 class="title"><div class="editable" id="poem_title">{{poem.title}}</div></h1>
+    <h1 class="title"><div class="editable" id="poem_title">{{poem.title|safe}}</div></h1>
 
     <div class="body"><div class="editable" id="poem_body">{{poem.body|safe}}</div></div>
     <div class="author">by <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a></div>
