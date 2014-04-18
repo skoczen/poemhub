@@ -134,16 +134,17 @@ body {
     display: inline-block;
     border-radius: 2px;
 }
-
+.poem.revision {
+    margin: 20px auto 0 auto;
+}
 .revision_badge {
-    position: absolute;
     text-align: center;
     top: 0;
     padding: 5px 0;
     border: 2px solid #999;
     border-radius: 4px;
     width: 32%;
-    margin: 20px 0 0 34%;
+    margin: 20px 0 20px 34%;
     color: #CCC;
     background-color: #9F9F9F;
 }
