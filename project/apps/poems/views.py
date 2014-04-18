@@ -98,4 +98,4 @@ def revision(request, poet=None, pk=None):
 def new(request):
     poet = Poet.objects.get(user=request.user)
     poem = Poem.objects.create(author=poet)
-    return HttpResponseRedirect(reverse("poems:poem", args=(poem.author.slug, poem.slug,)))
+    return HttpResponseRedirect("%s?editing=true" % reverse("poems:poem", args=(poem.author.slug, poem.slug,)))

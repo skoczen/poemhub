@@ -26,3 +26,14 @@ li {
 .is_me {
     background-color: green;
 }
+a.button.new_draft_button {
+    float: right;
+    background-color: #F2F2F2;
+    color: #999;
+    border-color: #DDD;
+}
+a.button.new_draft_button:hover {
+    background-color: #DDD;
+    color: #888;
+    border-color: #DDD;
+}

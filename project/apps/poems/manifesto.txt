@@ -23,6 +23,7 @@ My notes:
 - about page (bottom link) (lead with haiku :) )
 - "my reading" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - collections are important sooner rather than later, for pacing reasons.
+- make "reading" an experience- "start reading" - dim the lights, etc.
 
 
 name: "Poem" ?
@@ -40,6 +41,8 @@ poemapp
 poems
 ourpoems
 mypoems
+poemville
+
 
 
 

@@ -91,7 +91,9 @@ $(function(){
         $(".start_editing_button").click(Poemr.poem.editor.start_editing);
         $(".cancel_editing_button").click(Poemr.poem.editor.cancel_editing);
         $(".options_button").click(Poemr.poem.editor.toggle_options);
-
+        if (window.location.href.indexOf("?editing=true") != -1) {
+            Poemr.poem.editor.start_editing();
+        }
         bkLib.onDomLoaded(nicEditors.allTextAreas);
     };
     Poemr.poem.actions.init();
