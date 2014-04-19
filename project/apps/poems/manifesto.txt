@@ -24,7 +24,7 @@ My notes:
 - "my reading" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - collections are important sooner rather than later, for pacing reasons.
 - make "reading" an experience- "start reading" - dim the lights, etc.
-
+- print!  (how does this print?)
 
 name: "Poem" ?
 Binding?
