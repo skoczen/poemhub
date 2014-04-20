@@ -11,3 +11,7 @@ def manifesto(request):
 @render_to("main_site/faq.html")
 def faq(request):
     return locals()
+
+@render_to("main_site/terms.html")
+def terms(request):
+    return locals()
