@@ -42,6 +42,12 @@ ALLOWED_HOSTS = [
     "poemhub.org",
     "*.poemhub.org",
     "www.poemhub.org",
+    "poemhub.net",
+    "*.poemhub.net",
+    "www.poemhub.net",
+    "poemhub.com",
+    "*.poemhub.com",
+    "www.poemhub.com",
 ]
 
 TIME_ZONE = 'America/Vancouver'
