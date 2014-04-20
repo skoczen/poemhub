@@ -51,11 +51,22 @@ body {
     outline-width: 0;
 }
 .poem .title { 
+    /*reallly like*/
+    /*font-family: 'EB Garamond', serif;*/
+    
+    /* maybe, depends on below */
+    font-family: 'Cardo', serif;
+    
+
     margin: 20px 0;
     font-weight: 400;
-    font-family: 'Average', serif;
 }
 .poem .body {
+    /*all-rounder*/
+    /*font-family: 'Lato', sans-serif;*/
+    /*lighter, but good:;*/
+    font-family: 'Raleway', sans-serif;
+    
     font-weight: 400;
     font-size: 16px;
 }

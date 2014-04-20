@@ -12,22 +12,33 @@
     user-select: none;
 }
 /*
-Headers:;
-font-family: 'Special Elite', cursive;
-font-family: 'IM Fell English SC', serif;
+Titles:
+font-family: 'Libre Baskerville', serif;
+font-family: 'EB Garamond', serif;
+font-family: 'Playfair Display', serif;
+font-family: 'Sorts Mill Goudy', serif;
+font-family: 'Lora', serif;
+font-family: 'Crimson Text', serif;
+font-family: 'Cardo', serif;
+font-family: 'Radley', serif;
+font-family: 'Prata', serif;
+font-family: 'Bentham', serif;
+font-family: 'PT Serif', serif;
+font-family: 'Ovo', serif;
 
-Body
-font-family: 'Average', serif;
-font-family: 'Amethysta', serif;
-font-family: 'Jacques Francois', serif;
-
-Buttons:
-font-family: 'Open Sans', serif;
-font-family: 'PT Sans Caption', serif;
+Body:
+font-family: 'PT Sans', sans-serif;
+font-family: 'Cabin Condensed', sans-serif;
+font-family: 'Istok Web', sans-serif;
+font-family: 'Noto Sans', sans-serif;
+font-family: 'Lato', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Karla', sans-serif;
+font-family: 'Nobile', sans-serif;
+font-family: 'Actor', sans-serif;
 */
 
 html {
-    font-family: 'Jacques Francois', sans-serif;
     /*background: url("../../main_site/img/wood-background-1.jpg") no-repeat center center fixed;*/
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover;    /* Mozilla*/
@@ -36,6 +47,7 @@ html {
     height: 100%;
     overflow: hidden;
 }
+
 body {
     background: none;
     height:100%;
