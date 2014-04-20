@@ -22,7 +22,7 @@ SERVER_EMAIL = 'skoczen@gmail.com'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'poemhub',
+        'NAME': 'poetr',
         'USER': 'skoczen',
         'PASSWORD': DB_PASSWORD,
         'HOST': '',

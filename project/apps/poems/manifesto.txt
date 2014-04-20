@@ -1,30 +1,33 @@
 
 My notes:
         - default to drafts
+- good fonts
+- terms
+- build signup "what name do you want to publish your work under?", terms/agree
+- style login, carry next through
+- style logout
+- sticky footer
+- build explore
+- save "diff" from title and body
+- strip HTML from slug
+- build account (change email, password)
+- build backup
+- built tour
+- collections are important sooner rather than later, for pacing reasons.
+- add intercom.io
+- emphasize mobile - have the latest version of all your poems with you, whereever you go.
+- about page (bottom link) (lead with haiku :) )
+- "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
+- make "reading" an experience- "start reading" - dim the lights, etc.
+- print!  (how does this print?i)
+
+
 - separate manager for published.
 - pull in all public domain poetry
         - "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
 - big questions: can you unpublish? (no..)  delete your account?  (yes?  what happens to your poems?)
 - "show me another poem like this"
-- build signup "what name do you want to publish your work under?"
-- style login, carry next through
-- style logout
-- build backup
-- build account (change email, password)
-- build explore
-        - wire up edit
-- TODO: strip HTML
-- sticky footer
-- terms/agree on signup
-- emphasize mobile - have the latest version of all your poems with you, whereever you go.
-- tour
-- save "diff" from title and body
-- add intercom.io
-- about page (bottom link) (lead with haiku :) )
-- "my reading" - list of everything you've read, when, and whether you fantastic'd it. searchable.
-- collections are important sooner rather than later, for pacing reasons.
-- make "reading" an experience- "start reading" - dim the lights, etc.
-- print!  (how does this print?i)
+
 
 name: "Poem" ?
 Binding?

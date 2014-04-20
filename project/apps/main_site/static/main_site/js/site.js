@@ -14,4 +14,11 @@ $(function(){
         $(".detail_section.for_writers").show();
         return false;
     });
+    $(".home_buttons .button.manifesto").click(function(){
+        $(".home_buttons .button").removeClass("current");
+        $(this).addClass("current");
+        $(".detail_section").hide();
+        $(".detail_section.the_manifesto").show();
+        return false;
+    });
 });

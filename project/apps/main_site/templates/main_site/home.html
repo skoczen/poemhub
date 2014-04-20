@@ -21,7 +21,7 @@
     <div class="home_buttons">
         <a href="#" class="button readers">For Readers</a>
         <a href="#" class="button writers">For Writers</a>
-        <a href="{% url "main_site:manifesto" %}" class="button">The Manifesto</a>
+        <a href="#" class="button manifesto">The Manifesto</a>
     </div>
     <div class="details">
         <div class="detail_section for_readers">
@@ -40,6 +40,11 @@
             <p>We also connect you to your readers in way traditional journals never have, telling you how many people have <i>actually read</i> your work, and allowing you to engage with readers, on your terms.</p>
 
             <p>Poemhub is about giving poetry back to the two groups who should have had it all along: poets, and readers.</p>
+        </div>
+        <div class="detail_section the_manifesto">
+            <p>The rant on poetry journals, publication, and technology that got the whole site started.</p>
+
+            <p class="home_buttons"><a href="{% url "main_site:manifesto" %}" class="button">Read the Manifesto</a></p>
         </div>
 </div>
 {% endblock %}

@@ -27,7 +27,7 @@ font-family: 'PT Sans Caption', serif;
 */
 
 html {
-    font-family: 'Average', sans-serif;
+    font-family: 'Jacques Francois', sans-serif;
     /*background: url("../../main_site/img/wood-background-1.jpg") no-repeat center center fixed;*/
     -webkit-background-size: cover; /* For WebKit*/
     -moz-background-size: cover;    /* Mozilla*/
@@ -122,6 +122,9 @@ h1 {
     width: 640px;
     margin: 0 auto;
     display: none;
+}
+.home .detail_section .home_buttons {
+    margin-top: 40px;
 }
 
 .footer {
