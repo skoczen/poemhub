@@ -1,6 +1,6 @@
 from fabric.api import *
 
-env.PROJECT_NAME = "poetr"
+env.PROJECT_NAME = "poemhub"
 env.GITHUB_USER = "skoczen"
 env.GITHUB_REPO = env.PROJECT_NAME
 env.VIRTUALENV_NAME = env.PROJECT_NAME
@@ -8,11 +8,11 @@ env.HEROKU_APP_NAME = env.PROJECT_NAME
 # If you're using https://github.com/ddollar/heroku-accounts
 env.HEROKU_ACCOUNT = "personal"
 env.app_string = ""
-env.DEV_DB_URL = "postgres://@localhost:5432/poetr"
+env.DEV_DB_URL = "postgres://@localhost:5432/poemhub"
 
 env.SERVERS = {
-    "live": "poetr",
-    "staging": "poetr-staging",
+    "live": "poemhub",
+    "staging": "poemhub-staging",
 }
 
 
@@ -38,8 +38,8 @@ def wip():
 
 
 def setup_db():
-    local_venv("dropdb poetr --if-exists -U skoczen")
-    local_venv("createdb poetr -U skoczen")
+    local_venv("dropdb poemhub --if-exists -U skoczen")
+    local_venv("createdb poemhub -U skoczen")
     local_venv("./manage.py syncdb --noinput")
     local_venv("./manage.py loaddata dev_user.json")
     local_venv("./manage.py migrate")

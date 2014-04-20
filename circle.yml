@@ -10,18 +10,18 @@ deployment:
   staging:
     branch: feature/*
     commands:
-      - heroku maintenance:on --app poetr-staging
-      # - heroku scale celery=0 --app poetr-staging
-      - git push git@heroku.com:poetr-staging.git $CIRCLE_SHA1:master
-      - heroku run python manage.py syncdb --migrate --settings=envs.live --app poetr-staging
-      - heroku restart --app poetr-staging
-      - heroku maintenance:off --app poetr-staging
+      - heroku maintenance:on --app poemhub-staging
+      # - heroku scale celery=0 --app poemhub-staging
+      - git push git@heroku.com:poemhub-staging.git $CIRCLE_SHA1:master
+      - heroku run python manage.py syncdb --migrate --settings=envs.live --app poemhub-staging
+      - heroku restart --app poemhub-staging
+      - heroku maintenance:off --app poemhub-staging
   production:
     branch: master
     commands:
-      - heroku maintenance:on --app poetr
-      # - heroku scale celery=0 --app poetr
-      - git push git@heroku.com:poetr.git $CIRCLE_SHA1:master
-      - heroku run python manage.py syncdb --migrate --settings=envs.live --app poetr
-      - heroku restart --app poetr
-      - heroku maintenance:off --app poetr
+      - heroku maintenance:on --app poemhub
+      # - heroku scale celery=0 --app poemhub
+      - git push git@heroku.com:poemhub.git $CIRCLE_SHA1:master
+      - heroku run python manage.py syncdb --migrate --settings=envs.live --app poemhub
+      - heroku restart --app poemhub
+      - heroku maintenance:off --app poemhub

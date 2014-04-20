@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# This I found years ago, floating around django snippets, then modified it for poetr's needs.
+# This I found years ago, floating around django snippets, then modified it for poemhub's needs.
 # If anyone knows the proper attribution, please email me.
 # at skoczen at gmail, and I'll update t!
 

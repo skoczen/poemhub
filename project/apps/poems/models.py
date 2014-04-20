@@ -4,7 +4,7 @@ from utils.slughifi import unique_slug, slughifi
 from main_site.models import BaseModel
 
 POEM_DISPLAY_TYPES = [
-    ("poetry", "Poetry"),
+    ("poetry", "poetry"),
     ("prose", "Prose"),
     ("spoken_word", "Spoken Word"),
 ]

@@ -16,13 +16,13 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-EMAIL_SUBJECT_PREFIX = "[poetr.com] "
+EMAIL_SUBJECT_PREFIX = "[poemhub.org] "
 SERVER_EMAIL = 'skoczen@gmail.com'
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'poetr',
+        'NAME': 'poemhub',
         'USER': 'skoczen',
         'PASSWORD': DB_PASSWORD,
         'HOST': '',
@@ -37,11 +37,11 @@ CACHES = {
 }
 
 ALLOWED_HOSTS = [
-    "poetr-staging.herokuapp.com",
-    "poetr.herokuapp.com",
-    "poetr.com",
-    "*.poetr.com",
-    "www.poetr.com",
+    "poemhub-staging.herokuapp.com",
+    "poemhub.herokuapp.com",
+    "poemhub.org",
+    "*.poemhub.org",
+    "www.poemhub.org",
 ]
 
 TIME_ZONE = 'America/Vancouver'
