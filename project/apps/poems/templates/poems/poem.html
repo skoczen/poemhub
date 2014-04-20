@@ -12,10 +12,6 @@
 <script src="{{STATIC_URL}}poems/js/nicEdit.js"></script>
 <script type="text/javascript">
     window.Poemr = window.Poemr || {};
-    Poemr.urls = Poemr.urls || {};
-    Poemr.urls.save_revision = "{% url "poems:save_revision" poem.author.slug poem.slug %}";
-    Poemr.tokens = Poemr.tokens || {};
-    Poemr.tokens.csrf = "{{ csrf_token }}";
 </script>
 <script src="{{STATIC_URL}}poems/js/poem.js"></script>
 {% endcompress %}
@@ -23,7 +19,7 @@
 
 
 {% block content %}
-<form action="{% url "poems:save_revision" poem.author.slug poem.slug %}" class="poem_form" method="POST">
+<form action="{% url "poems:save_revision" poet=poem.author.slug title=poem.slug %}" class="poem_form" method="POST">
 
 {% if is_mine %}
 <div class="edit_bar">
