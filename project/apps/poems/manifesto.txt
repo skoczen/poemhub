@@ -6,10 +6,10 @@ My notes:
     - icon
     - sticky footer
     - build signup "what name do you want to publish your work under?", terms/agree
+
 - style signup/login/logout
 - wire up fantastic
-
-- build explore
+- build basic explore
 - save "diff" from title and body
 - strip HTML from slug
 - build account (change email, password)
@@ -19,9 +19,13 @@ My notes:
 - add intercom.io
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
 - about page (bottom link) (lead with haiku :) )
+- wire up email
+- wire up "read"
+- my reading page
 - "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - make "reading" an experience- "start reading" - dim the lights, etc.
-- print!  (how does this print?i)
+- print!  (how does this print?)
+- 
 
 
 - separate manager for published.

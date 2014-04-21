@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', views.home, name='home'),
     url(r'^explore/?$', views.explore, name='explore'),
     url(r'^my-writing/?$', views.my_writing, name='my_writing'),
+    url(r'^my-reading/?$', views.my_reading, name='my_reading'),
     url(r'^new-poem$', views.new, name='new'),
     url(r'^save/{poet:slug}/{title:slug}/?$', views.save_revision, name='save_revision'),
 

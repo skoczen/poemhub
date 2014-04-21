@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
@@ -17,10 +18,15 @@ def my_writing(request):
         poet = request.user.get_profile()
         return HttpResponseRedirect(reverse("poems:poet", args=(poet.slug,)))
     except:
-        return HttpResponseRedirect(reverse("account_login",))
+        return HttpResponseRedirect("%s?next=%s" % (reverse("account_login",), reverse("poems:my_writing")))
 
 @render_to("poems/explore.html")
 def explore(request):
+    return locals()
+
+@render_to("poems/my_reading.html")
+@login_required
+def my_reading(request):
     return locals()
 
 @render_to("poems/poet.html")
