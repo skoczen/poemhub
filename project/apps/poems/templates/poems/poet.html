@@ -16,7 +16,7 @@
 
 {% block content %}
 <div class="page_content poet">
-    <a href="{% url "poems:new" %}" class="new_draft_button button">Start a new draft</a>
+    {% if is_me %}<a href="{% url "poems:new" %}" class="new_draft_button button">Start a new draft</a>{% endif %}
     <h1>{{poet.name}}{% if is_me %} <span class="is_me bubble">me!</span>{% endif %}</h1>
     <h2>Collections</h2>
     <div class="work_group">

@@ -24,3 +24,11 @@ class PoemForm(forms.ModelForm):
             "audio_url",
             "video_url",
         )
+
+
+class SignupForm(forms.Form):
+    first_name = forms.CharField(max_length=255, label='Publication Name', help_text="The name your poems will be published under.")
+
+    def save(self, user):
+        user.first_name = self.cleaned_data['first_name']
+        user.save()

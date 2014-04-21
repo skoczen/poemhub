@@ -28,7 +28,7 @@ admin.site.register(PoemRevision, PoemRevisionAdmin)
 
 
 class PoetAdmin(admin.ModelAdmin):
-    list_display = ("name", "user", "premium_user",)
+    list_display = ("name", "user", "slug", "premium_user",)
     model = Poet
 
 

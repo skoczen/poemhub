@@ -17,7 +17,11 @@ def my_writing(request):
         poet = request.user.get_profile()
         return HttpResponseRedirect(reverse("poems:poet", args=(poet.slug,)))
     except:
-        return HttpResponseRedirect(reverse("django.contrib.auth.views.login",))
+        return HttpResponseRedirect(reverse("account_login",))
+
+@render_to("poems/explore.html")
+def explore(request):
+    return locals()
 
 @render_to("poems/poet.html")
 def poet(request, poet=None):
@@ -47,6 +51,7 @@ def save_revision(request, poet=None, title=None):
     new_url = None
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     old_slug = poem.slug
+    was_published = not poem.is_draft
     is_mine = poem.author.user == request.user
     if not is_mine:
         raise Exception("Either this isn't your poem, or you're not logged in!")
@@ -56,9 +61,7 @@ def save_revision(request, poet=None, title=None):
     if form.is_valid():
         new_poem = form.save()
         success = True
-        print old_slug
-        print new_poem.slug
-        if old_slug != new_poem.slug:
+        if old_slug != new_poem.slug or not was_published and not new_poem.is_draft:
             new_url = reverse("poems:poem", args=(poem.author.slug, new_poem.slug,))
     else:
         print form

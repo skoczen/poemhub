@@ -1,5 +1,7 @@
 import datetime
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import post_save
 from utils.slughifi import unique_slug, slughifi
 from main_site.models import BaseModel
 
@@ -12,13 +14,16 @@ POEM_DISPLAY_TYPES = [
 
 class Poet(BaseModel):
     user = models.ForeignKey("auth.User")
-    name = models.CharField(max_length=255, blank=True, null=True, help_text="The name you would like your poetry published under.")
     premium_user = models.BooleanField(default=False)
     slug = models.CharField(max_length=255, blank=True, editable=False)
 
     def save(self, *args, **kwargs):
         self.slug = unique_slug(self, 'name', 'slug')
         super(Poet, self).save(*args, **kwargs)
+
+    @property
+    def name(self):
+        return self.user.first_name
 
     def __unicode__(self):
         return "%s" % self.name
@@ -123,6 +128,7 @@ class Poem(AbstractPoem):
     class Meta:
         ordering = ("-started_at",)
 
+
 class PoemRevision(AbstractPoem):
     revised_at = models.DateTimeField(auto_now_add=True, editable=False)
     poem = models.ForeignKey(Poem)
@@ -132,3 +138,10 @@ class PoemRevision(AbstractPoem):
 
     def __unicode__(self):
         return "%s (%s)" % (self.title, self.revised_at)
+
+
+def create_user_profile(sender, instance, created, **kwargs):
+    if created and not Poet.objects.filter(user=instance).count() > 0:
+        Poet.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User, dispatch_uid="create_user_profile")

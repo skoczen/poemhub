@@ -114,6 +114,33 @@ INSTALLED_APPS = (
 
     "analytical",
     "annoying",
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    # 'allauth.socialaccount.providers.amazon',
+    # 'allauth.socialaccount.providers.angellist',
+    # 'allauth.socialaccount.providers.bitbucket',
+    # 'allauth.socialaccount.providers.bitly',
+    # 'allauth.socialaccount.providers.dropbox',
+        # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.flickr',
+    # 'allauth.socialaccount.providers.feedly',
+    # 'allauth.socialaccount.providers.github',
+        # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.linkedin',
+    # 'allauth.socialaccount.providers.linkedin_oauth2',
+    # 'allauth.socialaccount.providers.openid',
+    # 'allauth.socialaccount.providers.persona',
+        # 'allauth.socialaccount.providers.soundcloud',
+    # 'allauth.socialaccount.providers.stackexchange',
+    # 'allauth.socialaccount.providers.tumblr',
+    # 'allauth.socialaccount.providers.twitch',
+        # 'allauth.socialaccount.providers.twitter',
+    # 'allauth.socialaccount.providers.vimeo',
+    # 'allauth.socialaccount.providers.vk',
+    # 'allauth.socialaccount.providers.weibo',
     "compressor",
     "django_extensions",
     "djcelery",
@@ -128,6 +155,7 @@ INSTALLED_APPS = (
     # Must come after south
     "django_nose",
 )
+INSTALLED_APPS = ("longerusernameandemail",) + INSTALLED_APPS
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
@@ -136,7 +164,27 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.static",
     "django.core.context_processors.request",
+
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
 )
+
+AUTHENTICATION_BACKENDS = (
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = "email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "Poemhub: "
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = "optional"
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_SIGNUP_FORM_CLASS = "poems.forms.SignupForm"
+
+SITE_ID = 1
 
 import djcelery
 djcelery.setup_loader()

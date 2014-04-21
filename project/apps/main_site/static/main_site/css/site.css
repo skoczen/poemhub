@@ -65,6 +65,9 @@ h1, h2, h3, h4, h5, h6 {
 p {
     font-size: 16px;
 }
+ul {
+    margin-left: 2em;
+}
 
 #nav {
     font-family: 'Muli', sans-serif;
@@ -98,6 +101,7 @@ p {
 #main {
     top: 0;
     position: relative;
+    margin-bottom: 60px;
 }
 .page_content {
     width: 80%;
@@ -105,7 +109,7 @@ p {
     max-width: 1024px;
 }
 
-.button, .button:hover, a.button, a.button:hover, button.button, button.button:hover {
+.button, .button:hover, a.button, a.button:hover, button, button:hover, button.button, button.button:hover, .primaryAction, .primaryAction:hover {
     border: 1px solid #999;
     color: #DDD;
     background-color: #B2B2B2;
@@ -116,7 +120,7 @@ p {
     outline-style: none;
     outline-width: 0;
 }
-.button:hover, a.button:hover, button.button:hover {
+.button:hover, a.button:hover, button.button:hover, button:hover {
     background-color: #999;
 }
 
@@ -124,7 +128,7 @@ p {
     text-align: center;
     margin: 0 0 60px 0;
 }
-.home_buttons a {
+.home_buttons a, .primaryAction {
     margin: 0 20px;
     /*background-color: #ff580e;*/
     /*background-color: #4369ff;*/
@@ -132,7 +136,7 @@ p {
     color: #d1daff;
     border: 0;
 }
-.home_buttons a:hover, .home_buttons a.current {
+.home_buttons a:hover, .home_buttons a.current, .primaryAction:hover {
     background-color: #3a53ff;
     color: #FFF;
     border: 0;

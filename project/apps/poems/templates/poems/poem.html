@@ -21,7 +21,7 @@
 
 {% block logo_url %}{{STATIC_URL}}main_site/img/logo-name-45-066.png{% endblock %}
 
-{% block content %}
+{% block main_content %}
 <form action="{% url "poems:save_revision" poet=poem.author.slug title=poem.slug %}" class="poem_form" method="POST">
 
 {% if is_mine %}

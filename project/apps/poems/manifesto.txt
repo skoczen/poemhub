@@ -4,11 +4,10 @@ My notes:
     - good fonts
     - terms
     - icon
-- sticky footer
-- build signup "what name do you want to publish your work under?", terms/agree
-- style login, carry next through
-- style logout
-
+    - sticky footer
+    - build signup "what name do you want to publish your work under?", terms/agree
+- style signup/login/logout
+- wire up fantastic
 
 - build explore
 - save "diff" from title and body
