@@ -36,6 +36,9 @@ font-family: 'Raleway', sans-serif;
 font-family: 'Karla', sans-serif;
 font-family: 'Nobile', sans-serif;
 font-family: 'Actor', sans-serif;
+font-family: 'Muli', sans-serif;
+
+
 */
 
 html {
@@ -49,33 +52,45 @@ html {
 }
 
 body {
+    /*font-family: 'Muli', sans-serif;*/
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     background: none;
     height:100%;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-weight: 300;
+    font-weight: 400;
 }
 p {
     font-size: 16px;
 }
 
 #nav {
-    height: 40px;
+    font-family: 'Muli', sans-serif;
+    height: 36px;
     width: 100%;
     background-color: #454545;
+    vertical-align: top;
 }
 #nav a {
     display: inline-block;
-    color: #888;
+    color: #AAA;
     /*width: 100px;*/
-    padding: 10px 25px;
-    height: 20px;
+    padding: 11px 25px 9px 25px;
+    height: 40px;
     text-decoration: none;
+    /*border: 1px solid red;*/
+    overflow: auto;
 }
 #nav a:hover {
     color: #EEE;
+}
+#nav a.logo {
+    padding: 3px 25px;
+    height: 60px;
+    display: block;
+    float: left;
 }
 #nav .account_links {
     float: right;

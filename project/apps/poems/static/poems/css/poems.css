@@ -1,6 +1,13 @@
 body {
     background: #AAA;
+    /*background: #545454;*/
     overflow-x: hidden;
+}
+#nav a {
+    color: #888;
+}
+#nav a:hover {
+    color: #CCC;
 }
 #main {
     padding: 0;

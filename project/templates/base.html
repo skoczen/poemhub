@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css"> 
   <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
   {% endcompress %}
-  <link href='http://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Raleway:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Raleway:400,700|Muli' rel='stylesheet' type='text/css'>
 
 
 
@@ -37,7 +37,7 @@
   <div id="container">
     <div id="nav">
         {% block nav %}
-        <a href="{% url "main_site:home" %}">Poemhub</a>
+        <a href="{% url "main_site:home" %}" class="logo"><img src="{% block logo_url %}{{STATIC_URL}}main_site/img/logo-name-45.png{% endblock %}" alt="Poemhub"/></a>
         <a href="{% url "main_site:home" %}">Explore</a>
         <a href="{% url "poems:my_writing" %}">My Writing</a>
         <div class="account_links">
