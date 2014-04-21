@@ -12,8 +12,8 @@ My notes:
 - build basic explore
 - save "diff" from title and body
 - strip HTML from slug
-- build account (change email, password)
-- build backup
+- build account (change email, password, pub name)
+- build backups
 - built tour
 - collections are important sooner rather than later, for pacing reasons.
 - add intercom.io
@@ -25,7 +25,7 @@ My notes:
 - "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - make "reading" an experience- "start reading" - dim the lights, etc.
 - print!  (how does this print?)
-- 
+
 
 
 - separate manager for published.
