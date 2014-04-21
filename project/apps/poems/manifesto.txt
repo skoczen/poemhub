@@ -3,14 +3,16 @@ My notes:
         - default to drafts
     - good fonts
     - terms
+    - icon
+- sticky footer
 - build signup "what name do you want to publish your work under?", terms/agree
 - style login, carry next through
 - style logout
-- sticky footer
+
+
 - build explore
 - save "diff" from title and body
 - strip HTML from slug
-- icon
 - build account (change email, password)
 - build backup
 - built tour

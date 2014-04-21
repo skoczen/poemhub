@@ -20,8 +20,14 @@
   <link rel="stylesheet" href="{{STATIC_URL}}base/css/animate.css">
   <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css"> 
   <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/site.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/sticky_footer.css">
   {% endcompress %}
   <link href='http://fonts.googleapis.com/css?family=Cardo:400,700,400italic|Raleway:400,700|Muli' rel='stylesheet' type='text/css'>
+  <!--[if !IE 7]>
+    <style type="text/css">
+        #wrap {display:table;height:100%}
+    </style>
+  <![endif]-->
 
 
 
@@ -34,34 +40,37 @@
 <body>
   {% analytical_body_top %}
   {% block full_body %}
-  <div id="container">
-    <div id="nav">
-        {% block nav %}
-        <a href="{% url "main_site:home" %}" class="logo"><img src="{% block logo_url %}{{STATIC_URL}}main_site/img/logo-name-45.png{% endblock %}" alt="Poemhub"/></a>
-        <a href="{% url "main_site:home" %}">Explore</a>
-        <a href="{% url "poems:my_writing" %}">My Writing</a>
-        <div class="account_links">
-            {% if request.user.is_authenticated %}
-            <a href="#">Account</a>
-            <a href="{% url "logout" %}">Logout</a>
-            {% else %}
-            <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
-            {% endif %}
+<div id="wrap">
+    <div id="container">
+        <div id="nav">
+            {% block nav %}
+            <a href="{% url "main_site:home" %}" class="logo"><img src="{% block logo_url %}{{STATIC_URL}}main_site/img/logo-name-45.png{% endblock %}" alt="Poemhub"/></a>
+            <a href="{% url "main_site:home" %}">Explore</a>
+            <a href="{% url "poems:my_writing" %}">My Writing</a>
+            <div class="account_links">
+                {% if request.user.is_authenticated %}
+                <a href="#">Account</a>
+                <a href="{% url "logout" %}">Logout</a>
+                {% else %}
+                <a href="{% url "django.contrib.auth.views.login" %}">Login</a>
+                {% endif %}
+            </div>
+            {% endblock %}
         </div>
-        {% endblock %}
-    </div>
-    <div id="main" role="main">
-    	{% block content %}
+        <div id="main" role="main">
+        	{% block content %}
 
-    	{% endblock %}
+        	{% endblock %}
+        </div>
     </div>
-    <div class="footer">
-        Poemhub.
+</div>
+<div id="footer" class="footer">
+    Poemhub.
 
-        <a href="#">About</a>
-        <a href="{% url "main_site:terms" %}">Terms</a>
-        <a href="{% url "main_site:faq" %}">FAQ</a>
-  </div> 
+    <a href="#">About</a>
+    <a href="{% url "main_site:terms" %}">Terms</a>
+    <a href="{% url "main_site:faq" %}">FAQ</a>
+</div>
   {% endblock %}
 
   {% block js %}
