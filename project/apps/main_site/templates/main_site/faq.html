@@ -1,5 +1,7 @@
 {% extends "base.html" %}{% load compress %}
 
+{% block title %}Poemhub: FAQ{% endblock %}
+
 {% block css %}{{block.super}}
 {% compress css %}
 <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
@@ -42,6 +44,11 @@
     <h2>What do you mean "how many people have <i>actually</i> read my work? How do you know?</h2>
 
     <p>Because we're being a bit clever.  Poemhub counts a "read" when a reader has spent enough time on a page to have actually read the entire piece (depends on length), and when they've scrolled down far enough that they could actually have *seen* the whole piece.  So, we don't know for sure - but we're pretty darn close.</p>
+
+    <h2>Is this just for new stuff, or are you gonna have the classics, too?</h2>
+
+    <p>Long-term, we want to have both.  To begin, we're doing a bit of digging to make sure we get all the copyrights sorted, before we start pulling in stuff that should be in the public domain (say, Shakespeare.)  Once we've got that sorted, there will be an announcement on the plan, and what if anything folks can do to help!</p>
+
 
 
     <h2>But I've got another question!</h2>

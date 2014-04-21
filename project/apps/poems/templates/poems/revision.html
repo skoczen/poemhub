@@ -1,5 +1,7 @@
 {% extends "base.html" %}{% load compress %}
 
+{% block title %}Revision: {{poem.title}} - by {{poem.author.name}} on {{poem.revised_at|date}}{% endblock %}
+
 {% block css %}{{block.super}}
 {% compress css %}
 <link rel="stylesheet" href="{{STATIC_URL}}poems/css/poems.css">

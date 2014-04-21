@@ -1,5 +1,7 @@
 {% extends "base.html" %}{% load compress %}
 
+{% block title %}Poemhub: Recently read{% endblock %}
+
 {% block css %}{{block.super}}
 {% compress css %}
 <link rel="stylesheet" href="{{STATIC_URL}}main_site/css/fonts.css">
