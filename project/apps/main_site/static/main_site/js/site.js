@@ -21,4 +21,11 @@ $(function(){
         $(".detail_section.the_manifesto").show();
         return false;
     });
+    $(".home_buttons .button.faq").click(function(){
+        $(".home_buttons .button").removeClass("current");
+        $(this).addClass("current");
+        $(".detail_section").hide();
+        $(".detail_section.the_faq").show();
+        return false;
+    });
 });
