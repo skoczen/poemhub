@@ -10,6 +10,7 @@ django-heroku-memcacheify
 django-heroku-postgresify
 django-longerusernameandemail
 django-extensions
+django-mailgun
 django-nose
 django-selector
 django-staticfiles

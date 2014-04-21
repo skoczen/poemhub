@@ -7,7 +7,9 @@ from envs.common import *
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
-EMAIL_BACKEND = 'django_ses.SESBackend'
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = os.environ['MAILGUN_API_KEY']
+MAILGUN_SERVER_NAME = 'poemhub.org'
 BROKER_URL = os.environ["REDISTOGO_URL"]
 
 MEDIA_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
