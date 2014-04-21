@@ -13,9 +13,11 @@ and your footer gets pushed down a bit more, creating vertical scroll bars in th
 
 html, body {height: 100%;}
 
-#wrap {min-height: 100%;}
+#wrap {min-height: 100%;overflow-x: hidden;}
 
-#container {overflow:auto;
+#container {
+    overflow:auto;
+    overflow-x: hidden;
     padding-bottom: 30px;}  /* must be same height as the footer */
 
 #footer {position: relative;
