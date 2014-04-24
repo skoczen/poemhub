@@ -10,6 +10,8 @@ $(function(){
     Poemhub.poem.editor.editing_nodes = [];
     Poemhub.poem.editor.is_editing = false;
     Poemhub.poem.read_tracker = {};
+    Poemhub.poem.read_tracker.saw_bottom = false;
+    Poemhub.poem.read_tracker.stayed_long_enough = false;
     Poemhub.poem.state.title = "";
     Poemhub.poem.state.body = "";
     var ed;
@@ -65,46 +67,31 @@ $(function(){
         $(".read_form").submit();
     };
     Poemhub.poem.read_tracker.check_scroll = function() {
-        
+        if($(window).scrollTop() + $(window).height() > $(document).height() - 280) {
+            Poemhub.poem.read_tracker.saw_bottom = true;
+            $(window).unbind("scroll");
+            Poemhub.poem.read_tracker.mark_read_if_read();
+        }
     };
     Poemhub.poem.read_tracker.enough_time_callback = function() {
-
+        Poemhub.poem.read_tracker.stayed_long_enough = true;
+        Poemhub.poem.read_tracker.mark_read_if_read();
+    };
+    Poemhub.poem.read_tracker.mark_read_if_read = function() {
+        if (Poemhub.poem.read_tracker.stayed_long_enough && Poemhub.poem.read_tracker.saw_bottom) {
+            Poemhub.poem.read_tracker.mark_read();
+        }
     };
     Poemhub.poem.read_tracker.calculate_from_lines_and_chars = function(lines, chars) {
         // seconds = (chars * .11693548387096774193) - (3.63089330024813895755 * lines);
-        seconds = (lines * 0.15) + (chars * 0.032);
+        seconds = 1000 * ((lines * 0.15) + (chars * 0.032));
         return seconds;
-    }
+    };
     Poemhub.poem.read_tracker.time_estimate = function() {
         var chars = $(".poem .body").text().length;
         var lines = $(".poem .body").text().match(/\n/g).length;
-        // 26s for 626 chars / 13 lines (sonnet)
-        // 31s for 496 chars / 36 lines (free-verse)
-        // 31s for 943 chars / 7 lines (prose-poem)
-
-        // 626*c + 13*l = 26
-        // 296*c + 36*l = 31
-        // 943*c + 7*l = 31
-
-        // l = 26 - (626c ) / 13
-        // l = 2 - (48.15c)
-
-        // 296c + 2-48.15c = 31
-        // 248c = 29
-        // c = .11693548387096774193
-
-
-        // 73.20161290322580644818 + 13l = 26
-        // l = -3.63089330024813895755
-
-        // ~
-
-        // time = 
-        console.log(Poemhub.poem.read_tracker.calculate_from_lines_and_chars(13, 626));
-        console.log(Poemhub.poem.read_tracker.calculate_from_lines_and_chars(36, 496));
-        console.log(Poemhub.poem.read_tracker.calculate_from_lines_and_chars(7, 943));
-
-    }
+        return Poemhub.poem.read_tracker.calculate_from_lines_and_chars(lines, chars);
+    };
 
     Poemhub.poem.actions.init = function() {
         $(".poem_form").ajaxForm({
@@ -119,24 +106,32 @@ $(function(){
                 }
             }
         });
-        $(".read_form").ajaxForm({
-            success: function(json) {
-                console.log("read");
-            }
-        });
-        $(".fantastic_form").ajaxForm({
-            beforeSerialize: function() {
-                $(".fantastic_button").toggleClass("clicked");
-                if ($(".fantastic_button").hasClass("clicked")) {
-                    $("#id_on").val("True");
-                } else {
-                    $("#id_on").val("False");
+        if ($(".read_form").length > 0) {
+            $(".read_form").ajaxForm({
+                success: function(json) {
+                    $(".num_reads .num").html(json.num_reads);
                 }
-            },
-            success: function(json) {
-                $(".fantastic_button .num_agree").html(json.num_people).addClass("visible");
-            }
-        });
+            });
+            $(window).scroll(Poemhub.poem.read_tracker.check_scroll);
+            Poemhub.poem.read_tracker.check_scroll();
+            setTimeout(Poemhub.poem.read_tracker.enough_time_callback, Poemhub.poem.read_tracker.time_estimate());
+        }
+
+        if ($(".fantastic_form").length > 0) {
+            $(".fantastic_form").ajaxForm({
+                beforeSerialize: function() {
+                    $(".fantastic_button").toggleClass("clicked");
+                    if ($(".fantastic_button").hasClass("clicked")) {
+                        $("#id_on").val("True");
+                    } else {
+                        $("#id_on").val("False");
+                    }
+                },
+                success: function(json) {
+                    $(".fantastic_button .num_agree").html(json.num_people).addClass("visible");
+                }
+            });
+        }
 
         // Handlers
         // $(".save_revision_button").click(Poemhub.poem.actions.save_revision);
@@ -150,7 +145,6 @@ $(function(){
         $(".start_editing_button").click(Poemhub.poem.editor.start_editing);
         $(".cancel_editing_button").click(Poemhub.poem.editor.cancel_editing);
         $(".options_button").click(Poemhub.poem.editor.toggle_options);
-        setTimeout(Poemhub.poem.read_tracker.enough_time_callback, Poemhub.poem.read_tracker.time_estimate());
 
         if (window.location.href.indexOf("?editing=true") != -1) {
             Poemhub.poem.editor.start_editing();

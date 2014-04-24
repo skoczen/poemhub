@@ -83,7 +83,7 @@
             <span class="revised_text">{% if poem.has_been_revised %}<a href="{% url "poems:revisions" poem.author.slug poem.slug %}">Last revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
             </span>
         {% endif %}
-        {% if not poem.is_draft and poem.num_reads > 0 %}<span class="num_reads"><span class="num">{{poem.num_reads}}</span> reads.</span>{% endif %}
+        {% if not poem.is_draft and poem.num_reads > 1 %}<span class="num_reads"><span class="num">{{poem.num_reads}}</span> reads.</span>{% endif %}
     </div>
     <div class="copyright">Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.</div>
 </div>

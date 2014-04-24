@@ -47,8 +47,8 @@ html {
     -moz-background-size: cover;    /* Mozilla*/
     -o-background-size: cover;      /* Opera*/
     background-size: cover;         /* Generic*/
-    height: 100%;
-    overflow: hidden;
+    /*height: 100%;*/
+    /*overflow: hidden;*/
 }
 
 body {

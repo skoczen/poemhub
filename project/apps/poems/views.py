@@ -149,4 +149,4 @@ def mark_read(request, poem_id):
             read.reader = None
         read.save()
 
-    return {"success": True, "num_people": poem.num_reads}
+    return {"success": True, "num_reads": poem.num_reads}
