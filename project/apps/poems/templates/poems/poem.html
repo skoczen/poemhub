@@ -15,7 +15,6 @@
 <script type="text/javascript">
     window.Poemhub = window.Poemhub || {};
     Poemhub.urls = Poemhub.urls || {};
-    Poemhub.urls.fantastic = "{% url "poems:this_was_fantastic" poem.pk %}";
 </script>
 <script src="{{STATIC_URL}}poems/js/poem.js"></script>
 {% endcompress %}
@@ -64,8 +63,16 @@
 </form>
 {% if not poem.is_draft and not is_mine %}
 <div class="kudos">
-    <a href="#" class="fantastic_button button"><span class="num_agree"></span><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</a>
+<form class="fantastic_form" action="{% url "poems:this_was_fantastic" poem.pk %}" method="POST">
+    {% csrf_token %}
+    {{fantastic_form.as_p}}
+    <button type="submit" href="#" class="fantastic_button button"><span class="num_agree"></span><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</button>
+</form>
 </div>
+<form class="read_form" action="{% url "poems:mark_read" poem.pk %}" method="POST">
+    {% csrf_token %}
+    {{read_form.as_p}}
+</form>
 {% endif %}
 
 
@@ -76,6 +83,7 @@
             <span class="revised_text">{% if poem.has_been_revised %}<a href="{% url "poems:revisions" poem.author.slug poem.slug %}">Last revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
             </span>
         {% endif %}
+        {% if not poem.is_draft and poem.num_reads > 0 %}<span class="num_reads"><span class="num">{{poem.num_reads}}</span> reads.</span>{% endif %}
     </div>
     <div class="copyright">Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.</div>
 </div>

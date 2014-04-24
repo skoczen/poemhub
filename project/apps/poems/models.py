@@ -124,7 +124,11 @@ class Poem(AbstractPoem):
 
     @property
     def num_fantastics(self):
-        return self.fantastic_set.all().count()
+        return self.fantastic_set.filter(on=True).count()
+
+    @property
+    def num_reads(self):
+        return self.read_set.all().count()        
 
     def __unicode__(self):
         return "%s" % self.title
@@ -147,8 +151,17 @@ class PoemRevision(AbstractPoem):
 class Fantastic(BaseModel):
     poem = models.ForeignKey(Poem)
     marked_at = models.DateTimeField(auto_now_add=True, editable=False)
+    on = models.BooleanField(default=True)
 
-    poet = models.ForeignKey(Poet, blank=True, null=True)
+    reader = models.ForeignKey(Poet, blank=True, null=True)
+
+
+class Read(BaseModel):
+    poem = models.ForeignKey(Poem)
+    read_at = models.DateTimeField(auto_now_add=True, editable=False)
+
+    reader = models.ForeignKey(Poet, blank=True, null=True)
+
 
 
 def create_user_profile(sender, instance, created, **kwargs):

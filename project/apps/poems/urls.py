@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^new-poem$', views.new, name='new'),
     url(r'^save/{poet:slug}/{title:slug}/?$', views.save_revision, name='save_revision'),
     url(r'^fantastic/{poem_id:digits}/?$', views.this_was_fantastic, name='this_was_fantastic'),
+    url(r'^read/{poem_id:digits}/?$', views.mark_read, name='mark_read'),
 
     url(r'^{poet:slug}/{title:slug}/revisions/?$', views.revisions, name='revisions'),
     url(r'^{poet:slug}/revision/{pk:digits}/?$', views.revision, name='revision'),

@@ -1,5 +1,5 @@
 from django import forms
-from poems.models import Poem
+from poems.models import Fantastic, Poem, Read
 
 
 class PoemForm(forms.ModelForm):
@@ -23,6 +23,27 @@ class PoemForm(forms.ModelForm):
             "show_published_revisions",
             "audio_url",
             "video_url",
+        )
+
+
+class FantasticForm(forms.ModelForm):
+    on = forms.BooleanField(required=False, widget=forms.HiddenInput())
+    reader = forms.CharField(required=False, widget=forms.HiddenInput())
+
+    class Meta:
+        model = Fantastic
+        fields = (
+            "on",
+        )
+
+
+class ReadForm(forms.ModelForm):
+    reader = forms.CharField(required=False, widget=forms.HiddenInput())
+
+    class Meta:
+        model = Read
+        fields = (
+            # "reader",
         )
 
 

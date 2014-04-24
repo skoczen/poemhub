@@ -4,8 +4,8 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
-from poems.models import Fantastic, Poem, Poet, PoemRevision
-from poems.forms import PoemForm
+from poems.models import Fantastic, Poem, Poet, PoemRevision, Read
+from poems.forms import FantasticForm, PoemForm, ReadForm
 
 
 @render_to("poems/home.html")
@@ -50,6 +50,10 @@ def poem(request, poet=None, title=None):
     is_mine = poem.author.user == request.user
     if is_mine:
         form = PoemForm(instance=poem)
+    else:
+        fantastic_form = FantasticForm()
+        read_form = ReadForm()
+
     if not is_mine and poem.is_draft:
         raise Http404("Poem not found. Maybe it never was, maybe it's a draft and you're not logged in!")
     return locals()
@@ -117,14 +121,32 @@ def new(request):
 def this_was_fantastic(request, poem_id):
     poem = Poem.objects.get(pk=poem_id)
 
-    poet = None
-    if request.user.is_authenticated():
-        poet = request.user.get_profile()
-        if "on" in request.REQUEST and request.REQUEST["on"] == "true":
-            Fantastic.objects.get_or_create(poem=poem, poet=poet)
+    fantastic_form = FantasticForm(request.POST)
+    if fantastic_form.is_valid():
+        fantastic = fantastic_form.save(commit=False)
+        fantastic.poem = poem
+        if request.user.is_authenticated():
+            fantastic.reader = request.user.get_profile()
         else:
-            Fantastic.objects.get_or_create(poem=poem, poet=poet)[0].delete()
-    else:
-        Fantastic.objects.create(poem=poem)
+            fantastic.reader = None
+        fantastic.save()
 
-    return {"success": True, "num_people": poem.num_fantastics}
+        return {"success": True, "num_people": poem.num_fantastics}
+
+    return {"success": False}
+
+
+@ajax_request
+def mark_read(request, poem_id):
+    poem = Poem.objects.get(pk=poem_id)
+    read_form = ReadForm(request.POST)
+    if read_form.is_valid():
+        read = read_form.save(commit=False)
+        read.poem = poem
+        if request.user.is_authenticated():
+            read.reader = request.user.get_profile()
+        else:
+            read.reader = None
+        read.save()
+
+    return {"success": True, "num_people": poem.num_reads}

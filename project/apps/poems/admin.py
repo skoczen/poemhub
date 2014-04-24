@@ -1,5 +1,5 @@
 from django.contrib import admin
-from poems.models import Poem, PoemRevision, Poet
+from poems.models import Fantastic, Poem, PoemRevision, Poet, Read
 
 BASE_POEM_LIST_DISPLAY = [
     "title",
@@ -33,3 +33,19 @@ class PoetAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Poet, PoetAdmin)
+
+
+class FantasticAdmin(admin.ModelAdmin):
+    list_display = ("poem", "reader", "on", "marked_at",)
+    model = Fantastic
+
+
+admin.site.register(Fantastic, FantasticAdmin)
+
+
+class ReadAdmin(admin.ModelAdmin):
+    list_display = ("poem", "reader", "read_at",)
+    model = Read
+
+
+admin.site.register(Read, ReadAdmin)

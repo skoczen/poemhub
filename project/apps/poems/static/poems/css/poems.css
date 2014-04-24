@@ -214,6 +214,9 @@ body {
 .copyright {
     margin-top: 4px;
 }
+.num_reads {
+    margin-left: 20px;
+}
 .num_agree {
     display: none;
 }
