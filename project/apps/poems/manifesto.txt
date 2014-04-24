@@ -8,9 +8,16 @@ My notes:
         - build signup "what name do you want to publish your work under?", terms/agree
         - wire up email        
         - wire up fantastic
+        - wire up "read"
+- my read
+- figure out my read - distinct for a month?  first read?  last one?  hm.
+- fantastic should stick for my reads on refresh
+- add keep track of what you've read on readers
+
 - build basic explore
 - style signup/login/logout
-- wire up "read"
+- my name in top right, dropdown for account/logout
+- ipad width fixed
 - 2x icon for logo for ipad
 - save "diff" from title and body
 - strip HTML from slug

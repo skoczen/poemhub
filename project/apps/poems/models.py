@@ -162,6 +162,8 @@ class Read(BaseModel):
 
     reader = models.ForeignKey(Poet, blank=True, null=True)
 
+    # class Meta:
+    #     ordering = ("-read_at",)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

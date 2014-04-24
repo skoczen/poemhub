@@ -20,6 +20,19 @@
 <div class="page_content">
     <h1>Recently Read</h1>
 
-    <p>Coming soon!</p>
+    </ul>
+    {% for read in my_reads %}
+    {% ifchanged read.read_at.month %}
+    </ul>
+    <h4>{{read.read_at|date:"F o"}}</h4>
+    <ul>
+    {% endifchanged %}
+    {% ifchanged read.poem.pk %}
+    <li><a href="{% url "poems:poem" read.poem.author.slug read.poem.slug %}">{{read.poem.title|safe}}</a> by {{read.poem.author.name}}</li>
+    {% endifchanged %}
+    {% empty %}
+    <li>Looks like you haven't read anything yet!
+    {% endfor %}
+    </ul>
 </div>
 {% endblock %}

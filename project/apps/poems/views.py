@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import Http404
+from django.db.models import Max, Min
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
 from poems.models import Fantastic, Poem, Poet, PoemRevision, Read
@@ -29,6 +30,8 @@ def explore(request):
 @render_to("poems/my_reading.html")
 @login_required
 def my_reading(request):
+    my_reads = Read.objects.filter(reader=request.user.get_profile()).select_related()
+    # .annotate(Min('read_at')).distinct("poem")
     return locals()
 
 

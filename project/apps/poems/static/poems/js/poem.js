@@ -89,7 +89,12 @@ $(function(){
     };
     Poemhub.poem.read_tracker.time_estimate = function() {
         var chars = $(".poem .body").text().length;
-        var lines = $(".poem .body").text().match(/\n/g).length;
+        try {
+            var lines = $(".poem .body").text().match(/\n/g).length;    
+        } catch (err) {
+            var lines = 0;
+        }
+        
         return Poemhub.poem.read_tracker.calculate_from_lines_and_chars(lines, chars);
     };
 
