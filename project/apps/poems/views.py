@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
-from poems.models import Poem, Poet, PoemRevision
+from poems.models import Fantastic, Poem, Poet, PoemRevision
 from poems.forms import PoemForm
 
 
@@ -20,14 +20,17 @@ def my_writing(request):
     except:
         return HttpResponseRedirect("%s?next=%s" % (reverse("account_login",), reverse("poems:my_writing")))
 
+
 @render_to("poems/explore.html")
 def explore(request):
     return locals()
+
 
 @render_to("poems/my_reading.html")
 @login_required
 def my_reading(request):
     return locals()
+
 
 @render_to("poems/poet.html")
 def poet(request, poet=None):
@@ -108,3 +111,20 @@ def new(request):
     poet = Poet.objects.get(user=request.user)
     poem = Poem.objects.create(author=poet)
     return HttpResponseRedirect("%s?editing=true" % reverse("poems:poem", args=(poem.author.slug, poem.slug,)))
+
+
+@ajax_request
+def this_was_fantastic(request, poem_id):
+    poem = Poem.objects.get(pk=poem_id)
+
+    poet = None
+    if request.user.is_authenticated():
+        poet = request.user.get_profile()
+        if "on" in request.REQUEST and request.REQUEST["on"] == "true":
+            Fantastic.objects.get_or_create(poem=poem, poet=poet)
+        else:
+            Fantastic.objects.get_or_create(poem=poem, poet=poet)[0].delete()
+    else:
+        Fantastic.objects.create(poem=poem)
+
+    return {"success": True, "num_people": poem.num_fantastics}

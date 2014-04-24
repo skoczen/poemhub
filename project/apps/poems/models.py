@@ -122,6 +122,10 @@ class Poem(AbstractPoem):
                 (not self.is_draft and self.show_published_revisions)
                ) and self.has_been_revised
 
+    @property
+    def num_fantastics(self):
+        return self.fantastic_set.all().count()
+
     def __unicode__(self):
         return "%s" % self.title
 
@@ -138,6 +142,13 @@ class PoemRevision(AbstractPoem):
 
     def __unicode__(self):
         return "%s (%s)" % (self.title, self.revised_at)
+
+
+class Fantastic(BaseModel):
+    poem = models.ForeignKey(Poem)
+    marked_at = models.DateTimeField(auto_now_add=True, editable=False)
+
+    poet = models.ForeignKey(Poet, blank=True, null=True)
 
 
 def create_user_profile(sender, instance, created, **kwargs):

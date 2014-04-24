@@ -7,10 +7,11 @@ My notes:
         - sticky footer
         - build signup "what name do you want to publish your work under?", terms/agree
         - wire up email        
-- wire up fantastic
+        - wire up fantastic
 - build basic explore
 - style signup/login/logout
 - wire up "read"
+- 2x icon for logo for ipad
 - save "diff" from title and body
 - strip HTML from slug
 - build account (change email, password, pub name)
@@ -26,13 +27,25 @@ My notes:
 - print!  (how does this print?)
 
 
-
+longer term/arch..
 - separate manager for published.
+- keep unfavorited favorites around?
+
+
 - pull in all public domain poetry
         - "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
 - big questions: can you unpublish? (no..)  delete your account?  (yes?  what happens to your poems?)
 - "show me another poem like this"
 
+
+
+elephant:  Poetry publication is broken.
+
+Journals are self-referential circle jerk bullshit. By poets, for poets.  You can tell how bad things are when they're giving away subscriptions if you submit their work, and it underlies an ugly truth: <i>the only people subscribing to most journals are poets looking to be published.</i>  That's absurd. Imagine a music concert, where only musicians who wanted to get onstage showed up, or a movie theater filled only with actors, waiting for the studio address in the credits.  That's not a living, vibrant art, that's a death spiral.
+
+Poetry isn't the problem.  *Access* to poetry is the problem.  The fact that the general public's access to poetry is limited by cost and editorial choices that make no sense 
+
+The general public can only see poetry that a) some Big Poet/Editor Somewhere said was worth seeing and b) they're willing to pay for.  That's ridiculous.
 
 
 name: "Poem" ?

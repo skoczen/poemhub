@@ -214,3 +214,10 @@ body {
 .copyright {
     margin-top: 4px;
 }
+.num_agree {
+    display: none;
+}
+.num_agree.visible {
+    display: inline-block;
+    margin-right: 10px;
+}

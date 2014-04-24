@@ -13,7 +13,9 @@
 <script src="{{STATIC_URL}}base/js/ajaxForm.js"></script>
 <script src="{{STATIC_URL}}poems/js/nicEdit.js"></script>
 <script type="text/javascript">
-    window.Poemr = window.Poemr || {};
+    window.Poemhub = window.Poemhub || {};
+    Poemhub.urls = Poemhub.urls || {};
+    Poemhub.urls.fantastic = "{% url "poems:this_was_fantastic" poem.pk %}";
 </script>
 <script src="{{STATIC_URL}}poems/js/poem.js"></script>
 {% endcompress %}
@@ -62,7 +64,7 @@
 </form>
 {% if not poem.is_draft and not is_mine %}
 <div class="kudos">
-    <a href="#" class="fantastic_button button"><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</a>
+    <a href="#" class="fantastic_button button"><span class="num_agree"></span><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</a>
 </div>
 {% endif %}
 
