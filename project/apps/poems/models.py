@@ -150,6 +150,7 @@ class PoemRevision(AbstractPoem):
 
 class Fantastic(BaseModel):
     poem = models.ForeignKey(Poem)
+    uuid = models.CharField(max_length=500, blank=True, null=True)
     marked_at = models.DateTimeField(auto_now_add=True, editable=False)
     on = models.BooleanField(default=True)
 
@@ -158,6 +159,7 @@ class Fantastic(BaseModel):
 
 class Read(BaseModel):
     poem = models.ForeignKey(Poem)
+    uuid = models.CharField(max_length=500, blank=True, null=True)
     read_at = models.DateTimeField(auto_now_add=True, editable=False)
 
     reader = models.ForeignKey(Poet, blank=True, null=True)

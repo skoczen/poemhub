@@ -9,10 +9,9 @@ My notes:
         - wire up email        
         - wire up fantastic
         - wire up "read"
-- my read
-- figure out my read - distinct for a month?  first read?  last one?  hm.
-- fantastic should stick for my reads on refresh
-- add keep track of what you've read on readers
+        - my read
+        - figure out my read - distinct for a month?  first read?  last one?  hm.
+        - add keep track of what you've read on readers
 
 - build basic explore
 - style signup/login/logout
@@ -28,7 +27,7 @@ My notes:
 - collections are important sooner rather than later, for pacing reasons.
 - add intercom.io
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
-- my reading page
+- show fantastic on my reading page
 - "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - make "reading" an experience- "start reading" - dim the lights, etc.
 - print!  (how does this print?)

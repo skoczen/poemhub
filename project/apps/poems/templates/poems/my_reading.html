@@ -27,7 +27,7 @@
     <h4>{{read.read_at|date:"F o"}}</h4>
     <ul>
     {% endifchanged %}
-    {% ifchanged read.poem.pk %}
+    {% ifchanged read.poem.pk or read.read_at.month %}
     <li><a href="{% url "poems:poem" read.poem.author.slug read.poem.slug %}">{{read.poem.title|safe}}</a> by {{read.poem.author.name}}</li>
     {% endifchanged %}
     {% empty %}

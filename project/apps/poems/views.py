@@ -1,3 +1,5 @@
+import uuid
+
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
@@ -49,16 +51,43 @@ def poet(request, poet=None):
 
 @render_to("poems/poem.html")
 def poem(request, poet=None, title=None):
+    if not request.user.is_authenticated():
+        if "uuid" not in request.session:
+            request.session["uuid"] = uuid.uuid1()
     poem = Poem.objects.get(slug__iexact=title, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
+
+    if not is_mine and poem.is_draft:
+        raise Http404("Poem not found. Maybe it never was, maybe it's a draft and you're not logged in!")
+
     if is_mine:
         form = PoemForm(instance=poem)
     else:
         fantastic_form = FantasticForm()
         read_form = ReadForm()
 
-    if not is_mine and poem.is_draft:
-        raise Http404("Poem not found. Maybe it never was, maybe it's a draft and you're not logged in!")
+        read = None
+        fantastic = None
+        if not is_mine:
+            if request.user.is_authenticated():
+                try:
+                    read = Read.objects.filter(poem=poem, reader=request.user.get_profile()).order_by("-read_at")[0]
+                except IndexError:
+                    pass
+                try:
+                    fantastic = Fantastic.objects.filter(poem=poem, reader=request.user.get_profile()).order_by("-marked_at")[0]
+                except IndexError:
+                    pass
+            else:
+                if "uuid" in request.session:
+                    try:
+                        read = Read.objects.filter(poem=poem, uuid=request.session["uuid"]).order_by("-read_at")[0]
+                    except IndexError:
+                        pass
+                    try:
+                        fantastic = Fantastic.objects.filter(poem=poem, uuid=request.session["uuid"]).order_by("-marked_at")[0]
+                    except IndexError:
+                        pass
     return locals()
 
 
@@ -131,6 +160,8 @@ def this_was_fantastic(request, poem_id):
         if request.user.is_authenticated():
             fantastic.reader = request.user.get_profile()
         else:
+            if "uuid" in request.session:
+                fantastic.uuid = request.session["uuid"]
             fantastic.reader = None
         fantastic.save()
 
@@ -141,6 +172,7 @@ def this_was_fantastic(request, poem_id):
 
 @ajax_request
 def mark_read(request, poem_id):
+
     poem = Poem.objects.get(pk=poem_id)
     read_form = ReadForm(request.POST)
     if read_form.is_valid():
@@ -149,6 +181,8 @@ def mark_read(request, poem_id):
         if request.user.is_authenticated():
             read.reader = request.user.get_profile()
         else:
+            if "uuid" in request.session:
+                read.uuid = request.session["uuid"]
             read.reader = None
         read.save()
 

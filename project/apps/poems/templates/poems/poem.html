@@ -66,7 +66,7 @@
 <form class="fantastic_form" action="{% url "poems:this_was_fantastic" poem.pk %}" method="POST">
     {% csrf_token %}
     {{fantastic_form.as_p}}
-    <button type="submit" href="#" class="fantastic_button button"><span class="num_agree"></span><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</button>
+    <button type="submit" href="#" class="fantastic_button button {% if fantastic.on %}clicked{% endif %}"><span class="num_agree"></span><span class="unclicked_star">☆</span><span class="clicked_star">★</span> This was fantastic.</button>
 </form>
 </div>
 <form class="read_form" action="{% url "poems:mark_read" poem.pk %}" method="POST">
