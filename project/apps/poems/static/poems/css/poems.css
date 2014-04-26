@@ -30,6 +30,9 @@ body {
 .author a {
     color: #AAA;
 }
+.print.author {
+    display: none;
+}
 .poem {
     display: block;
     position: relative;
@@ -262,6 +265,13 @@ body {
         padding: 0 0 40px 0;
         width: 100%;
         page-break-inside: avoid;
+    }
+    .poem .display.author {
+        display: none;
+    }
+    .poem .print.author {
+        display: block;
+        color: #EEE !important;
     }
     .poem div {
         page-break-inside: avoid;
