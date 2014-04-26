@@ -249,3 +249,45 @@ body {
     display: inline-block;
     margin-right: 10px;
 }
+@page  
+{ 
+    size: auto;   /* auto is the initial value */ 
+
+    /* this affects the margin in the printer settings */ 
+    margin: 25mm 25mm 25mm 25mm;  
+} 
+@media print {
+    .poem {
+        margin: 0;
+        padding: 0 0 40px 0;
+        width: 100%;
+        page-break-inside: avoid;
+    }
+    .poem div {
+        page-break-inside: avoid;
+    }
+    #nav {
+        display: none;    
+    }
+    .edit_bar {
+        display: none;
+    }
+    .options_toggle {
+        display: none;
+    }
+    .poem_meta {
+        display: none;
+    }
+    .kudos {
+        display: none;   
+    }
+    .read_form {
+        display: none;
+    }
+    .timeline {
+        display: none;
+    }
+    #footer {
+        display: none;
+    }
+}

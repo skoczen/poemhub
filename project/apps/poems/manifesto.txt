@@ -15,23 +15,38 @@ My notes:
         - style signup/login/logout
         - my name in top right, dropdown for account/logout
         - ipad width fixed
-- style up password reset
+        - style up password reset
 - make a factory/dump of the test poems I've generated.
 - strip HTML from slug and title
 - strip HTML from pastes: http://www.billyswebdesign.com/blog/2009/a-customized-web-based-wysiwyg-that-can-clean-a-paste-from-ms-word/
 - pull in four public domain poets
+    burns
+    whitman
+    shakespeare
+    clifton?
+    baudelare?
+    teasdale?
+    cummings?
+    woolf?
+    great list:http://www.pbs.org/wgbh/poetryeverywhere/clifton.html
+    frost is a good tactical choice?
 - build basic explore
 - 2x icon for logo for ipad
 - save "diff" from title and body
 - style all password reset pages
 - build account (change email, password, pub name)
 - build backups
-- built tour
+- build comments
 - about page (bottom link) (lead with haiku :) )
+- build awesome marketing page (all in one page, tab-style, with lots of images)
+- built tour
 - collections are important sooner rather than later, for pacing reasons.
 - add intercom.io
+- make it look GORGEOUS on a mobile phone, somehow(ish)
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
+--- TELL EVERYONE ---
 - show fantastic on my reading page
+- 
 - "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - make "reading" an experience- "start reading" - dim the lights, etc.
 - print!  (how does this print?)

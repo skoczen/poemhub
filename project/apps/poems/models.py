@@ -13,10 +13,13 @@ POEM_DISPLAY_TYPES = [
 ]
 ENTITY_REGEX = re.compile("&[^\s]*;")
 
+
 class Poet(BaseModel):
     user = models.ForeignKey("auth.User")
     premium_user = models.BooleanField(default=False)
     slug = models.CharField(max_length=255, blank=True, editable=False)
+    public_domain = models.BooleanField(default=False)
+    proxy = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
         self.slug = unique_slug(self, 'name', 'slug')
@@ -54,6 +57,8 @@ class AbstractPoem(BaseModel):
     show_draft_revisions = models.BooleanField(default=True)
     show_published_revisions = models.BooleanField(default=True)
     longest_line = models.IntegerField(default=0)
+    public_domain = models.BooleanField(default=False)
+    imported = models.BooleanField(default=False)
 
     audio_url = models.TextField(blank=True, null=True)
     video_url = models.TextField(blank=True, null=True)
@@ -70,6 +75,7 @@ class Poem(AbstractPoem):
     published_at = models.DateTimeField(blank=True, null=True, editable=False)
     written_on = models.DateField(blank=True, null=True, default=datetime.date.today())
     slug = models.CharField(max_length=800, blank=True, verbose_name="url")
+
 
     def save(self, *args, **kwargs):
         if not self.published_at and not self.is_draft:
