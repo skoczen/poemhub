@@ -168,9 +168,12 @@ h1 {
 }
 
 .footer {
+    font-weight: 300;
+    color: #888;
     text-align: center;
 }
 .footer a {
+    color: #888;
     display: inline-block;
     margin: 0 10px;
 }
