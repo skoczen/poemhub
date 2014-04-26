@@ -12,11 +12,11 @@ My notes:
         - my read
         - figure out my read - distinct for a month?  first read?  last one?  hm.
         - add keep track of what you've read on readers
-
-- build basic explore
 - style signup/login/logout
 - my name in top right, dropdown for account/logout
 - ipad width fixed
+- pull in four public domain poets
+- build basic explore
 - 2x icon for logo for ipad
 - save "diff" from title and body
 - strip HTML from slug

@@ -72,24 +72,36 @@ ul {
 #nav {
     font-family: 'Muli', sans-serif;
     height: 36px;
+    min-height: 36px;
     width: 100%;
     background-color: #454545;
     vertical-align: top;
+    border-radius: 0;
+    border: 0;
 }
 #nav a {
     display: inline-block;
+    background-color: #454545;
     color: #AAA;
     /*width: 100px;*/
     padding: 11px 25px 9px 25px;
-    height: 40px;
+    height: 34px;
     text-decoration: none;
     /*border: 1px solid red;*/
-    overflow: auto;
 }
 #nav a:hover {
     color: #EEE;
 }
+#nav ul {
+    margin: 0;
+    padding: 0;
+    background-color: #454545;
+}
+#nav ul.dropdown-menu {
+    padding-bottom: 8px;
+}
 #nav a.logo {
+    background-color: transparent;
     padding: 3px 25px;
     height: 60px;
     display: block;
@@ -110,9 +122,7 @@ ul {
 }
 
 .button, .button:hover, a.button, a.button:hover, button, button:hover, button.button, button.button:hover, .primaryAction, .primaryAction:hover {
-    border: 1px solid #999;
-    color: #DDD;
-    background-color: #B2B2B2;
+    border-width: 1px;
     text-decoration: none;
     padding: 12px 18px;
     border-radius: 20px;
@@ -120,9 +130,7 @@ ul {
     outline-style: none;
     outline-width: 0;
 }
-.button:hover, a.button:hover, button.button:hover, button:hover {
-    background-color: #999;
-}
+
 
 .home_buttons {
     text-align: center;
@@ -177,4 +185,82 @@ h1 {
 }
 .manifesto.page_content {
     max-width: 880px;
+}
+
+
+.ph_form {
+    display: block;
+    padding-top: 20px;
+}
+
+.ph_form .question .text {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1em;
+    margin-bottom: 4px;
+
+}
+.ph_form .question .help {
+    font-size: 16px;
+    font-weight: 300;
+    color: #999;
+
+}
+.ph_form .form_input {
+    
+}
+.ph_form .form_input input,  .ph_form .form_input textarea {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    outline: 0;
+    font-weight: 300;
+    font-size: 24px;
+    width: 80%;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #DDD;
+    color: #555;
+}
+.ph_form .form_input input[type=checkbox] {
+    width: auto;
+}
+.ph_form label {
+    font-weight: 300;
+}
+.ph_form .form_input.valid input,  .ph_form .form_input.valid textarea {
+    border-color: #5C7;
+}
+::-webkit-input-placeholder {
+   font-weight: 100;
+   padding-top: 4px;
+   font-size: 20px;
+   color: #999;
+}
+:-moz-placeholder { /* Firefox 18- */
+   font-weight: 100;
+   padding-top: 4px;
+   font-size: 20px;
+   color: #999;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: 100;
+   padding-top: 4px;
+   font-size: 20px;
+   color: #999;
+}
+:-ms-input-placeholder {  
+   font-weight: 100;
+   padding-top: 4px;
+   font-size: 20px;
+   color: #999;
+}
+.ph_form .instead_text {
+    display: inline-block;
+    margin-left: 10px;
+}
+.ph_form .errors ul {
+    padding: 0;
+    margin: 0 0 0 2px;
+    list-style-type: none;
+    color: #900;
+    font-weight: 500;
 }

@@ -1,0 +1,86 @@
+
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load url from future %}
+
+{% block title %}{% block head_title %}{% trans "Log in to Poemhub" %}{% endblock %}{% endblock %}
+
+{% block content %}
+
+<h1>{% trans "Log in to Poemhub" %}</h1>
+
+{% if socialaccount.providers  %}
+<p>{% blocktrans with site.name as site_name %}Please log in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{site_name}} account and log in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+{% endif %}
+
+<form class="login ph_form" role="form" id="login_form" method="post" action="{% url 'account_login' %}" autocomplete="off">
+  {% csrf_token %}
+  
+  <div class="row question form-group">
+    <div class="col-md-5">
+        <div class="text">What's your email address?</div>
+    </div>
+    
+    <div class="col-md-7 answers">
+        <div class="form-group form_input">
+            {{ form.login }}
+            <div class="errors">{{ form.non_field_errors }}</div>
+            <div class="errors">{{form.login.errors}}</div>
+        </div>
+        
+    </div>
+  </div>
+  <div class="row question form-group">
+    <div class="col-md-5">
+        <div class="text">What's your password?</div>
+        
+    </div>
+    <div class="col-md-7 answers">
+        <div class="form-group form_input">
+            {{ form.password }}
+            <div class="errors">{{form.password.errors}}</div>
+            <div class="help">If you've forgotten, don't worry.  You can <a href="{% url 'account_reset_password' %}">{% trans "reset it" %}</a>.</div>
+        </div>
+    </div>
+  </div>
+  <div class="row question form-group">
+    <div class="col-md-5">
+    
+    </div>
+    <div class="col-md-7 answers">
+        <div class="form-group form_input"><label for="id_remember">{{ form.remember }}  Remember me for two weeks</label></div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-7">
+        <button type="submit" class="button btn btn-primary sign_up_button">{% trans "Log In" %} &raquo;</button>
+        <span class="instead_text">{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Make one - it's free!{% endblocktrans %}</a></span>
+    </div>
+  </div>
+  
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  
+</form>
+
+{% endblock %}

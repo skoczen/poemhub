@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     # url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'administration/', include(admin.site.urls), name="admin"),
     # url(r'^accounts/login/$', 'django.contrib.auth.views.login'),
-    # url(r'^logged-out/$', 'django.contrib.auth.views.logout', {'template_name': 'accounts/logout.html'}, name="logout"),
+    url(r'^logged-out/$', 'django.contrib.auth.views.logout', {'template_name': 'account/logout.html'}, name="logout"),
 
     url(r'', include('poems.urls', namespace="poems", app_name="poems")),
 )

@@ -1,0 +1,68 @@
+{% extends "account/base.html" %}
+{% load url from future %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign up at Poemhub" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Sign up at Poemhub" %}</h1>
+
+<form class="signup ph_form" role="form" id="signup_form" method="post" action="{% url 'account_signup' %}" autocomplete="off">
+  {% csrf_token %}
+  <div class="row question form-group">
+    <div class="col-md-5">
+        <div class="text">What's your name?</div>
+        <div class="help">If you publish work, this is the name your poetry will be published under.</div>
+    </div>
+    
+    <div class="col-md-7 answers">
+        <div class="form-group form_input {# valid #}">
+            {{ form.first_name }}
+            <div class="errors">{{form.first_name.errors}}</div>
+        </div>
+    </div>
+  </div>
+  <div class="row question form-group">
+    <div class="col-md-5">
+        <div class="text">What's your email address?</div>
+        <div class="help">You'll use this to sign in.</div>
+    </div>
+    
+    <div class="col-md-7 answers">
+        <div class="form-group form_input">
+            {{ form.email }}
+            <div class="errors">{{form.email.errors}}</div>
+        </div>
+        
+    </div>
+  </div>
+  <div class="row question form-group">
+    <div class="col-md-5">
+        <div class="text">What would you like your password to be?</div>
+        <div class="help">Enter it twice, to be sure. For best security, use a different one than you use elsewhere.</div>
+    </div>
+    
+    <div class="col-md-7 answers">
+        <div class="form-group form_input">{{ form.password1 }}</div>
+        <div class="form-group form_input">{{ form.password2 }}</div>
+    </div>
+    
+  </div>
+  <div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-7">
+        <button type="submit" class="button btn btn-primary sign_up_button">{% trans "Sign Up" %} &raquo;</button>
+        <span class="instead_text">{% blocktrans %}Already have an account? <a href="{{ login_url }}">Sign in instead!{% endblocktrans %}</a></span>
+    </div>
+  </div>
+  
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  
+</form>
+
+
+
+{% endblock %}
+

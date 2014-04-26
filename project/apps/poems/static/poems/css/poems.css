@@ -9,6 +9,14 @@ body {
 #nav a:hover {
     color: #CCC;
 }
+.button, .button:hover, a.button, a.button:hover, button, button:hover, button.button, button.button:hover, .primaryAction, .primaryAction:hover {
+    color: #DDD;
+    background-color: #B2B2B2;
+    border: 1px solid #999;
+}
+.button:hover, a.button:hover, button.button:hover, button:hover {
+    background-color: #999;
+}
 #main {
     padding: 0;
 }
