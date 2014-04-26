@@ -12,14 +12,18 @@ My notes:
         - my read
         - figure out my read - distinct for a month?  first read?  last one?  hm.
         - add keep track of what you've read on readers
-- style signup/login/logout
-- my name in top right, dropdown for account/logout
-- ipad width fixed
+        - style signup/login/logout
+        - my name in top right, dropdown for account/logout
+        - ipad width fixed
+- style up password reset
+- make a factory/dump of the test poems I've generated.
+- strip HTML from slug and title
+- strip HTML from pastes: http://www.billyswebdesign.com/blog/2009/a-customized-web-based-wysiwyg-that-can-clean-a-paste-from-ms-word/
 - pull in four public domain poets
 - build basic explore
 - 2x icon for logo for ipad
 - save "diff" from title and body
-- strip HTML from slug
+- style all password reset pages
 - build account (change email, password, pub name)
 - build backups
 - built tour

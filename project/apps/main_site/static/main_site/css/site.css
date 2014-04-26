@@ -81,8 +81,8 @@ ul {
 }
 #nav a {
     display: inline-block;
-    background-color: #454545;
     color: #AAA;
+    background-color: #454545;
     /*width: 100px;*/
     padding: 11px 25px 9px 25px;
     height: 34px;
@@ -98,6 +98,7 @@ ul {
     background-color: #454545;
 }
 #nav ul.dropdown-menu {
+    background-color: #454545;
     padding-bottom: 8px;
 }
 #nav a.logo {

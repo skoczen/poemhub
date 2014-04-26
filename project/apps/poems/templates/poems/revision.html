@@ -11,7 +11,7 @@
 
 {% block content %}
 <div class="revision_badge">Revision - {{poem.revised_at|date}} {{poem.revised_at|time}}</div>
-<div class="poem revision">
+<div class="poem revision {% if poem.narrow %}narrow{% endif %}">
     <h1 class="title"><div class="editable" id="poem_title">{{poem.title|safe}}</div></h1>
 
     <div class="body"><div class="editable" id="poem_body">{{poem.body|safe}}</div></div>

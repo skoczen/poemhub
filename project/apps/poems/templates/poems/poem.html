@@ -15,6 +15,8 @@
 <script type="text/javascript">
     window.Poemhub = window.Poemhub || {};
     Poemhub.urls = Poemhub.urls || {};
+    Poemhub.state = Poemhub.state || {};
+    Poemhub.state.longest_line = {{ poem.longest_line }};
 </script>
 <script src="{{STATIC_URL}}poems/js/poem.js"></script>
 {% endcompress %}
@@ -40,7 +42,7 @@
 {% endif %}
 
 
-<div class="poem {% if poem.is_draft %}draft{% endif %}">
+<div class="poem {% if poem.is_draft %}draft{% endif %} {% if poem.narrow %}narrow{% endif %}">
     <div id="edit_pane_area"><div id="edit_pane"></div></div>
     <div class="draft_badge"></div>
     <h1 class="title"><div class="editable" id="poem_title">{{poem.title|safe}}</div></h1>

@@ -1,4 +1,5 @@
 import datetime
+import re
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
@@ -10,7 +11,7 @@ POEM_DISPLAY_TYPES = [
     ("prose", "Prose"),
     ("spoken_word", "Spoken Word"),
 ]
-
+ENTITY_REGEX = re.compile("&[^\s]*;")
 
 class Poet(BaseModel):
     user = models.ForeignKey("auth.User")
@@ -52,6 +53,7 @@ class AbstractPoem(BaseModel):
     allow_comments = models.BooleanField(default=True)
     show_draft_revisions = models.BooleanField(default=True)
     show_published_revisions = models.BooleanField(default=True)
+    longest_line = models.IntegerField(default=0)
 
     audio_url = models.TextField(blank=True, null=True)
     video_url = models.TextField(blank=True, null=True)
@@ -73,6 +75,7 @@ class Poem(AbstractPoem):
         if not self.published_at and not self.is_draft:
             self.published_at = datetime.datetime.now()
 
+
         make_revision = False
         if not self.pk:
             make_revision = True
@@ -85,6 +88,14 @@ class Poem(AbstractPoem):
             if old_me.title != self.title or old_me.body != self.body:
                 make_revision = True
 
+        if make_revision or self.longest_line == 0:
+            longest = len(self.title)
+            cleaned_body = self.body.replace("<br>", "\n").replace("</div>", "\n")
+            cleaned_body = ENTITY_REGEX.sub(" ", cleaned_body)
+            for l in cleaned_body.split("\n"):
+                if len(l) > longest:
+                    longest = len(l)
+            self.longest_line = longest
         super(Poem, self).save(*args, **kwargs)
 
         if make_revision:
@@ -101,7 +112,10 @@ class Poem(AbstractPoem):
         if not self.is_draft:
             return self.published_at
         else:
-            return self.most_recent_revision.revised_at
+            if self.has_been_revised:
+                return self.most_recent_revision.revised_at
+            else:
+                return self.started_at
 
     @property
     def most_recent_revision(self):
@@ -132,6 +146,10 @@ class Poem(AbstractPoem):
 
     def __unicode__(self):
         return "%s" % self.title
+
+    @property
+    def narrow(self):
+        return self.longest_line <= 64
 
     class Meta:
         ordering = ("-started_at",)

@@ -39,11 +39,28 @@ body {
     margin: 80px auto 0 auto;
     /*top: 80px;*/
 
-    border: 1px solid rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0);
     border-bottom-color: rgba(255,255,255,0.97);
     border-right-color: rgba(255,255,255,0.97);
     box-shadow: 1px 2px 2px rgba(0,0,0,0.3);
 }
+@media all and (device-width: 768px) and (device-height: 1024px) and (orientation:portrait) {
+    body {
+        /*background: #222;*/
+    }
+    .poem {
+        padding: 40px 16px 20px 26px;
+        width: 762px;
+    }
+    .poem.narrow {
+        padding: 40px 40px 20px 60px;
+        width: 720px;
+    }
+    .poem .body {
+        /*font-size: 14px;*/
+    }
+}
+
 #edit_pane_area {
     position: absolute;
     top: 0;

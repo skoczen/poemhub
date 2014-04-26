@@ -4,6 +4,7 @@ from poems.models import Fantastic, Poem, PoemRevision, Poet, Read
 BASE_POEM_LIST_DISPLAY = [
     "title",
     "author",
+    "longest_line",
     "is_draft",
     "allow_comments",
     "show_draft_revisions",
