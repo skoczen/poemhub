@@ -407,184 +407,563 @@ var nicEditor = bkClass.extend({
 });
 nicEditor = nicEditor.extend(bkEvent);
 
- 
+/**
+ * NicEdit Instance
+ * This class creates an editable area out of any block level node and converting textarea nodes into editable areas. Instances of this class use the contentEditable attribute and besides textareas do not modify the orginal node.
+ * @author: Brian Kirchoff
+ * @requires: nicCore
+ * @version 0.9
+ */
+
+/* this nicEditorInstance class was edited to perform a "cleaning" on any paste, in particular
+ * it will fully clean a paste from a microsoft word document.
+ * All edits are indicated with comments.  The rest of the code is by the author listed above.
+ * Clean Word Paste Mod by Billy Flaherty (www.billyswebdesign.com/) for cgCraft (www.cgcraft.com) */
+
+// More robust strip tags (still hacky) added by Steven Skoczen for Poemhub
+var UNIQUE_WEIRD_OPEN = "[||^(||]";
+var UNIQUE_WEIRD_CLOSE = "[||)^||]";
 var nicEditorInstance = bkClass.extend({
-	isSelected : false,
-	
-	construct : function(e,options,nicEditor) {
-		this.ne = nicEditor;
-		this.elm = this.e = e;
-		this.options = options || {};
-		
-		newX = parseInt(e.getStyle('width')) || e.clientWidth;
-		newY = parseInt(e.getStyle('height')) || e.clientHeight;
-		this.initialHeight = newY-8;
-		
-		var isTextarea = (e.nodeName.toLowerCase() == "textarea");
-		if(isTextarea || this.options.hasPanel) {
-			var ie7s = (bkLib.isMSIE && !((typeof document.body.style.maxHeight != "undefined") && document.compatMode == "CSS1Compat"))
-			var s = {width: newX+'px',  borderTop : 0, overflowY : 'auto', overflowX: 'hidden' };
-			s[(ie7s) ? 'height' : 'maxHeight'] = (this.ne.options.maxHeight) ? this.ne.options.maxHeight+'px' : null;
-			this.editorContain = new bkElement('DIV').setStyle(s).appendBefore(e);
-			var editorElm = new bkElement('DIV').setStyle({width : (newX-8)+'px', margin: '4px', minHeight : newY+'px'}).addClass('main').appendTo(this.editorContain);
+    isSelected : false,
 
-			e.setStyle({display : 'none'});
-				
-			editorElm.innerHTML = e.innerHTML;		
-			if(isTextarea) {
-				editorElm.setContent(e.value);
-				this.copyElm = e;
-				var f = e.parentTag('FORM');
-				if(f) { bkLib.addEvent( f, 'submit', this.saveContent.closure(this)); }
-			}
-			editorElm.setStyle((ie7s) ? {height : newY+'px'} : {overflow: 'hidden'});
-			this.elm = editorElm;	
-		}
-		this.ne.addEvent('blur',this.blur.closure(this));
+    construct : function(e,options,nicEditor) {
+        this.ne = nicEditor;
+        this.elm = this.e = e;
+        this.options = options || {};
 
-		this.init();
-		this.blur();
-	},
-	
-	init : function() {
-		this.elm.setAttribute('contentEditable','true');	
-		if(this.getContent() == "") {
-			this.setContent('<br />');
-		}
-		this.instanceDoc = document.defaultView;
-		this.elm.addEvent('mousedown',this.selected.closureListener(this)).addEvent('keypress',this.keyDown.closureListener(this)).addEvent('focus',this.selected.closure(this)).addEvent('blur',this.blur.closure(this)).addEvent('keyup',this.selected.closure(this));
-		this.ne.fireEvent('add',this);
-	},
-	
-	remove : function() {
-		this.saveContent();
-		if(this.copyElm || this.options.hasPanel) {
-			this.editorContain.remove();
-			this.e.setStyle({'display' : 'block'});
-			this.ne.removePanel();
-		}
-		this.disable();
-		this.ne.fireEvent('remove',this);
-	},
-	
-	disable : function() {
-		this.elm.setAttribute('contentEditable','false');
-	},
-	
-	getSel : function() {
-		return (window.getSelection) ? window.getSelection() : document.selection;	
-	},
-	
-	getRng : function() {
-	    var s = this.getSel();
-	    var rng;        
+        newX = parseInt(e.getStyle('width')) || e.clientWidth;
+        newY = parseInt(e.getStyle('height')) || e.clientHeight;
+        this.initialHeight = newY-8;
 
-	    if(!s) { return null; } 
-	    if (s.rangeCount > 0) {
-	        rng = s.getRangeAt(0);
-	    } else if ( typeof s.createRange === 'undefined' ) {
-	        rng = document.createRange();
-	    } else {
-	        rng = s.createRange(); 
-	    }       
-	    return rng;
-	 },	
-	selRng : function(rng,s) {
-		if(window.getSelection) {
-			s.removeAllRanges();
-			s.addRange(rng);
-		} else {
-			rng.select();
-		}
-	},
-	
-	selElm : function() {
-		var r = this.getRng();
-		if(r.startContainer) {
-			var contain = r.startContainer;
-			if(r.cloneContents().childNodes.length == 1) {
-				for(var i=0;i<contain.childNodes.length;i++) {
-					var rng = contain.childNodes[i].ownerDocument.createRange();
-					rng.selectNode(contain.childNodes[i]);					
-					if(r.compareBoundaryPoints(Range.START_TO_START,rng) != 1 && 
-						r.compareBoundaryPoints(Range.END_TO_END,rng) != -1) {
-						return $BK(contain.childNodes[i]);
-					}
-				}
-			}
-			return $BK(contain);
-		} else {
-			return $BK((this.getSel().type == "Control") ? r.item(0) : r.parentElement());
-		}
-	},
-	
-	saveRng : function() {
-		this.savedRange = this.getRng();
-		this.savedSel = this.getSel();
-	},
-	
-	restoreRng : function() {
-		if(this.savedRange) {
-			this.selRng(this.savedRange,this.savedSel);
-		}
-	},
-	
-	keyDown : function(e,t) {
-		if(e.ctrlKey) {
-			this.ne.fireEvent('key',this,e);
-		}
-	},
-	
-	selected : function(e,t) {
-		if(!t) {t = this.selElm()}
-		if(!e.ctrlKey) {
-			var selInstance = this.ne.selectedInstance;
-			if(selInstance != this) {
-				if(selInstance) {
-					this.ne.fireEvent('blur',selInstance,t);
-				}
-				this.ne.selectedInstance = this;	
-				this.ne.fireEvent('focus',selInstance,t);
-			}
-			this.ne.fireEvent('selected',selInstance,t);
-			this.isFocused = true;
-			this.elm.addClass('selected');
-		}
-		return false;
-	},
-	
-	blur : function() {
-		this.isFocused = false;
-		this.elm.removeClass('selected');
-	},
-	
-	saveContent : function() {
-		if(this.copyElm || this.options.hasPanel) {
-			this.ne.fireEvent('save',this);
-			(this.copyElm) ? this.copyElm.value = this.getContent() : this.e.innerHTML = this.getContent();
-		}	
-	},
-	
-	getElm : function() {
-		return this.elm;
-	},
-	
-	getContent : function() {
-		this.content = this.getElm().innerHTML;
-		this.ne.fireEvent('get',this);
-		return this.content;
-	},
-	
-	setContent : function(e) {
-		this.content = e;
-		this.ne.fireEvent('set',this);
-		this.elm.innerHTML = this.content;	
-	},
-	
-	nicCommand : function(cmd,args) {
-		document.execCommand(cmd,false,args);
-	}		
+        var isTextarea = (e.nodeName.toLowerCase() == "textarea");
+        if(isTextarea || this.options.hasPanel) {
+            var ie7s = (bkLib.isMSIE && !((typeof document.body.style.maxHeight != "undefined") && document.compatMode == "CSS1Compat"))
+            var s = {width: newX+'px', border : '0', borderTop : 0, overflowY : 'auto', overflowX: 'hidden' };
+            s[(ie7s) ? 'height' : 'maxHeight'] = (this.ne.options.maxHeight) ? this.ne.options.maxHeight+'px' : null;
+            this.editorContain = new bkElement('DIV').setStyle(s).appendBefore(e);
+
+            /* CLEAN WORD PASTE MOD */
+            //var editorElm = new bkElement('DIV').setAttributes({id : e.id}).setStyle({width : (newX-8)+'px', margin: '4px', minHeight : newY+'px'}).addClass('main').appendTo(this.editorContain);
+            var editorElm = new bkElement('DIV').setStyle({width : (newX)+'px', margin: '0', minHeight : newY+'px'}).addClass('main').appendTo(this.editorContain);
+
+
+            e.setStyle({display : 'none'});
+            editorElm.innerHTML = e.innerHTML;
+            if(isTextarea) {
+                editorElm.setContent(e.value);
+                this.copyElm = e;
+                var f = e.parentTag('FORM');
+                if(f) { bkLib.addEvent( f, 'submit', this.saveContent.closure(this)); }
+            }
+            editorElm.setStyle((ie7s) ? {height : newY+'px'} : {overflow: 'hidden'});
+            this.elm = editorElm;
+
+        }
+        this.ne.addEvent('blur',this.blur.closure(this));
+
+        this.init();
+        this.blur();
+    },
+
+    init : function() {
+        this.elm.setAttribute('contentEditable','true');
+        if(this.getContent() == "") {
+            this.setContent('<br />');
+        }
+        this.instanceDoc = document.defaultView;
+        this.elm.addEvent('mousedown',this.selected.closureListener(this)).addEvent('keypress',this.keyDown.closureListener(this)).addEvent('focus',this.selected.closure(this)).addEvent('blur',this.blur.closure(this)).addEvent('keyup',this.selected.closure(this));
+        this.ne.fireEvent('add',this);
+
+        /* CLEAN WORD PASTE MOD */
+        this.elm.addEvent('paste',this.initPasteClean.closureListener(this));
+    },
+
+    initPasteClean : function() {
+        this.pasteCache = this.getElm().innerHTML;
+        setTimeout(this.pasteClean.closure(this),100);
+    },
+
+    /* CLEAN WORD PASTE MOD : pasteClean method added for clean word paste */
+    pasteClean : function() {
+        var matchedHead = "";
+        var matchedTail = "";
+        var newContent = this.getElm().innerHTML;
+        this.ne.fireEvent("get",this);
+        var newContentStart = 0;
+        var newContentFinish = 0;
+        var newSnippet = "";
+        var tempNode = document.createElement("div");
+
+        /* Find start of both strings that matches */
+
+        for (newContentStart = 0; newContent.charAt(newContentStart) == this.pasteCache.charAt(newContentStart); newContentStart++)
+        {
+            matchedHead += this.pasteCache.charAt(newContentStart);
+        }
+
+        /* If newContentStart is inside a HTML tag, move to opening brace of tag */
+        for (var i = newContentStart; i >= 0; i--)
+        {
+            if (this.pasteCache.charAt(i) == "<")
+            {
+                newContentStart = i;
+                matchedHead = this.pasteCache.substring(0, newContentStart);
+
+                break;
+            }
+            else if(this.pasteCache.charAt(i) == ">")
+            {
+                break;
+            }
+        }
+
+        newContent = this.reverse(newContent);
+        this.pasteCache = this.reverse(this.pasteCache);
+
+        /* Find end of both strings that matches */
+        for (newContentFinish = 0; newContent.charAt(newContentFinish) == this.pasteCache.charAt(newContentFinish); newContentFinish++)
+        {
+            matchedTail += this.pasteCache.charAt(newContentFinish);
+        }
+
+        /* If newContentFinish is inside a HTML tag, move to closing brace of tag */
+        for (var i = newContentFinish; i >= 0; i--)
+        {
+            if (this.pasteCache.charAt(i) == ">")
+            {
+                newContentFinish = i;
+                matchedTail = this.pasteCache.substring(0, newContentFinish);
+
+                break;
+            }
+            else if(this.pasteCache.charAt(i) == "<")
+            {
+                break;
+            }
+        }
+
+        matchedTail = this.reverse(matchedTail);
+
+        /* If there's no difference in pasted content */
+        if (newContentStart == newContent.length - newContentFinish)
+        {
+            return false;
+        }
+
+        newContent = this.reverse(newContent);
+        newSnippet = newContent.substring(newContentStart, newContent.length - newContentFinish);
+
+        /* Strip out unaccepted attributes */
+
+        newSnippet = newSnippet.replace(/<[^>]*>/g, function(match)
+            {
+                match = match.replace(/ ([^=]+)="[^"]*"/g, function(match2, attributeName)
+                    {
+                        if (attributeName == "alt" || attributeName == "href" || attributeName == "src" || attributeName == "title" || attributeName == "style")
+                        {
+                            return match2;
+                        }
+
+                        return "";
+                    });
+
+                return match;
+            }
+        );
+
+        /* Final cleanout for MS Word cruft */
+        // newSnippet = newSnippet.replace(/<\?xml[^>]*>/g, "");
+        // newSnippet = newSnippet.replace(/<[^ >]+:[^>]*>/g, "");
+        // newSnippet = newSnippet.replace(/<\/[^ >]+:[^>]*>/g, "");
+
+        /* remove undwanted tags */
+        var html = newSnippet;
+        // console.log(newSnippet)
+        // I'll use regex, he said.  "You now have two problems," she wisely replied.
+        // Thanks, SO http://stackoverflow.com/questions/1144783/replacing-all-occurrences-of-a-string-in-javascript
+        function escapeRegExp(string) {
+            return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+        }
+        function replaceAll(find, replace, str) {
+            return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+        }
+        // console.log(html)
+        html = replaceAll("\t", "&nbsp;&nbsp;&nbsp;&nbsp;", html);
+        html = replaceAll("</div>", UNIQUE_WEIRD_OPEN + "br/" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("&nbsp;", UNIQUE_WEIRD_OPEN + "ANDnbsp" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll(" ", UNIQUE_WEIRD_OPEN + "SPACE" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("\n", UNIQUE_WEIRD_OPEN + "NEWLINE" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("\r", UNIQUE_WEIRD_OPEN + "NEWLINE" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<br>", UNIQUE_WEIRD_OPEN + "br/  " + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<br/>", UNIQUE_WEIRD_OPEN + "br/" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<p>", UNIQUE_WEIRD_OPEN + "p" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("</p>", UNIQUE_WEIRD_OPEN + "/p" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<b>", UNIQUE_WEIRD_OPEN + "b" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("</b>", UNIQUE_WEIRD_OPEN + "/b" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<i>", UNIQUE_WEIRD_OPEN + "i" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("</i>", UNIQUE_WEIRD_OPEN + "/i" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<u>", UNIQUE_WEIRD_OPEN + "u" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("</u>", UNIQUE_WEIRD_OPEN + "/u" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<strong>", UNIQUE_WEIRD_OPEN + "strong" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("</strong>", UNIQUE_WEIRD_OPEN + "/strong" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("<em>", UNIQUE_WEIRD_OPEN + "em" + UNIQUE_WEIRD_CLOSE, html);
+        html = replaceAll("</em>", UNIQUE_WEIRD_OPEN + "/em" + UNIQUE_WEIRD_CLOSE, html);
+        
+
+        var tmp = document.createElement("DIV");
+        tmp.innerHTML = html;
+        // console.log(html)
+        html = tmp.textContent||tmp.innerText;
+        // console.log(html)
+        html = replaceAll(UNIQUE_WEIRD_OPEN + "ANDnbsp" + UNIQUE_WEIRD_CLOSE, "&nbsp;", html);
+        html = replaceAll(UNIQUE_WEIRD_OPEN + "SPACE" + UNIQUE_WEIRD_CLOSE, " ", html);
+        html = replaceAll(UNIQUE_WEIRD_OPEN + "NEWLINE" + UNIQUE_WEIRD_CLOSE, "<br/>", html);
+        html = replaceAll(UNIQUE_WEIRD_OPEN, "<", html);
+        html = replaceAll(UNIQUE_WEIRD_CLOSE, ">", html);
+        // console.log(html)
+        
+        this.content = matchedHead + html + matchedTail;
+        this.ne.fireEvent("set",this);
+        this.elm.innerHTML = this.content;
+    },
+
+    reverse : function(sentString) {
+        var theString = "";
+        for (var i = sentString.length - 1; i >= 0; i--) {
+            theString += sentString.charAt(i);
+        }
+        return theString;
+    },
+
+    /* CLEAN WORD PASTE MOD : validTags method added for clean word paste */
+    validTags : function(snippet) {
+        var theString = snippet;
+
+        /* Replace uppercase element names with lowercase */
+        theString = theString.replace(/<[^> ]*/g, function(match){return match.toLowerCase();});
+
+        /* Replace uppercase attribute names with lowercase */
+        theString = theString.replace(/<[^>]*>/g, function(match) {
+            match = match.replace(/ [^=]+=/g, function(match2){return match2.toLowerCase();});
+            return match;
+        });
+
+        /* Put quotes around unquoted attributes */
+        theString = theString.replace(/<[^>]*>/g, function(match) {
+            match = match.replace(/( [^=]+=)([^"][^ >]*)/g, "$1\"$2\"");
+            return match;
+        });
+
+        return theString;
+    },
+
+    remove : function() {
+        this.saveContent();
+        if(this.copyElm || this.options.hasPanel) {
+            this.editorContain.remove();
+            this.e.setStyle({'display' : 'block'});
+            this.ne.removePanel();
+        }
+        this.disable();
+        this.ne.fireEvent('remove',this);
+    },
+
+    disable : function() {
+        this.elm.setAttribute('contentEditable','false');
+    },
+
+    getSel : function() {
+        return (window.getSelection) ? window.getSelection() : document.selection;
+    },
+
+    getRng : function() {
+        var s = this.getSel();
+        if(!s) { return null; }
+        if (s.rangeCount > 0) {
+            rng = s.getRangeAt(0);
+        } else if ( typeof s.createRange === 'undefined' ) {
+            rng = document.createRange();
+        } else {
+            rng = s.createRange(); 
+        }
+        return rng; 
+    },
+
+    selRng : function(rng,s) {
+        if(window.getSelection) {
+            s.removeAllRanges();
+            s.addRange(rng);
+        } else {
+            rng.select();
+        }
+    },
+
+    selElm : function() {
+        var r = this.getRng();
+        if(r.startContainer) {
+            var contain = r.startContainer;
+            if(r.cloneContents().childNodes.length == 1) {
+                for(var i=0;i<contain.childNodes.length;i++) {
+                    var rng = contain.childNodes[i].ownerDocument.createRange();
+                    rng.selectNode(contain.childNodes[i]);
+                    if(r.compareBoundaryPoints(Range.START_TO_START,rng) != 1 &&
+                        r.compareBoundaryPoints(Range.END_TO_END,rng) != -1) {
+                        return $BK(contain.childNodes[i]);
+                    }
+                }
+            }
+            return $BK(contain);
+        } else {
+            return $BK((this.getSel().type == "Control") ? r.item(0) : r.parentElement());
+        }
+    },
+
+    saveRng : function() {
+        this.savedRange = this.getRng();
+        this.savedSel = this.getSel();
+    },
+
+    restoreRng : function() {
+        if(this.savedRange) {
+            this.selRng(this.savedRange,this.savedSel);
+        }
+    },
+
+    keyDown : function(e,t) {
+        if(e.ctrlKey) {
+            this.ne.fireEvent('key',this,e);
+        }
+    },
+
+    selected : function(e,t) {
+        if(!t) {t = this.selElm()}
+        if(!e.ctrlKey) {
+            var selInstance = this.ne.selectedInstance;
+            if(selInstance != this) {
+                if(selInstance) {
+                    this.ne.fireEvent('blur',selInstance,t);
+                }
+                this.ne.selectedInstance = this;
+                this.ne.fireEvent('focus',selInstance,t);
+            }
+            this.ne.fireEvent('selected',selInstance,t);
+            this.isFocused = true;
+            this.elm.addClass('selected');
+        }
+        return false;
+    },
+
+    blur : function() {
+        this.isFocused = false;
+        this.elm.removeClass('selected');
+    },
+
+    saveContent : function() {
+        if(this.copyElm || this.options.hasPanel) {
+            this.ne.fireEvent('save',this);
+            (this.copyElm) ? this.copyElm.value = this.getContent() : this.e.innerHTML = this.getContent();
+        }
+    },
+
+    getElm : function() {
+        return this.elm;
+    },
+
+    getContent : function() {
+        this.content = this.getElm().innerHTML;
+        this.ne.fireEvent('get',this);
+        return this.content;
+    },
+
+    setContent : function(e) {
+        this.content = e;
+        this.ne.fireEvent('set',this);
+        this.elm.innerHTML = this.content;
+    },
+
+    nicCommand : function(cmd,args) {
+        document.execCommand(cmd,false,args);
+    }
 });
+
+// Original instance
+// var nicEditorInstance = bkClass.extend({
+// 	isSelected : false,
+	
+// 	construct : function(e,options,nicEditor) {
+// 		this.ne = nicEditor;
+// 		this.elm = this.e = e;
+// 		this.options = options || {};
+		
+// 		newX = parseInt(e.getStyle('width')) || e.clientWidth;
+// 		newY = parseInt(e.getStyle('height')) || e.clientHeight;
+// 		this.initialHeight = newY-8;
+		
+// 		var isTextarea = (e.nodeName.toLowerCase() == "textarea");
+// 		if(isTextarea || this.options.hasPanel) {
+// 			var ie7s = (bkLib.isMSIE && !((typeof document.body.style.maxHeight != "undefined") && document.compatMode == "CSS1Compat"))
+// 			var s = {width: newX+'px',  borderTop : 0, overflowY : 'auto', overflowX: 'hidden' };
+// 			s[(ie7s) ? 'height' : 'maxHeight'] = (this.ne.options.maxHeight) ? this.ne.options.maxHeight+'px' : null;
+// 			this.editorContain = new bkElement('DIV').setStyle(s).appendBefore(e);
+// 			var editorElm = new bkElement('DIV').setStyle({width : (newX-8)+'px', margin: '4px', minHeight : newY+'px'}).addClass('main').appendTo(this.editorContain);
+
+// 			e.setStyle({display : 'none'});
+				
+// 			editorElm.innerHTML = e.innerHTML;		
+// 			if(isTextarea) {
+// 				editorElm.setContent(e.value);
+// 				this.copyElm = e;
+// 				var f = e.parentTag('FORM');
+// 				if(f) { bkLib.addEvent( f, 'submit', this.saveContent.closure(this)); }
+// 			}
+// 			editorElm.setStyle((ie7s) ? {height : newY+'px'} : {overflow: 'hidden'});
+// 			this.elm = editorElm;	
+// 		}
+// 		this.ne.addEvent('blur',this.blur.closure(this));
+
+// 		this.init();
+// 		this.blur();
+// 	},
+	
+// 	init : function() {
+// 		this.elm.setAttribute('contentEditable','true');	
+// 		if(this.getContent() == "") {
+// 			this.setContent('<br />');
+// 		}
+// 		this.instanceDoc = document.defaultView;
+// 		this.elm.addEvent('mousedown',this.selected.closureListener(this)).addEvent('keypress',this.keyDown.closureListener(this)).addEvent('focus',this.selected.closure(this)).addEvent('blur',this.blur.closure(this)).addEvent('keyup',this.selected.closure(this));
+// 		this.ne.fireEvent('add',this);
+// 	},
+	
+// 	remove : function() {
+// 		this.saveContent();
+// 		if(this.copyElm || this.options.hasPanel) {
+// 			this.editorContain.remove();
+// 			this.e.setStyle({'display' : 'block'});
+// 			this.ne.removePanel();
+// 		}
+// 		this.disable();
+// 		this.ne.fireEvent('remove',this);
+// 	},
+	
+// 	disable : function() {
+// 		this.elm.setAttribute('contentEditable','false');
+// 	},
+	
+// 	getSel : function() {
+// 		return (window.getSelection) ? window.getSelection() : document.selection;	
+// 	},
+	
+// 	getRng : function() {
+// 	    var s = this.getSel();
+// 	    var rng;        
+
+// 	    if(!s) { return null; } 
+// 	    if (s.rangeCount > 0) {
+// 	        rng = s.getRangeAt(0);
+// 	    } else if ( typeof s.createRange === 'undefined' ) {
+// 	        rng = document.createRange();
+// 	    } else {
+// 	        rng = s.createRange(); 
+// 	    }       
+// 	    return rng;
+// 	 },	
+// 	selRng : function(rng,s) {
+// 		if(window.getSelection) {
+// 			s.removeAllRanges();
+// 			s.addRange(rng);
+// 		} else {
+// 			rng.select();
+// 		}
+// 	},
+	
+// 	selElm : function() {
+// 		var r = this.getRng();
+// 		if(r.startContainer) {
+// 			var contain = r.startContainer;
+// 			if(r.cloneContents().childNodes.length == 1) {
+// 				for(var i=0;i<contain.childNodes.length;i++) {
+// 					var rng = contain.childNodes[i].ownerDocument.createRange();
+// 					rng.selectNode(contain.childNodes[i]);					
+// 					if(r.compareBoundaryPoints(Range.START_TO_START,rng) != 1 && 
+// 						r.compareBoundaryPoints(Range.END_TO_END,rng) != -1) {
+// 						return $BK(contain.childNodes[i]);
+// 					}
+// 				}
+// 			}
+// 			return $BK(contain);
+// 		} else {
+// 			return $BK((this.getSel().type == "Control") ? r.item(0) : r.parentElement());
+// 		}
+// 	},
+	
+// 	saveRng : function() {
+// 		this.savedRange = this.getRng();
+// 		this.savedSel = this.getSel();
+// 	},
+	
+// 	restoreRng : function() {
+// 		if(this.savedRange) {
+// 			this.selRng(this.savedRange,this.savedSel);
+// 		}
+// 	},
+	
+// 	keyDown : function(e,t) {
+// 		if(e.ctrlKey) {
+// 			this.ne.fireEvent('key',this,e);
+// 		}
+// 	},
+	
+// 	selected : function(e,t) {
+// 		if(!t) {t = this.selElm()}
+// 		if(!e.ctrlKey) {
+// 			var selInstance = this.ne.selectedInstance;
+// 			if(selInstance != this) {
+// 				if(selInstance) {
+// 					this.ne.fireEvent('blur',selInstance,t);
+// 				}
+// 				this.ne.selectedInstance = this;	
+// 				this.ne.fireEvent('focus',selInstance,t);
+// 			}
+// 			this.ne.fireEvent('selected',selInstance,t);
+// 			this.isFocused = true;
+// 			this.elm.addClass('selected');
+// 		}
+// 		return false;
+// 	},
+	
+// 	blur : function() {
+// 		this.isFocused = false;
+// 		this.elm.removeClass('selected');
+// 	},
+	
+// 	saveContent : function() {
+// 		if(this.copyElm || this.options.hasPanel) {
+// 			this.ne.fireEvent('save',this);
+// 			(this.copyElm) ? this.copyElm.value = this.getContent() : this.e.innerHTML = this.getContent();
+// 		}	
+// 	},
+	
+// 	getElm : function() {
+// 		return this.elm;
+// 	},
+	
+// 	getContent : function() {
+// 		this.content = this.getElm().innerHTML;
+// 		this.ne.fireEvent('get',this);
+// 		return this.content;
+// 	},
+	
+// 	setContent : function(e) {
+// 		this.content = e;
+// 		this.ne.fireEvent('set',this);
+// 		this.elm.innerHTML = this.content;	
+// 	},
+	
+// 	nicCommand : function(cmd,args) {
+// 		document.execCommand(cmd,false,args);
+// 	}		
+// });
 
 var nicEditorIFrameInstance = nicEditorInstance.extend({
 	savedStyles : [],
@@ -663,7 +1042,7 @@ var nicEditorPanel = bkClass.extend({
 		this.panelButtons = new Array();
 		this.buttonList = bkExtend([],this.ne.options.buttonList);
 		
-		this.panelContain = new bkElement('DIV').setStyle({overflow : 'hidden', width : '100%', border : '1px solid #cccccc', backgroundColor : '#efefef'}).addClass('panelContain');
+		this.panelContain = new bkElement('DIV').setStyle({overflow : 'hidden', width : '100%', border : '0', backgroundColor : '#efefef'}).addClass('panelContain');
 		this.panelElm = new bkElement('DIV').setStyle({margin : '2px', marginTop : '0px', zoom : 1, overflow : 'hidden'}).addClass('panel').appendTo(this.panelContain);
 		this.panelContain.appendTo(e);
 
@@ -719,7 +1098,7 @@ var nicEditorButton = bkClass.extend({
 
 		this.margin = new bkElement('DIV').setStyle({'float' : 'left', marginTop : '2px'}).appendTo(e);
 		this.contain = new bkElement('DIV').setStyle({width : '20px', height : '20px'}).addClass('buttonContain').appendTo(this.margin);
-		this.border = new bkElement('DIV').setStyle({backgroundColor : '#efefef', border : '1px solid #efefef'}).appendTo(this.contain);
+		this.border = new bkElement('DIV').setStyle({backgroundColor : '#efefef', border : '0'}).appendTo(this.contain);
 		this.button = new bkElement('DIV').setStyle({width : '18px', height : '18px', overflow : 'hidden', zoom : 1, cursor : 'pointer'}).addClass('button').setStyle(this.ne.getIcon(buttonName,options)).appendTo(this.border);
 		this.button.addEvent('mouseover', this.hoverOn.closure(this)).addEvent('mouseout',this.hoverOff.closure(this)).addEvent('mousedown',this.mouseClick.closure(this)).noSelect();
 		
@@ -886,7 +1265,7 @@ var nicEditorPane = bkClass.extend({
 		this.pos = elm.pos();
 		
 		this.contain = new bkElement('div').setStyle({zIndex : '99999', overflow : 'hidden', position : 'absolute', left : this.pos[0]+'px', top : this.pos[1]+'px'})
-		this.pane = new bkElement('div').setStyle({fontSize : '12px',  'overflow': 'hidden', padding : '4px', textAlign: 'left', backgroundColor : '#ffffc9'}).addClass('pane').setStyle(options).appendTo(this.contain);
+		this.pane = new bkElement('div').setStyle({fontSize : '12px',  'overflow': 'hidden', padding : '0', textAlign: 'left', backgroundColor : '#ffffc9'}).addClass('pane').setStyle(options).appendTo(this.contain);
 		
 		if(openButton && !openButton.options.noClose) {
 			this.close = new bkElement('div').setStyle({'float' : 'right', height: '16px', width : '16px', cursor : 'pointer'}).setStyle(this.ne.getIcon('close',nicPaneOptions)).addEvent('mousedown',openButton.removePane.closure(this)).appendTo(this.pane);
@@ -1113,7 +1492,7 @@ var nicEditorSelect = bkClass.extend({
 		
 		for(var i=0;i<this.selOptions.length;i++) {
 			var opt = this.selOptions[i];
-			var itmContain = new bkElement('div').setStyle({overflow : 'hidden', borderBottom : '1px solid #ccc', width: '88px', textAlign : 'left', overflow : 'hidden', cursor : 'pointer'});
+			var itmContain = new bkElement('div').setStyle({overflow : 'hidden', borderBottom : '0', width: '88px', textAlign : 'left', overflow : 'hidden', cursor : 'pointer'});
 			var itm = new bkElement('div').setStyle({padding : '0px 4px'}).setContent(opt[1]).appendTo(itmContain).noSelect();
 			itm.addEvent('click',this.update.closure(this,opt[0])).addEvent('mouseover',this.over.closure(this,itm)).addEvent('mouseout',this.out.closure(this,itm)).setAttributes('id',opt[0]);
 			this.pane.append(itmContain);

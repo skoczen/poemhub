@@ -1,4 +1,5 @@
 beautifulsoup
+bleach
 boto
 django-celery-with-redis
 django<1.6

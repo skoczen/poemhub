@@ -16,9 +16,10 @@ My notes:
         - my name in top right, dropdown for account/logout
         - ipad width fixed
         - style up password reset
-- make a factory/dump of the test poems I've generated.
-- strip HTML from slug and title
-- strip HTML from pastes: http://www.billyswebdesign.com/blog/2009/a-customized-web-based-wysiwyg-that-can-clean-a-paste-from-ms-word/
+        - make a factory/dump of the test poems I've generated.
+        - strip HTML from slug and title
+        - strip HTML from pastes: 
+- on signup, connect UUID (if there is one) to poet.
 - pull in four public domain poets
     burns
     whitman
@@ -44,6 +45,7 @@ My notes:
 - add intercom.io
 - make it look GORGEOUS on a mobile phone, somehow(ish)
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
+- swipe right/left to view next poem.
 --- TELL EVERYONE ---
 - show fantastic on my reading page
 - 

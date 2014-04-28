@@ -1,0 +1,182 @@
+[
+    {
+        "fields": {
+            "premium_user": false, 
+            "proxy": false, 
+            "public_domain": false, 
+            "slug": "test", 
+            "updated_at": "2014-04-20T18:02:20.752", 
+            "user": 1
+        }, 
+        "model": "poems.poet", 
+        "pk": 1
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 1, 
+            "body": "Lilac butterfly<div>&nbsp; &nbsp; &nbsp;a flying flower</div><div>&nbsp; &nbsp; &nbsp;lands on top of a stem</div>", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 40, 
+            "public_domain": false, 
+            "published_at": "2014-04-18T14:03:25.374", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "Lilac", 
+            "started_at": "2014-04-18T14:02:18.970", 
+            "title": "Lilac", 
+            "updated_at": "2014-04-25T22:28:53.643", 
+            "video_url": "", 
+            "written_on": "2014-04-17"
+        }, 
+        "model": "poems.poem", 
+        "pk": 16
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 1, 
+            "body": "Shall I compare thee to a summer's day? \nThou art more lovely and more temperate:\nRough winds do shake the darling buds of May,\nAnd summer's lease hath all too short a date: \nSometime too hot the eye of heaven shines,\nAnd often is his gold complexion dimm'd; \nAnd every fair from fair sometime declines,\nBy chance, or nature's changing course, untrimm'd;\nBut thy eternal summer shall not fade\nNor lose possession of that fair thou ow'st;\nNor shall Death brag thou wander'st in his shade,\nWhen in eternal lines to time thou grow'st; \nSo long as men can breathe or eyes can see,\nSo long lives this, and this gives life to thee.&nbsp;<br>", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 50, 
+            "public_domain": false, 
+            "published_at": "2014-04-23T19:11:22.869", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "Sonnet-18", 
+            "started_at": "2014-04-20T15:59:05.467", 
+            "title": "Sonnet 18", 
+            "updated_at": "2014-04-25T22:28:53.610", 
+            "video_url": "", 
+            "written_on": "2014-04-19"
+        }, 
+        "model": "poems.poem", 
+        "pk": 18
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 3, 
+            "body": "tulips, red<div>softly wilted</div>", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 29, 
+            "public_domain": false, 
+            "published_at": "2014-04-20T18:02:51.681", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "Encore", 
+            "started_at": "2014-04-20T18:02:28.789", 
+            "title": "encore", 
+            "updated_at": "2014-04-25T22:28:53.574", 
+            "video_url": "", 
+            "written_on": "2014-04-20"
+        }, 
+        "model": "poems.poem", 
+        "pk": 19
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 1, 
+            "body": "\nYou have to be always drunk. That's all there is to it\u2014it's the only way. So as not to feel the horrible burden of time that breaks your back and bends you to the earth, you have to be continually drunk.\n\nBut on what? Wine, poetry or virtue, as you wish. But be drunk.\n\nAnd if sometimes, on the steps of a palace or the green grass of a ditch, in the mournful solitude of your room, you wake again, drunkenness already diminishing or gone, ask the wind, the wave, the star, the bird, the clock, everything that is flying, everything that is groaning, everything that is rolling, everything that is singing, everything that is speaking. . .ask what time it is and wind, wave, star, bird, clock will answer you: \"It is time to be drunk! So as not to be the martyred slaves of time, be drunk, be continually drunk! On wine, on poetry or on virtue as you wish.\"\n\n- See more at: http://www.poets.org/viewmedia.php/prmMID/16054#sthash.yP2GQHid.dpuf", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 587, 
+            "public_domain": false, 
+            "published_at": "2014-04-25T21:45:57.503", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "Baudeldare", 
+            "started_at": "2014-04-23T20:11:22.537", 
+            "title": "baudeldare", 
+            "updated_at": "2014-04-25T22:28:53.454", 
+            "video_url": "", 
+            "written_on": "2014-04-23"
+        }, 
+        "model": "poems.poem", 
+        "pk": 23
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 1, 
+            "body": "this is the body&nbsp;bodybodybodybodybodybodybody&nbsp;body&nbsp;body&nbsp;body v v v&nbsp;body&nbsp;body&nbsp;bodybody.<div><br></div><div>It should have broken the last line after the &nbsp;period.&nbsp;</div><div>&nbsp;Not before.</div><div><br></div><div>Now, these lines should just wrap - not rap, wrap. &nbsp;I really don't care where they fall, I just want to let them flow wherever they happen. &nbsp;It so happens right now, that that line's at to.</div><div><br></div><div><br></div><div>Each of the following a's should line up (mostly).</div><div><br></div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;a bird</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; whales</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Italy</div><div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tall towers</div><div>&nbsp; &nbsp; &nbsp; singular obsessions.</div><div><br></div><div><br></div>", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 194, 
+            "public_domain": false, 
+            "published_at": "2014-04-25T21:31:47.745", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "The-Bgreatest-Itest-Poeim-In-Btheworrrrld-Nbspthenbspdivnbsp-I-Wanted-A-Line-Break-There-After-The-Thediv", 
+            "started_at": "2014-04-25T21:28:39.082", 
+            "title": "The <b>greatest <i>test poe</i>m in </b>theworrrrld. &nbsp;The&nbsp;<div>&nbsp; i wanted a line break there after the The.</div>", 
+            "updated_at": "2014-04-25T22:28:53.402", 
+            "video_url": "", 
+            "written_on": "2014-04-25"
+        }, 
+        "model": "poems.poem", 
+        "pk": 25
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 1, 
+            "body": "1234567890123456789012345678901234567890123456789012345678901234", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 64, 
+            "public_domain": false, 
+            "published_at": "2014-04-25T22:13:30.174", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "The-64-Character-Poem", 
+            "started_at": "2014-04-25T22:13:11.635", 
+            "title": "The 64-character poem.", 
+            "updated_at": "2014-04-25T22:28:53.340", 
+            "video_url": "", 
+            "written_on": "2014-04-25"
+        }, 
+        "model": "poems.poem", 
+        "pk": 27
+    }, 
+    {
+        "fields": {
+            "allow_comments": true, 
+            "audio_url": "", 
+            "author": 1, 
+            "body": "12345678901234567890123456789012345678901234567890123456789012345", 
+            "display_type": "poetry", 
+            "imported": false, 
+            "is_draft": false, 
+            "longest_line": 65, 
+            "public_domain": false, 
+            "published_at": "2014-04-25T22:17:21.722", 
+            "show_draft_revisions": true, 
+            "show_published_revisions": true, 
+            "slug": "The-Great-65", 
+            "started_at": "2014-04-25T22:17:02.111", 
+            "title": "The Great 65.", 
+            "updated_at": "2014-04-25T22:28:53.314", 
+            "video_url": "", 
+            "written_on": "2014-04-25"
+        }, 
+        "model": "poems.poem", 
+        "pk": 28
+    }
+]

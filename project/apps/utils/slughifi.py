@@ -3,6 +3,7 @@
 # If anyone knows the proper attribution, please email me.
 # at skoczen at gmail, and I'll update t!
 
+import bleach
 import re
 from types import UnicodeType
 from compressor.parser.beautifulsoup import BeautifulSoupParser
@@ -49,6 +50,7 @@ def slughifi(value, do_slugify=True, overwrite_char_map={}):
         value = unicode(value, 'utf-8', 'ignore')
 
     # TODO: strip HTML
+    value = bleach.clean(value, tags=[], strip=True, attributes={}, styles=[])
 
     # overwrite chararcter mapping
     char_map.update(overwrite_char_map)
