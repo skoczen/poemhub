@@ -19,6 +19,7 @@ My notes:
         - make a factory/dump of the test poems I've generated.
         - strip HTML from slug and title
         - strip HTML from pastes: 
+        - -1px letter-spacing on title.
 - on signup, connect UUID (if there is one) to poet.
 - pull in four public domain poets
     burns
@@ -63,6 +64,7 @@ longer term/arch..
         - "publish" confirm: "this will make your piece available to the general public.  There's no undo, but it is pretty awesome.  Ready to go?"  "Yeah. Let's do this."  /  "Nope. There's one more thing..."
 - big questions: can you unpublish? (no..)  delete your account?  (yes?  what happens to your poems?)
 - "show me another poem like this"
+
 
 
 
@@ -154,3 +156,10 @@ Justifying the continuation of bullshit poetry journals in the face of these ben
 In the long view, there will be lots of sites and apps like poemhub.  Some of them will even be better. That's as it should be.  The big thing is that poetry belongs to all of us, and it's time we got it back.
 
 It's 2014.  poetry, welcome to the internet.
+
+
+
+
+
+
+there's this fucked up thing that happens - on some level, some people publish in obscure journals because they're _embarrassed_ of their writing.  they publish there because they don't *want* anyone they know to read it. That's fucked up, and we're sorry, miss talented writer, we're not letting you hide in your dark hole of obscurity anymore.

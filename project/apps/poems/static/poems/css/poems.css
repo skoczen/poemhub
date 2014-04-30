@@ -94,6 +94,7 @@ body {
     
     /* maybe, depends on below */
     font-family: 'Cardo', serif;
+    letter-spacing: -1px;
     
 
     margin: 20px 0;
