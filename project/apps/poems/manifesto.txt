@@ -20,18 +20,20 @@ My notes:
         - strip HTML from slug and title
         - strip HTML from pastes: 
         - -1px letter-spacing on title.
-- on signup, connect UUID (if there is one) to poet.
+        - on signup, connect UUID (if there is one) to poet.
+- For historical/public domain poets, link to wikipedia page.
+- For historical/public domain poets, add a way to report copyright problems
 - pull in four public domain poets
-    burns
-    whitman
-    shakespeare
-    clifton?
-    baudelare?
-    teasdale?
-    cummings?
-    woolf?
-    great list:http://www.pbs.org/wgbh/poetryeverywhere/clifton.html
-    frost is a good tactical choice?
+    Anne Spencer
+    Georgia Douglas Johnson
+    Shakespeare - sonnets
+    Nizar Quabbani
+        Folder
+        http://writersalmanac.publicradio.org/index.php?date=2010/03/21
+    Whitman - Leaves of Grass (start with Inscriptions, through book 3)
+        http://www.gutenberg.org/files/1322/1322-h/1322-h.htm
+    
+- Review poemhunter TOS: http://www.poemhunter.com/PoemHunter/show.asp?p=Copyright/inc_copyright.htm
 - build basic explore
 - 2x icon for logo for ipad
 - save "diff" from title and body
@@ -49,6 +51,25 @@ My notes:
 - swipe right/left to view next poem.
 --- TELL EVERYONE ---
 - show fantastic on my reading page
+- Next poets:
+
+    burns
+    whitman
+    shakespeare
+    clifton?
+    baudelare?
+    teasdale?
+    cummings?
+    woolf?
+    great list:http://www.pbs.org/wgbh/poetryeverywhere/clifton.html
+    The Book of American Negro Poetry by James Weldon Johnson
+    http://www.gutenberg.org/cache/epub/11986/pg11986.html
+
+    Good list of authors: http://www.bartleby.com/269/index1.html
+    http://www.bartleby.com/269/68.html
+    frost is a good tactical choice?
+    Collection:
+        Paul Laurence Dunbar
 - 
 - "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - make "reading" an experience- "start reading" - dim the lights, etc.
