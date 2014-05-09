@@ -81,16 +81,18 @@ def unique_slug(item, slug_source, slug_field, generate_new=False):
         return getattr(item, slug_field)
     else:
         from django.template.defaultfilters import slugify
-        slug = slughifi(getattr(item,slug_source))
+        slug = slughifi(getattr(item, slug_source))
         itemModel = item.__class__
         # the following gets all existing slug values
-        allSlugs = [sl.values()[0] for sl in itemModel.objects.values(slug_field)]
-        if slug in allSlugs:
+        allSlugs = [sl.values()[0].lower() for sl in itemModel.objects.filter(**{"%s__icontains" % slug_field: slug}).values(slug_field)]
+        print slug
+        print allSlugs
+        if slug.lower() in allSlugs:
             import re
             counterFinder = re.compile(r'-\d+$')
             counter = 2
             slug = "%s-%i" % (slug, counter)
-            while slug in allSlugs:
+            while slug.lower() in allSlugs:
                 slug = re.sub(counterFinder,"-%i" % counter, slug)
                 counter += 1
         return slug

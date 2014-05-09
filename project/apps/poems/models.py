@@ -192,8 +192,11 @@ class Read(BaseModel):
     #     ordering = ("-read_at",)
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created and not Poet.objects.filter(user=instance).count() > 0:
-        Poet.objects.create(user=instance)
+# def create_user_profile(sender, instance, created, **kwargs):
+#     print sender
+#     print kwargs
+#     if created and not Poet.objects.filter(user=instance).count() > 0:
+        
+#         Poet.objects.create(user=instance)
 
-post_save.connect(create_user_profile, sender=User, dispatch_uid="create_user_profile")
+# post_save.connect(create_user_profile, sender=User, dispatch_uid="create_user_profile")
