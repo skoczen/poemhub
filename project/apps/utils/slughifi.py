@@ -85,8 +85,6 @@ def unique_slug(item, slug_source, slug_field, generate_new=False):
         itemModel = item.__class__
         # the following gets all existing slug values
         allSlugs = [sl.values()[0].lower() for sl in itemModel.objects.filter(**{"%s__icontains" % slug_field: slug}).values(slug_field)]
-        print slug
-        print allSlugs
         if slug.lower() in allSlugs:
             import re
             counterFinder = re.compile(r'-\d+$')

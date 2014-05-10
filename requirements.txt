@@ -10,7 +10,7 @@ boto==2.27.0
 celery==3.1.11
 dj-database-url==0.1.2
 django-allauth==0.16.1
-django-analytical==0.16.0
+django-analytical==0.17.1
 django-annoying==0.7.9
 django-appconf==0.6
 django-celery==3.1.10
@@ -47,5 +47,6 @@ selenium==2.41.0
 six==1.6.1
 splinter==0.6.0
 sqlparse==0.1.11
+titlecase==0.6.0
 versiontools==1.9.1
 wsgiref==0.1.2

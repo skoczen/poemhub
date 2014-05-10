@@ -168,6 +168,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # allauth specific context processors
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
+    # Intercom
+    "main_site.context_processors.intercom_custom_data",
 )
 
 AUTHENTICATION_BACKENDS = (

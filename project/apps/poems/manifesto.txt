@@ -21,19 +21,23 @@ My notes:
         - strip HTML from pastes: 
         - -1px letter-spacing on title.
         - on signup, connect UUID (if there is one) to poet.
-- For historical/public domain poets, link to wikipedia page.
-- For historical/public domain poets, add a way to report copyright problems
-- pull in four public domain poets
-    Anne Spencer
-    Georgia Douglas Johnson
-    Shakespeare - sonnets
-    Nizar Quabbani
-        Folder
-        http://writersalmanac.publicradio.org/index.php?date=2010/03/21
-    Whitman - Leaves of Grass (start with Inscriptions, through book 3)
-        http://www.gutenberg.org/files/1322/1322-h/1322-h.htm
-    
-- Review poemhunter TOS: http://www.poemhunter.com/PoemHunter/show.asp?p=Copyright/inc_copyright.htm
+        - For historical/public domain poets, link to wikipedia page.
+        - Review poemhunter TOS: http://www.poemhunter.com/PoemHunter/show.asp?p=Copyright/inc_copyright.htm
+        - For historical/public domain poets, add a way to report copyright problems
+        - pull in four public domain poets
+            Anne Spencer
+            Georgia Douglas Johnson
+            Shakespeare - sonnets
+            Nizar Quabbani
+                Folder
+                http://writersalmanac.publicradio.org/index.php?date=2010/03/21
+                http://www.adab.com/en/
+            Whitman - Leaves of Grass (start with Inscriptions, through book 3)
+                http://www.gutenberg.org/files/1322/1322-h/1322-h.htm
+            - fix songof myself
+            - fix encoding for nizar quabbani
+                i am with terrorism is blank
+        - add intercom.io
 - build basic explore
 - 2x icon for logo for ipad
 - save "diff" from title and body
@@ -44,8 +48,7 @@ My notes:
 - about page (bottom link) (lead with haiku :) )
 - build awesome marketing page (all in one page, tab-style, with lots of images)
 - built tour
-- collections are important sooner rather than later, for pacing reasons.
-- add intercom.io
+- collections are important sooner rather than later, for pacing reasons (and leaves of grass!).
 - make it look GORGEOUS on a mobile phone, somehow(ish)
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
 - swipe right/left to view next poem.

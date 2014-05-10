@@ -4,7 +4,7 @@ AWS_STORAGE_BUCKET_NAME = None
 DB_PASSWORD = None
 GAUGES_SITE_ID = None
 GOOGLE_ANALYTICS_PROPERTY_ID = None
-WOOPRA_DOMAIN = None
+INTERCOM_APP_ID = None
 
 try:
     from keys_and_passwords_private import *
@@ -24,4 +24,4 @@ set_env_fallback("AWS_STORAGE_BUCKET_NAME")
 set_env_fallback("DB_PASSWORD")
 set_env_fallback("GAUGES_SITE_ID")
 set_env_fallback("GOOGLE_ANALYTICS_PROPERTY_ID")
-set_env_fallback("WOOPRA_DOMAIN")
+set_env_fallback("INTERCOM_APP_ID")

@@ -14,6 +14,7 @@ BASE_POEM_LIST_DISPLAY = [
 
 class PoemAdmin(admin.ModelAdmin):
     list_display = BASE_POEM_LIST_DISPLAY
+    search_fields = ["title", "body", ]
     model = Poem
 
 
@@ -22,6 +23,7 @@ admin.site.register(Poem, PoemAdmin)
 
 class PoemRevisionAdmin(admin.ModelAdmin):
     list_display = ["revised_at", ] + BASE_POEM_LIST_DISPLAY
+    search_fields = ["title", "body", ]
     model = PoemRevision
 
 

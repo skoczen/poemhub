@@ -20,17 +20,22 @@
 <div class="page_content poet">
     {% if is_me %}<a href="{% url "poems:new" %}" class="new_draft_button button">Start a new draft</a>{% endif %}
     <h1>{{poet.name}}{% if is_me %} <span class="is_me bubble">me!</span>{% endif %}</h1>
+    {% if poet.public_domain %}
+    <p>{{poet.name}} is a poet {% if poet.birthdate and poet.deathdate %}who lived from {{ poet.birthdate|date:"Y" }} to {{ poet.deathdate|date:"Y"}}{% endif %} whose writing is in the public domain.  {% if poet.wikipedia_url %}You can learn more about their life on <a href="{{poet.wikipedia_url}}" target="_blank">Wikipedia</a>.{% endif %}</p>
+    {% endif %}
+    {% if poet.has_collections %}
     <h2>Collections</h2>
     <div class="work_group">
         <p class="none_yet">No collections yet.</p>
     </div>
+    {% endif %}
     <h2>All Poems</h2>
     <div class="work_group">
         <ul>
         {% for poem in poems %}
             {% ifchanged poem.written_on.year %}
             </ul>
-            <h3>{{poem.written_on.year}}</h3>
+            <h3>{% if poem.written_on %}{{poem.written_on.year}}{% else %}Unknown year {% endif %}</h3>
             <ul class="poems">    
             {% endifchanged %}
         <li><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft bubble">DRAFT</span> {% endif %}</li>

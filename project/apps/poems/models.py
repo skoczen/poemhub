@@ -15,18 +15,26 @@ ENTITY_REGEX = re.compile("&[^\s]*;")
 
 
 class Poet(BaseModel):
-    user = models.ForeignKey("auth.User")
+    user = models.ForeignKey("auth.User", blank=True, null=True)
     premium_user = models.BooleanField(default=False)
     slug = models.CharField(max_length=255, blank=True, editable=False)
     public_domain = models.BooleanField(default=False)
-    proxy = models.BooleanField(default=False)
+    wikipedia_url = models.TextField(blank=True, null=True)
+    archive = models.BooleanField(default=False)
+    archive_name = models.CharField(max_length=255, blank=True, editable=False)
+    birthdate = models.DateField(blank=True, null=True)
+    deathdate = models.DateField(blank=True, null=True)
 
     def save(self, *args, **kwargs):
+        if not self.archive and not self.user:
+            raise Exception("user is missing, and poet is not an archive")
         self.slug = unique_slug(self, 'name', 'slug')
         super(Poet, self).save(*args, **kwargs)
 
     @property
     def name(self):
+        if self.archive and self.archive_name:
+            return self.archive_name
         return self.user.first_name
 
     def __unicode__(self):
@@ -59,6 +67,8 @@ class AbstractPoem(BaseModel):
     longest_line = models.IntegerField(default=0)
     public_domain = models.BooleanField(default=False)
     imported = models.BooleanField(default=False)
+    approximate_publication_date = models.BooleanField(default=False)
+    source_url = models.TextField(blank=True, null=True)
 
     audio_url = models.TextField(blank=True, null=True)
     video_url = models.TextField(blank=True, null=True)
@@ -76,11 +86,9 @@ class Poem(AbstractPoem):
     written_on = models.DateField(blank=True, null=True, default=datetime.date.today())
     slug = models.CharField(max_length=800, blank=True, verbose_name="url")
 
-
-    def save(self, *args, **kwargs):
+    def save(self, force_longest_line_recalc=False, *args, **kwargs):
         if not self.published_at and not self.is_draft:
             self.published_at = datetime.datetime.now()
-
 
         make_revision = False
         if not self.pk:
@@ -94,9 +102,9 @@ class Poem(AbstractPoem):
             if old_me.title != self.title or old_me.body != self.body:
                 make_revision = True
 
-        if make_revision or self.longest_line == 0:
+        if make_revision or self.longest_line == 0 or force_longest_line_recalc:
             longest = len(self.title)
-            cleaned_body = self.body.replace("<br>", "\n").replace("</div>", "\n")
+            cleaned_body = self.body.replace("<br/>", "\n").replace("<br>", "\n").replace("</div>", "\n")
             cleaned_body = ENTITY_REGEX.sub(" ", cleaned_body)
             for l in cleaned_body.split("\n"):
                 if len(l) > longest:

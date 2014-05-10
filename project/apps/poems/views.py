@@ -42,10 +42,10 @@ def poet(request, poet=None):
     poet = Poet.objects.get(slug__iexact=poet)
     if poet.user == request.user:
         is_me = True
-        poems = Poem.objects.filter(author=poet).order_by("-written_on")
+        poems = Poem.objects.filter(author=poet).order_by("-written_on", "title")
     else:
         is_me = False
-        poems = Poem.objects.filter(author=poet, is_draft=False).order_by("-written_on")
+        poems = Poem.objects.filter(author=poet, is_draft=False).order_by("-written_on", "title")
     return locals()
 
 

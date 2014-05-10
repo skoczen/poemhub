@@ -1,6 +1,6 @@
 {% extends "base.html" %}{% load compress %}
 
-{% block title %}{{poem.title}} - by {{poem.author.name}} on Poemhub{% endblock %}
+{% block title %}{{poem.title}} by {{poem.author.name}} on Poemhub{% endblock %}
 
 {% block css %}{{block.super}}
 {% compress css %}
@@ -80,13 +80,13 @@
 
 <div class="timeline">
     <div class="published">
-        {% if poem.is_draft %}Draft.{% else %}Written on {{poem.written_on|date}}.{% endif %}
+        {% if poem.is_draft %}Draft.{% else %}{% if not poem.written_on %}Unknown publication date.{% else %}Written {% if poem.approximate_publication_date %}around {{poem.written_on|date:"Y" }}.{% else %}on {{poem.written_on|date}}.{% endif%}{% endif %}{% endif %}
         {% if poem.revisions_visible or is_mine %}
-            <span class="revised_text">{% if poem.has_been_revised %}<a href="{% url "poems:revisions" poem.author.slug poem.slug %}">Last revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
+            <span class="revised_text">{% if poem.has_been_revised and not poem.imported %}<a href="{% url "poems:revisions" poem.author.slug poem.slug %}">Last revised</a> {{poem.most_recent_revision.revised_at|date}}{% endif %}
             </span>
         {% endif %}
         {% if not poem.is_draft and poem.num_reads > 1 %}<span class="num_reads"><span class="num">{{poem.num_reads}}</span> reads.</span>{% endif %}
     </div>
-    <div class="copyright">Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.</div>
+    <div class="copyright">{% if poem.public_domain %}Written by <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, in the public domain.</a> {% if poem.author.wikipedia_url %}<br/>Learn about {{poem.author.name}} on <a href="{{poem.author.wikipedia_url}}" target="_blank">Wikipedia</a>{% endif %}{% else %}Copyright <a href="{% url "poems:poet" poem.author.slug %}">{{poem.author.name}}</a>, all rights reserved.{% endif %}</div>
 </div>
 {% endblock %}
