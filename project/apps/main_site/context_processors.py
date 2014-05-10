@@ -3,6 +3,7 @@ def intercom_custom_data(request):
         if request.user.is_authenticated():
             poet = request.user.get_profile()
             return {
+                "intercom_user_id": poet.pk,
                 "intercom_name": poet.name,
                 "intercom_premium_user": poet.premium_user,
                 "intercom_num_drafts": poet.poem_set.filter(is_draft=True).count(),
