@@ -53,6 +53,8 @@ My notes:
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
 - swipe right/left to view next poem.
 --- TELL EVERYONE ---
+- better schema support for poets and other pages
+- pull wikipedia content into bios? make bios?
 - show fantastic on my reading page
 - Next poets:
 

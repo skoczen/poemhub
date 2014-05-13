@@ -28,6 +28,7 @@ def my_writing(request):
 @render_to("poems/explore.html")
 def explore(request):
     # Yeah, I know.  I'll move this to a cached, non-db killing thing once we've got a few people.
+    num_poems = Poem.objects.filter(is_draft=False).count()
     recent_reads = Read.objects.all().order_by("-read_at")[:5]
     recent_published = Poem.objects.filter(is_draft=False).order_by("-sort_datetime")[:5]
     active_poets = Poet.objects.all().annotate(latest_update=Max('poem__sort_datetime')).order_by("-latest_update")[:5]
