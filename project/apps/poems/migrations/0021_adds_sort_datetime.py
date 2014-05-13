@@ -12,7 +12,7 @@ class Migration(DataMigration):
                 p.sort_datetime = p.published_at
             else:
                 if p.poemrevision_set.all().count() > 1:
-                    p.sort_datetime = p.self.poemrevision_set.all().order_by("-revised_at")[0].revised_at
+                    p.sort_datetime = p.poemrevision_set.all().order_by("-revised_at")[0].revised_at
                 else:
                     p.sort_datetime = p.started_at
             p.save()
