@@ -11,7 +11,7 @@ class Migration(DataMigration):
             if not p.is_draft:
                 p.sort_datetime = p.published_at
             else:
-                if p.has_been_revised:
+                if p.poemrevision_set.all().count() > 1:
                     p.sort_datetime = p.most_recent_revision.revised_at
                 else:
                     p.sort_datetime = p.started_at

@@ -39,7 +39,7 @@ My notes:
                 i am with terrorism is blank
         - add intercom.io
         - build basic explore
-- 2x icon for logo for ipad
+        - 2x icon for logo for ipad
 - save "diff" from title and body
 - style all password reset pages
 - build account (change email, password, pub name)

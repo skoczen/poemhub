@@ -108,6 +108,10 @@ ul {
     display: block;
     float: left;
 }
+#nav a.logo img {
+    width: 131px;
+    height: 45px;
+}
 #nav .account_links {
     float: right;
 }
