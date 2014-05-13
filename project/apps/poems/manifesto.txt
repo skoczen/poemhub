@@ -47,6 +47,17 @@ My notes:
 - build comments
 - about page (bottom link) (lead with haiku :) )
 - build awesome marketing page (all in one page, tab-style, with lots of images)
+    Readers:
+        The freshest poetry, unfiltered - mixed in with the classics.
+        Know what you've read.
+        Know what you've loved.
+
+    Writers:
+        1,234 poems live on poemhub.  Yours should too.
+
+        Great place to edit and revise your work.
+        Great place to show it off to the world.
+- reads should show up on your page, even if you didn't spend enough time?  Or, fantastic auto-reads?
 - built tour
 - collections are important sooner rather than later, for pacing reasons (and leaves of grass!).
 - make it look GORGEOUS on a mobile phone, somehow(ish)

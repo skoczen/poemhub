@@ -198,6 +198,10 @@ class Read(BaseModel):
 
     reader = models.ForeignKey(Poet, blank=True, null=True)
 
+    @property
+    def fantasticed_this_poem(self):
+        return Fantastic.objects.filter(reader=self.reader, poem=self.poem, on=True)
+
     # class Meta:
     #     ordering = ("-read_at",)
 
