@@ -82,6 +82,7 @@ class AbstractPoem(BaseModel):
 
 class Poem(AbstractPoem):
     started_at = models.DateTimeField(blank=True, null=True, editable=False, auto_now_add=True)
+    sort_datetime = models.DateTimeField(blank=True, null=True, editable=False)
     published_at = models.DateTimeField(blank=True, null=True, editable=False)
     written_on = models.DateField(blank=True, null=True, default=datetime.date.today())
     slug = models.CharField(max_length=800, blank=True, verbose_name="url")
@@ -110,10 +111,11 @@ class Poem(AbstractPoem):
                 if len(l) > longest:
                     longest = len(l)
             self.longest_line = longest
+        self.sort_datetime = self.date
         super(Poem, self).save(*args, **kwargs)
 
         if make_revision:
-            INVALID_FIELDS = ["written_on", "started_at", "published_at", "id", "pk", "slug"]
+            INVALID_FIELDS = ["written_on", "started_at", "sort_datetime", "published_at", "id", "pk", "slug"]
             poem_dict = {}
             for k, v in self.__dict__.items():
                 if k not in INVALID_FIELDS and k[0] != "_":

@@ -17,13 +17,62 @@
 
 
 {% block content %}
-<div class="page_content">
-    <h1>Almost there.</h1>
+<div class="page_content explore">
+    <div class="row">
+        <div class="col-sm-6 col_section">
+            <h1>Recently read</h1>
+            <ul>
+            {% for r in recent_reads %} 
+                <li><a href="{% url "poems:poem" r.poem.author.slug r.poem.slug %}">{{r.poem.title|safe}}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-6 col_section">
+            <h1>Recently published</h1>
+            <ul>
+            {% for poem in recent_published %}
+                <li><a href="{% url "poems:poem" poem.author.slug poem.slug %}">{{poem.title|safe}}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col_section">
+            <h1>Classics</h1>
+            <ul>
+            {% for poem in top_classics %}
+                <li><a href="{% url "poems:poem" poem.author.slug poem.slug %}">{{poem.title|safe}}</a> {# <span class="author">by {{poem.author.name}}</span> #}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="col-sm-6 col_section">
+            <h1>Great Poets</h1>
+            <ul>
+            {% for poet in great_poets %}
+                <li><a href="{% url "poems:poet" poet.slug %}">{{poet.name}}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col_section">
+            <h1>Active poets</h1>
+            <ul>
+            {% for poet in active_poets %}
+                <li><a href="{% url "poems:poet" poet.slug %}">{{poet.name}}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
 
-    <p>The all-new explore is nearly done. Look for it next week - thanks for your patience!</p>
-
-    <p>In the meantime, have you checked out <a href="{% url "main_site:faq" %}">the FAQ</a>?</p>
-
+        <div class="col-sm-6 col_section">
+            <h1>Most popular poems</h1>
+            <ul>
+            {% for poem in most_favorited %}
+                <li><a href="{% url "poems:poem" poem.author.slug poem.slug %}">{{poem.title|safe}}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
     <!-- 
     Recently Read:
     - top 10, update every 60s
@@ -34,8 +83,7 @@
     Recently published:
     - top 10
 
-    Most popular:
-    - top 5 by favorited
+    
 
     Classics:
     - top 5 by favorited

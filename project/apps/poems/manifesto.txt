@@ -38,7 +38,7 @@ My notes:
             - fix encoding for nizar quabbani
                 i am with terrorism is blank
         - add intercom.io
-- build basic explore
+        - build basic explore
 - 2x icon for logo for ipad
 - save "diff" from title and body
 - style all password reset pages
@@ -65,8 +65,11 @@ My notes:
     cummings?
     woolf?
     great list:http://www.pbs.org/wgbh/poetryeverywhere/clifton.html
+    http://blog.vuze.com/2013/12/09/8-early-african-american-authors-shaped-history-rectified-nation/
     The Book of American Negro Poetry by James Weldon Johnson
     http://www.gutenberg.org/cache/epub/11986/pg11986.html
+    Eliot:
+    http://www.bartleby.com/201/1.html
 
     Good list of authors: http://www.bartleby.com/269/index1.html
     http://www.bartleby.com/269/68.html
