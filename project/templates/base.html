@@ -2,14 +2,35 @@
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html itemscope itemtype="http://schema.org/CreativeWork" class="no-js" lang="en"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
   <title>{% block title %}{% endblock %}</title>
   <meta name="description" content="{% block description %}{% endblock %}">
-  <meta name="author" content="{% block author %}Steven Skoczen{% endblock %}">
+
+  <!-- Google Authorship and Publisher Markup --> 
+  <link rel="author" href="{% block author %}{% endblock %}"/>
+  {# <link rel="publisher" href=” https://plus.google.com/[Google+_Page_Profile]"/> #}
+  
+  <!-- Schema.org markup for Google+ --> 
+  <meta itemprop="name" content="{% block schema_name %}{% endblock %}"> 
+  <meta itemprop="description" content="{% block schema_description %}{% endblock %}"> 
+  <meta itemprop="author" content="{% block schema_author %}{% endblock %}"> 
+  <meta itemprop="provider" content="Poemhub"> 
+  
+  <!-- Open Graph data --> 
+  <meta property="og:title" content="{% block og_title %}{% endblock %}" /> 
+  <meta property="og:type" content="article" /> 
+  <meta property="og:url" content="http://www.poemhub.org/{% block og_url %}{% endblock %}" />
+  {# <meta property="og:image" content=" http://example.com/image.jpg" /> #}
+  <meta property="og:description" content="{% block og_description %}{% endblock %}" /> 
+  <meta property="og:site_name" content="Poemhub" /> 
+  <meta property="article:published_time" content="{% block og_publish_time %}{% endblock %}" /> 
+  <meta property="article:modified_time" content="{% block og_update_time %}{% endblock %}" /> 
+  {# <meta property="article:section" content="Poetry" />  #}
+  <meta property="article:tag" content="Poetry" /> 
 
   <meta name="viewport" content="width=device-width,initial-scale=1">
   {% analytical_head_top %}

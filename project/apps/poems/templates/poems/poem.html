@@ -1,6 +1,18 @@
 {% extends "base.html" %}{% load compress %}
 
-{% block title %}{{poem.title}} by {{poem.author.name}} on Poemhub{% endblock %}
+{% block title %}{{poem.title}} by {{poem.author.name}}{% endblock %}
+{% block description %}'{{poem.title}}', a poem by {{poem.author.name}}.  Published on Poemhub.{% endblock %}
+{% block author %}{{poem.author.name}}{% endblock %}
+{% block schema_name %}{{poem.title}} by {{poem.author.name}}{% endblock %}
+{% block schema_description %}'{{poem.title}}', a poem by {{poem.author.name}}.  Published on Poemhub.{% endblock %}
+{% block schema_author %}{{poem.author.name}}{% endblock %}
+{% block og_title %}{{poem.title}} by {{poem.author.name}}{% endblock %}
+{% block og_url %}{% url "poems:poem" poem.author.slug poem.slug %}{% endblock %}
+{% block og_description %}'{{poem.title}}', a poem by {{poem.author.name}}.  Published on Poemhub.{% endblock %}
+{% block og_publish_time %}{{poem.published_at|date:"c"}}{% endblock %}
+{% block og_update_time %}{{poem.sort_datetime|date:"c"}}{% endblock %}
+
+
 
 {% block css %}{{block.super}}
 {% compress css %}
