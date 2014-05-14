@@ -43,7 +43,7 @@ My notes:
         - show fantastic on my reading page
         - style all password reset pages
         - build account (change email, password, pub name)
-- build backups
+        - build backups
 - build backup celery, ajax and delete abilities.
 - build comments
 - about page (bottom link) (lead with haiku :) )
@@ -60,12 +60,14 @@ My notes:
         Great place to edit and revise your work.
         Great place to show it off to the world.
 - reads should show up on your page, even if you didn't spend enough time?  Or, fantastic auto-reads?
-- built tour
+- build tour
 - collections are important sooner rather than later, for pacing reasons (and leaves of grass!).
 - make it look GORGEOUS on a mobile phone, somehow(ish)
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
 - swipe right/left to view next poem.
 --- TELL EVERYONE ---
+- better options styling
+- real audio/video support
 - better schema support for poets and other pages
 - pull wikipedia content into bios? make bios?
 - social share (post to fb/twitter/etc when you post a poem.)
