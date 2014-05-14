@@ -42,10 +42,11 @@ My notes:
         - 2x icon for logo for ipad
         - show fantastic on my reading page
         - style all password reset pages
-- build account (change email, password, pub name)
+        - build account (change email, password, pub name)
 - build backups
 - build comments
 - about page (bottom link) (lead with haiku :) )
+- make sure email + celery works.
 - build awesome marketing page (all in one page, tab-style, with lots of images)
     Readers:
         The freshest poetry, unfiltered - mixed in with the classics.

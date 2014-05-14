@@ -1,5 +1,6 @@
 from django import forms
 from poems.models import Fantastic, Poem, Read, Poet
+from django.contrib.auth.models import User
 
 
 class PoemForm(forms.ModelForm):
@@ -65,3 +66,27 @@ class SignupForm(forms.Form):
     def save(self, user):
         user.first_name = self.cleaned_data['first_name']
         user.save()
+
+
+class AccountForm(forms.ModelForm):
+    first_name = forms.CharField(
+        max_length=255,
+        label='Publication Name',
+        help_text="The name your poems will be published under.",
+        widget=forms.TextInput(attrs={'placeholder': 'Nom de Plume'}),
+    )
+    password = forms.CharField(
+        max_length=255,
+        label='Password',
+        widget=forms.PasswordInput(attrs={'placeholder': 'New password'}),
+        required=False
+    )
+
+    class Meta:
+        model = User
+        fields = ("first_name", "email",)
+
+    def save(self):
+        if self.cleaned_data['password'] and self.cleaned_data['password'] != "":
+            self.instance.set_password(self.cleaned_data['password'])
+            self.instance.save()

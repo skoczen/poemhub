@@ -272,6 +272,10 @@ h1 {
     color: #900;
     font-weight: 500;
 }
+.ph_form .helper {
+    color: #AAA;
+    margin: 2px 4px;
+}
 
 .explore {
 

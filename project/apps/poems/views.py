@@ -9,7 +9,7 @@ from django.db.models import Max, Min
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
 from poems.models import Fantastic, Poem, Poet, PoemRevision, Read
-from poems.forms import FantasticForm, PoemForm, ReadForm
+from poems.forms import AccountForm, FantasticForm, PoemForm, ReadForm
 
 
 @render_to("poems/home.html")
@@ -44,6 +44,24 @@ def explore(request):
 def my_reading(request):
     my_reads = Read.objects.filter(reader=request.user.get_profile()).select_related()
     # .annotate(Min('read_at')).distinct("poem")
+    return locals()
+
+
+
+@render_to("poems/my_account.html")
+@login_required
+def my_account(request):
+    me = request.user
+    poet = me.get_profile()
+    changes_saved = False
+    if request.method == "POST":
+        form = AccountForm(request.POST, instance=me)
+        if form.is_valid():
+            me = form.save()
+            changes_saved = True
+    else:
+        form = AccountForm(instance=me)
+
     return locals()
 
 

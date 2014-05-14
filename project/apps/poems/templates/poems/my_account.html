@@ -1,0 +1,75 @@
+{% extends "base.html" %}{% load compress i18n %}
+
+{% block title %}Poemhub: My Account{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+<script src="{{STATIC_URL}}main_site/js/password.js"></script>
+{% endcompress %}
+{% endblock %}
+
+
+{% block content %}
+<div class="page_content">
+    <h1>My Account</h1>
+    {% if changes_saved %}<div class="alert alert-success">Changes saved.</div>{% endif %}
+
+    <form class="signup ph_form" role="form" id="signup_form" method="post" action="{% url 'poems:my_account' %}" autocomplete="off">
+      {% csrf_token %}
+      <div class="row question form-group">
+        <div class="col-md-5">
+            <div class="text">Publication name</div>
+            <div class="help">This will not change web addresses of your poems from poemhub.com/{{poet.slug}}/. If you want those to change, use the help link to contact us!</div>
+        </div>
+        
+        <div class="col-md-7 answers">
+            <div class="form-group form_input {# valid #}">
+                {{ form.first_name }}
+                <div class="errors">{{form.first_name.errors}}</div>
+            </div>
+        </div>
+      </div>
+      <div class="row question form-group">
+        <div class="col-md-5">
+            <div class="text">Email address</div>
+            <div class="help">You'll use the new address to sign in.</div>
+        </div>
+        
+        <div class="col-md-7 answers">
+            <div class="form-group form_input">
+                {{ form.email }}
+                <div class="errors">{{form.email.errors}}</div>
+            </div>
+            
+        </div>
+      </div>
+      <div class="row question form-group">
+        <div class="col-md-5">
+            <div class="text">Change password</div>
+            <div class="help">Leave this blank to keep your current password.</div>
+        </div>
+        
+        <div class="col-md-7 answers">
+            <div class="form-group form_input password">
+                {{ form.password }}
+                <div class="helper"><label for="show_password"><input type="checkbox" id="show_password"> Show Password</div>
+                <div class="errors">{{form.password.errors}}</div>
+            </div>
+        </div>
+        
+      </div>
+      <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-7">
+            <button type="submit" class="button btn btn-primary sign_up_button">{% trans "Save Changes" %}</button>
+        </div>
+      </div>
+      
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      
+    </form>
+</div>
+{% endblock %}
