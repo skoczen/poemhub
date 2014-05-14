@@ -40,8 +40,8 @@ My notes:
         - add intercom.io
         - build basic explore
         - 2x icon for logo for ipad
-- save "diff" from title and body
-- style all password reset pages
+        - show fantastic on my reading page
+        - style all password reset pages
 - build account (change email, password, pub name)
 - build backups
 - build comments
@@ -66,7 +66,7 @@ My notes:
 --- TELL EVERYONE ---
 - better schema support for poets and other pages
 - pull wikipedia content into bios? make bios?
-- show fantastic on my reading page
+- social share (post to fb/twitter/etc when you post a poem.)
 - Next poets:
 
     burns
@@ -93,7 +93,7 @@ My notes:
 - "what I've read" - list of everything you've read, when, and whether you fantastic'd it. searchable.
 - make "reading" an experience- "start reading" - dim the lights, etc.
 - print!  (how does this print?)
-
+- save "diff" from title and body
 
 longer term/arch..
 - separate manager for published.

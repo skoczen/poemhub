@@ -187,6 +187,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 7
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_LOGOUT_REDIRECT_URL = "/logged-out/"
 ACCOUNT_SIGNUP_FORM_CLASS = "poems.forms.SignupForm"
+ACCOUNT_USER_DISPLAY = lambda user: user.get_profile().name
 
 SITE_ID = 1
 
