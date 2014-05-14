@@ -6,7 +6,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-
     url(r'', include('main_site.urls', namespace="main_site", app_name="main_site")),
     url(r'^accounts/', include('allauth.urls')),
     # url(r'^accounts/login/$', 'django.contrib.auth.views.login', name='login'),

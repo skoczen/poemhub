@@ -1,0 +1,24 @@
+{% extends "base.html" %}{% load compress i18n %}
+
+{% block title %}Poemhub: My Account{% endblock %}
+
+{% block content %}
+<div class="page_content">
+    <h1>Backups</h1>
+    {% if changes_saved %}<div class="alert alert-success">Backup generating.</div>{% endif %}
+
+    <div class="backups">
+        {% for b in backups %}
+        <a href="{{b.zip_file.url}}">{{b.backup_at|date:"F j Y"}}</a> - {{b.num_poems}} poem{{b.num_poems|pluralize}}, {{b.num_revisions}} revision{{b.num_revisions|pluralize}}.
+        {% empty %}
+        <p>No backups yet - click the button below to make one!</p>
+        {% endfor %}
+    </div>
+
+    <p>
+        <a href="{% url "poems:generate_backup" %}" class="button btn btn-primary">Create New Backup</a>
+    </p>
+
+    <small>This can take a few seconds - please only click once, and be patient. Thanks!</small>
+</div>
+{% endblock %}

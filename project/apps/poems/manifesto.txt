@@ -44,6 +44,7 @@ My notes:
         - style all password reset pages
         - build account (change email, password, pub name)
 - build backups
+- build backup celery, ajax and delete abilities.
 - build comments
 - about page (bottom link) (lead with haiku :) )
 - make sure email + celery works.

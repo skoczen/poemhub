@@ -8,9 +8,9 @@ from django.db.models import Count
 from django.db.models import Max, Min
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
-from poems.models import Fantastic, Poem, Poet, PoemRevision, Read
+from poems.models import Backup, Fantastic, Poem, Poet, PoemRevision, Read
 from poems.forms import AccountForm, FantasticForm, PoemForm, ReadForm
-
+from poems.tasks import generate_backup_zip
 
 @render_to("poems/home.html")
 def home(request):
@@ -46,6 +46,20 @@ def my_reading(request):
     # .annotate(Min('read_at')).distinct("poem")
     return locals()
 
+
+@render_to("poems/backups.html")
+@login_required
+def my_backups(request):
+    backups = Backup.objects.filter(poet=request.user.get_profile())
+    return locals()
+
+
+@login_required
+def generate_backup(request):
+    generate_backup_zip(request.user.get_profile().pk)
+    # Enable when it's slow/big enough to pay for it.
+    # generate_backup_zip.delay(request.user.get_profile())
+    return HttpResponseRedirect(reverse("poems:my_backups"))
 
 
 @render_to("poems/my_account.html")

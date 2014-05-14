@@ -205,6 +205,18 @@ class Read(BaseModel):
     # class Meta:
     #     ordering = ("-read_at",)
 
+class Backup(BaseModel):
+    poet = models.ForeignKey(Poet)
+    zip_file = models.FileField(upload_to="backups", blank=True, null=True)
+    backup_at = models.DateTimeField(blank=True, null=True, editable=False, auto_now_add=True)
+    num_poems = models.IntegerField(default=0)
+    num_revisions = models.IntegerField(default=0)
+    num_reads = models.IntegerField(default=0)
+    num_fantastics = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ("-backup_at",)
+
 
 # def create_user_profile(sender, instance, created, **kwargs):
 #     print sender

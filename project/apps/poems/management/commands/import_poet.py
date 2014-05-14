@@ -19,7 +19,7 @@ def load_from_source(source):
     for p in source["poems"]:
         poem = Poem.objects.get_or_create(author=poet, public_domain=True, imported=True, title=p["title"])[0]
         print " %s" % poem
-        poem.body = p["body"].replace("  ", "&nbsp;&nbsp;")
+        poem.body = p["body"].replace("  ", "&nbsp;&nbsp;").replace('â€”', "'")
         pub_date = None
         if p["publication_date"]:
             pub_date = datetime.datetime.strptime(p["publication_date"], "%Y-%m-%d")
@@ -42,4 +42,3 @@ class Command(BaseCommand):
         f = codecs.open(args[0], "r", "utf-8")
         source = f.read()
         load_from_source(source)
-        

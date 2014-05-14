@@ -1,5 +1,5 @@
 from django.contrib import admin
-from poems.models import Fantastic, Poem, PoemRevision, Poet, Read
+from poems.models import Backup, Fantastic, Poem, PoemRevision, Poet, Read
 
 BASE_POEM_LIST_DISPLAY = [
     "title",
@@ -52,3 +52,12 @@ class ReadAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Read, ReadAdmin)
+
+
+
+class BackupAdmin(admin.ModelAdmin):
+    list_display = ("poet", "backup_at",)
+    model = Backup
+
+
+admin.site.register(Backup, BackupAdmin)
