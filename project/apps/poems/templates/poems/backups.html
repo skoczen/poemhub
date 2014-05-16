@@ -9,7 +9,7 @@
 
     <div class="backups">
         {% for b in backups %}
-        <a href="{{b.zip_file.url}}">{{b.backup_at|date:"F j, Y"}}</a> - {{b.num_poems}} poem{{b.num_poems|pluralize}}, {{b.num_revisions}} revision{{b.num_revisions|pluralize}}.
+        <a href="{{b.zip_file.url}}">{{b.backup_at|date:"F j, Y"}} at {{b.backup_at|date:"P"}}</a> - {{b.num_poems}} poem{{b.num_poems|pluralize}}, {{b.num_revisions}} revision{{b.num_revisions|pluralize}}.
         {% empty %}
         <p>No backups yet - click the button below to make one!</p>
         {% endfor %}

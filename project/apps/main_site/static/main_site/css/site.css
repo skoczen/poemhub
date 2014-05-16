@@ -59,8 +59,13 @@ body {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, h1 small, h2 small, h3 small, h4 small, h5 small, h6 small  {
     font-weight: 300;
+}
+h1 .help {
+    font-weight: 300;
+    color: #999;
+    font-size: 0.5em;
 }
 p {
     font-size: 16px;
@@ -155,9 +160,38 @@ ul {
     border: 0;
 
 }
+.btn-primary {
+    background-color: #4f66ff;
+    border: #4f66ff;
+}
+.btn-primary:hover {
+    background-color: #3a53ff;
+    border: #3a53ff;
+}
 .home h1 {
     text-align: center;
-    margin: 60px 0 80px 0;
+    margin: 120px 0 80px 0;
+}
+.hero_section {
+
+}
+.hero_section.write {
+    margin-top: 160px;
+}
+.hero_text {
+    display: block;
+    /*color: #AAA;*/
+    font-size: 160px;
+    line-height: 160px;
+    font-weight: 100;
+}
+.screenshot {
+    display: block;
+    border: 1px solid #CCC;
+}
+.screenshot img {
+    width: 200px;
+    height: 200px;
 }
 h1 {
     margin: 40px 0 30px 0;
@@ -285,15 +319,5 @@ h1 {
 }
 
 .backups {
-    margin: 0 20px;
+    margin: 20px 0;
 }
-.hero_section {
-
-}
-.hero_text {
-    font-size: 300px;
-    font-weight: 100;
-}
-
-
-

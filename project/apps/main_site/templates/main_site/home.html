@@ -15,51 +15,50 @@
 
 {% block content %}
 <div class="home page_content">
-    <h1>Poemhub is the place to read and write poetry.</h1>
+    <h1>Poemhub is the best place to read and write poetry.</h1>
 
-    <div class="home_buttons">
-        <a href="#" class="button readers">For Readers</a>
-        <a href="#" class="button writers">For Writers</a>
-        <a href="#" class="button manifesto">The Manifesto</a>
-        {# <a href="#" class="button faq">The FAQ</a> #}
+    <div class="home_sections hero_section">
+            <div class="hero_text">for readers</div>
+            <h2>Great writing, beautifully presented.</h2>
+            
+            {# <div class="screenshot"><img src="{{STATIC_URL}}main_site/img/home/beautifully.png"/></div> #}
+            <p>Poemhub presents new and classic writing in a simple, elegant format. The words matter, and there's nothing on Poemhub to separate you from them.</p>
+
+            <h2>Know what you read.  Know what you loved.</h2>
+            {# <div class="screenshot"><img src="{{STATIC_URL}}main_site/img/home/recently-read.png"/></div> #}
+            <p>Poemhub automatically keeps track of the poems you spent time with, and the ones you marked <i>fantastic</i>.  The result is you can always look back, and be reminded of poems you love.</p>
+
+            <h2>Find something new.</h2>
+            <p>Explore Poemhub, and find work from fresh artists, and timeless classics you haven't seen yet. See what other users are reading, and always find something new.</p>
+
+            <p><a href="{% url "account_signup" %}" class="button btn btn-primary">Start Reading</a></p>
+
+            {# <p>We aim to be the best place for you to find and read poetry.  From new work from the most current poets to a steady stream of the classics, we present each poem to stand on its own, and for you to enjoy.</p> #}
+            {# <p>Poemhub also gives you a direct line to many authors, to give those <i>this poem changed my life</i> comments you've always wanted to give.</p> #}
+            {# <p>It also automatically keeps track of the things you've read, and gives you easy access to your reading history. Now, when you're trying to remember that one poem you read last October, you can finally know.</p> #}
+            {# <p>Thanks for using Poemhub. We're happy poetry is back in your hands.</p> #}
     </div>
-    <div class="details">
-        <div class="detail_section for_readers">
-            <p>We aim to be the best place for you to find and read poetry.  From new work from the most current poets to a steady stream of the classics, we present each poem to stand on its own, and for you to enjoy.</p>
-            <p>Poemhub also gives you a direct line to many authors, to give those <i>this poem changed my life</i> comments you've always wanted to give.</p>
+    <div class="home_sections hero_section write">
+        <div class="hero_text">for writers</div>
+            <h2>Your words.  A global audience.</h2>
+            <p>If you're like us, you write poetry to connect with people.  To get the ideas and visions and emotions and world out of your head and interacting with another human, somewhere.  We built Poemhub to directly connect poems and readers. The poets published here agree &ndash; it works.
 
-            <p>It also automatically keeps track of the things you've read, and gives you easy access to your reading history. Now, when you're trying to remember that one poem you read last October, you can finally know.</p>
+            <h2>The best revision tool for poetry.</h2>
+            <p>Poemhub was built by poets.  We built it to be the best place to keep all our drafts, with everything we wanted, and nothing we didn't.  It automatically saves all your revisions, and lets you look back. It has a simple, uncluttered interface that is <i>exactly</i> the way your poem will look published.  Even better, Poemhub it lets you keep publishing revisions, even after you've published your poem.</p>
 
-            <p>Thanks for using Poemhub. We're happy poetry is back in your hands.</p>
+            
+            <h2>Safe. You keep the rights. Download everything, anytime.</h2>
+            
+            <p>As poets, the last thing we wanted was a service that kept the work hostage.  Poemhub doesn't keep your copyrights or have silly where-else-was-this-published limitations.  They're your words.  Take them wherever you'd like. We also provide a one-click backup to download everything you have on Poemhub - published poems, drafts, even the list of things you've read and liked.</p>
+
+            <h2>Connect with your readers.</h2>
+            
+            <p>We create direct, novel interactions between you and your readers, <i>on your terms</i>.  When you publish on Poemhub, you can finally know how many people have <i>actually read</i> each of your poems, and which are the most beloved.  We also give you the option to connect with to your readers in ways traditional journals can't - by having discussions and commentary right with your poems.</p>
+
+            <p>To top it off, Poemhub is free to use.</p>
+
+            <p><a href="{% url "account_signup" %}" class="button btn btn-primary">Get Started</a></p>
         </div>
-        <div class="detail_section for_writers">
-            <p>We're pretty sure you don't write poetry so you can sit and send submissions to journals, hoping you don't get a ding letter back. You write poetry to connect with people.  To get the ideas and visions and emotions and world out of your head and interacting with another human, somewhere.  Us too.  So we cut out the middle-man.</p>
-
-            <p>Poemhub aims to be the best place to revise, edit, publish, and share your poetry.  We don't keep your copyrights or have silly publication limitations.  They're your words.  Take them wherever you'd like.</p>
-
-            <p>We also connect you to your readers in way traditional journals never have, telling you how many people have <i>actually read</i> your work, and allowing you to engage with readers, on your terms.</p>
-
-            {# <p>Finally, we're building a world-class editor for you, that works on your desktop and mobile - so you have all your poems with you, wherever you go.</p> #}
-
-            <p>Poemhub is about giving poetry back to the two groups who should have had it all along: poets, and readers.</p>
-        </div>
-        <div class="detail_section the_manifesto">
-            <p>Every upstart needs a manifesto.  Here's the rant on poetry journals, publication, and technology that launched the site.</p>
-
-            <p class="home_buttons"><a href="{% url "main_site:manifesto" %}" class="button">Read the Manifesto</a></p>
-        </div>
-        <div class="hero_section">
-            <div class="hero_text">read</div>
-            <div class="hero_body">
-                    <p>We aim to be the best place for you to find and read poetry.  From new work from the most current poets to a steady stream of the classics, we present each poem to stand on its own, and for you to enjoy.</p>
-                <p>Poemhub also gives you a direct line to many authors, to give those <i>this poem changed my life</i> comments you've always wanted to give.</p>
-
-                <p>It also automatically keeps track of the things you've read, and gives you easy access to your reading history. Now, when you're trying to remember that one poem you read last October, you can finally know.</p>
-
-                <p>Thanks for using Poemhub. We're happy poetry is back in your hands.</p>
-            </div>
-        </div>
-
     </div>
 </div>
 {% endblock %}

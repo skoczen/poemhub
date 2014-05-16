@@ -17,7 +17,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 EMAIL_SUBJECT_PREFIX = "[poemhub.org] "
-SERVER_EMAIL = 'skoczen@gmail.com'
+SERVER_EMAIL = 'no-reply@poemhub.org'
 
 DATABASES = {
     'default': {

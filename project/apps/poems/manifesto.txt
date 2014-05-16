@@ -44,10 +44,9 @@ My notes:
         - style all password reset pages
         - build account (change email, password, pub name)
         - build backups
-- build backup celery, ajax and delete abilities.
-- build comments
-- about page (bottom link) (lead with haiku :) )
-- make sure email + celery works.
+        - better more friendly signup page, start home page driving.
+        - make sure email + celery works.
+        - show fantastics on poet page
 - build awesome marketing page (all in one page, tab-style, with lots of images)
     Readers:
         The freshest poetry, unfiltered - mixed in with the classics.
@@ -59,13 +58,22 @@ My notes:
 
         Great place to edit and revise your work.
         Great place to show it off to the world.
+
+- about page (bottom link) (lead with haiku :) )
 - reads should show up on your page, even if you didn't spend enough time?  Or, fantastic auto-reads?
 - build tour
 - collections are important sooner rather than later, for pacing reasons (and leaves of grass!).
+- build comments?
+--- TELL EVERYONE ---
 - make it look GORGEOUS on a mobile phone, somehow(ish)
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
+- add johnny cache.
+- move backups to celery.
+- show # of reads and fantastics on my poems
+- show the difference betweeen auto and manual backups
+- delete backup ability
 - swipe right/left to view next poem.
---- TELL EVERYONE ---
+- really figure out business plan
 - better options styling
 - real audio/video support
 - better schema support for poets and other pages

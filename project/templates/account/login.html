@@ -9,7 +9,11 @@
 
 {% block content %}
 
-<h1>{% trans "Log in to Poemhub" %}</h1>
+<h1>{% if redirect_field_value %}{% blocktrans %} Have we met?<div class="help">Please log in to your Poemhub acccount. </div>{% endblocktrans %}{% else %}{% blocktrans %} Welcome back.
+   <!-- <div class="help">Please log in to your Poemhub acccount. </div> -->
+    {% endblocktrans %}{% endif %}</h1>
+
+
 
 {% if socialaccount.providers  %}
 <p>{% blocktrans with site.name as site_name %}Please log in with one
@@ -73,7 +77,7 @@ for a {{site_name}} account and log in below:{% endblocktrans %}</p>
     <div class="col-md-5"></div>
     <div class="col-md-7">
         <button type="submit" class="button btn btn-primary sign_up_button">{% trans "Log In" %} &raquo;</button>
-        <span class="instead_text">{% blocktrans %}Don't have an account? <a href="{{ signup_url }}">Make one - it's free!{% endblocktrans %}</a></span>
+        <span class="instead_text">{% blocktrans %}Don't have an account? {% endblocktrans %}<a href="{{ signup_url }}">{% blocktrans %}Make one - it's free!{% endblocktrans %}</a></span>
     </div>
   </div>
   
