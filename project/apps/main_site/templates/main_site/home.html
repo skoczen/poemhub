@@ -18,9 +18,9 @@
     <h1>Poemhub is the place to read and write poetry.</h1>
 
     <div class="home_buttons">
-        <a href="#" class="button readers">For Readers</a>
-        <a href="#" class="button writers">For Writers</a>
-        <a href="#" class="button manifesto">The Manifesto</a>
+        <a href="#" class="btn btn-primary button readers">For Readers</a>
+        <a href="#" class="btn btn-primary button writers">For Writers</a>
+        <a href="#" class="btn btn-primary button manifesto">The Manifesto</a>
         {# <a href="#" class="button faq">The FAQ</a> #}
     </div>
     <div class="details">
@@ -31,6 +31,8 @@
             <p>It also automatically keeps track of the things you've read, and gives you easy access to your reading history. Now, when you're trying to remember that one poem you read last October, you can finally know.</p>
 
             <p>Thanks for using Poemhub. We're happy poetry is back in your hands.</p>
+
+            <p><a href="{% url "account_signup" %}" class="button btn btn-primary">Get Started</a></p>
         </div>
         <div class="detail_section for_writers">
             <p>We're pretty sure you don't write poetry so you can sit and send submissions to journals, hoping you don't get a ding letter back. You write poetry to connect with people.  To get the ideas and visions and emotions and world out of your head and interacting with another human, somewhere.  Us too.  So we cut out the middle-man.</p>
@@ -42,12 +44,15 @@
             {# <p>Finally, we're building a world-class editor for you, that works on your desktop and mobile - so you have all your poems with you, wherever you go.</p> #}
 
             <p>Poemhub is about giving poetry back to the two groups who should have had it all along: poets, and readers.</p>
+
+            <p><a href="{% url "account_signup" %}" class="button btn btn-primary">Get Started</a></p>
         </div>
         <div class="detail_section the_manifesto">
             <p>Every upstart needs a manifesto.  Here's the rant on poetry journals, publication, and technology that launched the site.</p>
 
             <p class="home_buttons"><a href="{% url "main_site:manifesto" %}" class="button">Read the Manifesto</a></p>
         </div>
+        
     </div>
 </div>
 {% endblock %}

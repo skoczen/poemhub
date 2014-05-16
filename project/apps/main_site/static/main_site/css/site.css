@@ -59,8 +59,13 @@ body {
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
 }
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, h1 small, h2 small, h3 small, h4 small, h5 small, h6 small  {
     font-weight: 300;
+}
+h1 .help {
+    font-weight: 300;
+    color: #999;
+    font-size: 0.5em;
 }
 p {
     font-size: 16px;
@@ -154,6 +159,14 @@ ul {
     color: #FFF;
     border: 0;
 
+}
+.btn-primary {
+    background-color: #4f66ff;
+    border: #4f66ff;
+}
+.btn-primary:hover {
+    background-color: #3a53ff;
+    border: #3a53ff;
 }
 .home h1 {
     text-align: center;

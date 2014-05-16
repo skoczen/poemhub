@@ -12,7 +12,7 @@
 {% block head_title %}{% trans "Sign up at Poemhub" %}{% endblock %}
 
 {% block content %}
-<h1>{% trans "Sign up at Poemhub" %}</h1>
+<h1>{% if redirect_field_value %}{% trans "Welcome to Poemhub." %}{% else %}{% trans "Get started at Poemhub." %}{% endif %}<div class="help">Get started in one step.  Poemhub is free, and always will be.</div></h1>
 
 <form class="signup ph_form" role="form" id="signup_form" method="post" action="{% url 'account_signup' %}" autocomplete="off">
   {% csrf_token %}
@@ -60,7 +60,7 @@
   <div class="row">
     <div class="col-md-5"></div>
     <div class="col-md-7">
-        <button type="submit" class="button btn btn-primary sign_up_button">{% trans "Sign Up" %} &raquo;</button>
+        <button type="submit" class="button btn btn-primary sign_up_button">{% trans "Get Started" %} &raquo;</button>
         <span class="instead_text">{% blocktrans %}Already have an account? <a href="{{ login_url }}">Sign in instead!{% endblocktrans %}</a></span>
     </div>
   </div>
