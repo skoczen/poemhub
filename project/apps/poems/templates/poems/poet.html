@@ -1,6 +1,18 @@
 {% extends "base.html" %}{% load compress %}
 
-{% block title %}{{poet.name}} on Poemhub{% endblock %}
+{% block title %}{{poet.name}}'{% if not poet.name_ends_in_s %}s{% endif %} Poetry{% endblock %}
+
+{% block description %}Poetry written by {{poet.name}}. Published on Poemhub.{% endblock %}
+{% block author %}{% url "poems:poet" poet.slug %}{% endblock %}
+{% block schema_name %}{{poet.name}}'{% if not poet.name_ends_in_s %}s{% endif %} Poetry{% endblock %}
+{% block schema_description %}Poetry written by {{poet.name}}. Published on Poemhub.{% endblock %}
+{% block schema_author %}{{poet.name}}{% endblock %}
+{% block og_title %}{{poet.name}}'{% if not poet.name_ends_in_s %}s{% endif %} Poetry{% endblock %}
+{% block og_url %}{% url "poems:poet" poet.slug %}{% endblock %}
+{% block og_description %}Poetry written by {{poet.name}}. Published on Poemhub.{% endblock %}
+{% block og_publish_time %}{{poet.created_at|date:"c"}}{% endblock %}
+{% block og_update_time %}{{poet.most_recent_update|date:"c"}}{% endblock %}
+
 
 {% block css %}{{block.super}}
 {% compress css %}
@@ -38,7 +50,7 @@
             <h3>{% if poem.written_on %}{{poem.written_on.year}}{% else %}Unknown year {% endif %}</h3>
             <ul class="poems">    
             {% endifchanged %}
-        <li><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft bubble">DRAFT</span> {% endif %}</li>
+        <li class="poem"><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft bubble">DRAFT</span>{% else %}{% if poem.num_fantastics > 0 %}<div class="fantastics">★ {{poem.num_fantastics}}{% endif %}{% endif %}</li>
         {% endfor %}
         </ul>
     </div>

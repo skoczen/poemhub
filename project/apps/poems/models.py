@@ -37,6 +37,19 @@ class Poet(BaseModel):
             return self.archive_name
         return self.user.first_name
 
+    @property
+    def name_ends_in_s(self):
+        return self.name[-1] == "s"
+
+    @property
+    def most_recent_update(self):
+        return self.poem_set.order_by("-sort_datetime")[0].sort_datetime
+
+    @property
+    def start_date(self):
+        return self.created_at
+
+
     def __unicode__(self):
         return "%s" % self.name
 

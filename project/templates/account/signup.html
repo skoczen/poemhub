@@ -12,7 +12,7 @@
 {% block head_title %}{% trans "Sign up at Poemhub" %}{% endblock %}
 
 {% block content %}
-<h1>{% if redirect_field_value %}{% trans "Welcome to Poemhub." %}{% else %}{% trans "Get started at Poemhub." %}{% endif %}<div class="help">Get started in one step.  Poemhub is free, and always will be.</div></h1>
+<h1>{% if redirect_field_value %}{% trans "Welcome to Poemhub." %}{% else %}{% trans "Get started at Poemhub." %}{% endif %}<div class="help">Get started in one step.  Poemhub is free to signup and use.</div></h1>
 
 <form class="signup ph_form" role="form" id="signup_form" method="post" action="{% url 'account_signup' %}" autocomplete="off">
   {% csrf_token %}

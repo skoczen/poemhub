@@ -2,6 +2,20 @@
 .poet .poems .draft {
     background-color: #c60210;
 }
+.poet .poems .published {
+    background-color: green;
+}
+.fantastics {
+    float: right;
+    color: #EEE;
+    font-size: 12px;
+    padding-top: 2px;
+    transition: color 0.3s ease;
+}
+.poem:hover .fantastics {
+    color: #BBB;
+
+}
 
 h2 {
     margin-top: 20px;
