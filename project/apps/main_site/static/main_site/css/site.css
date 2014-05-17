@@ -83,6 +83,7 @@ ul {
     vertical-align: top;
     border-radius: 0;
     border: 0;
+    z-index: 1000;
 }
 #nav a {
     display: inline-block;
@@ -109,9 +110,10 @@ ul {
 #nav a.logo {
     background-color: transparent;
     padding: 3px 25px;
-    height: 60px;
+    height: 36px;
     display: block;
     float: left;
+    overflow: visible;
 }
 #nav a.logo img {
     width: 131px;
@@ -139,6 +141,17 @@ ul {
     outline: none;
     outline-style: none;
     outline-width: 0;
+}
+#nav .mobile_toggle, #nav .mobile_toggle:hover {
+    border-radius: 0;
+    border: 0px;
+    background-color: transparent;
+    padding: 4px 0 0 0;
+}
+#nav .navbar-collapse {
+    padding: 0;
+    border: 0;
+    z-index: 100;
 }
 
 
@@ -320,4 +333,16 @@ h1 {
 
 .backups {
     margin: 20px 0;
+}
+@media (max-width: 1024px) {
+    .page_content {
+        width: 95%;
+    }
+    .hero_text {
+        font-size: 80px;
+        line-height: 80px;
+    }
+    .hero_section.write {
+        margin-top: 80px;
+    }
 }
