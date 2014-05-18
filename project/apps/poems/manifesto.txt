@@ -59,14 +59,14 @@ My notes:
                 Great place to edit and revise your work.
                 Great place to show it off to the world.
             - explore page busted on tablet (nav)
-- password reset email includes username.  Should include email.
-- build tour
+            - password reset email includes username.  Should include email.
 - collections are important sooner rather than later, for pacing reasons (and leaves of grass!).
 - build comments?
     - authors can make individual comments public
     - prevent abuse
 - add images to marketing site?
 --- TELL EVERYONE ---
+- build tour
 - reads should show up on your page, even if you didn't spend enough time?  Or, fantastic auto-reads?  "Skimmed"?
 - make it look GORGEOUS on a mobile phone, somehow(ish)
 - emphasize mobile - have the latest version of all your poems with you, whereever you go.
