@@ -335,11 +335,15 @@ h1 {
     margin: 20px 0;
 }
 @media (max-width: 1024px) {
+    #nav a {
+        padding: 11px 15px 9px 15px;
+    }
     .page_content {
         width: 95%;
     }
     .hero_text {
         font-size: 80px;
+        font-weight: 100;
         line-height: 80px;
     }
     .hero_section.write {
