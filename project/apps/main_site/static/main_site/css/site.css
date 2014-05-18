@@ -53,7 +53,7 @@ html {
 
 body {
     /*font-family: 'Muli', sans-serif;*/
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', 'Lato', Helvetica, Arial, sans-serif;
     background: none;
     height:100%;
     overflow: scroll;
@@ -348,5 +348,15 @@ h1 {
     }
     .hero_section.write {
         margin-top: 80px;
+    }
+}
+@media (max-width: 640px) {
+    .hero_text {
+        font-size: 64px;
+        font-weight: 100;
+        line-height: 64px;
+    }
+    .hero_section.write {
+        margin-top: 64px;
     }
 }
