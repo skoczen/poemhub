@@ -50,7 +50,7 @@
             <h3>{% if poem.written_on %}{{poem.written_on.year}}{% else %}Unknown year {% endif %}</h3>
             <ul class="poems">    
             {% endifchanged %}
-        <li class="poem"><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft bubble">DRAFT</span>{% else %}{% if poem.num_fantastics > 0 %}<div class="fantastics">★ {{poem.num_fantastics}}{% endif %}{% endif %}</li>
+        <li class="poem"><a href="{% url "poems:poem" poet.slug poem.slug %}">{{poem.title|safe}}</a> {% if poem.is_draft %}<span class="draft bubble">DRAFT</span>{% else %}{% if poem.num_fantastics > 0 %}<div class="fantastics">★ {{poem.num_fantastics}}</div>{% endif %} {% if poem.num_reads > 0 %}<div class="reads"><i class="fa fa-eye"></i> {{poem.num_reads}}</div>{% endif %}{% endif %}</li>
         {% endfor %}
         </ul>
     </div>

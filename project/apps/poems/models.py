@@ -171,7 +171,7 @@ class Poem(AbstractPoem):
 
     @property
     def num_reads(self):
-        return self.read_set.all().count()        
+        return self.read_set.all().count()
 
     def __unicode__(self):
         return "%s" % self.title

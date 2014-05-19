@@ -5,14 +5,14 @@
 .poet .poems .published {
     background-color: green;
 }
-.fantastics {
+.poet .fantastics, .poet .reads {
     float: right;
     color: #EEE;
     font-size: 12px;
-    padding-top: 2px;
+    padding: 2px 4px;
     transition: color 0.3s ease;
 }
-.poem:hover .fantastics {
+.poem:hover .fantastics, .poem:hover .reads {
     color: #BBB;
 
 }
