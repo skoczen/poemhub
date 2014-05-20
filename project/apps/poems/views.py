@@ -180,7 +180,7 @@ def revisions(request, poet=None, title=None):
 def revision(request, poet=None, pk=None):
     poem = PoemRevision.objects.get(pk=pk, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
-    assert is_mine
+    assert (is_mine or not poem.is_draft) and poem.poem.show_draft_revisions
 
     return locals()
 
