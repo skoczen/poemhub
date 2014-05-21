@@ -127,7 +127,7 @@ class Poem(AbstractPoem):
         self.sort_datetime = self.date
         super(Poem, self).save(*args, **kwargs)
 
-        if make_revision:
+        if make_revision and self.title != "Title" and self.body != "Body":
             INVALID_FIELDS = ["written_on", "started_at", "sort_datetime", "published_at", "id", "pk", "slug"]
             poem_dict = {}
             for k, v in self.__dict__.items():

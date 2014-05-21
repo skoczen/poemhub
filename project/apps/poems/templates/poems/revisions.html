@@ -20,9 +20,9 @@
 <div class="page_content">
     <h2>Revisions for <a href="{% url "poems:poem" poem.author.slug poem.slug %}">{{poem.title|safe}}</a></h2>
     <ul>
-        <li>
+        {# <li>
             <a href="{% url "poems:poem" poem.author.slug poem.slug %}">Current Version</a>
-        </li>
+        </li> #}
         {% for revision in revisions %}
         <li>
             <a href="{% url "poems:revision" revision.author.slug revision.pk %}">{{revision.revised_at }} - {{revision.title|safe}} </a>

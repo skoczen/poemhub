@@ -180,7 +180,12 @@ def revisions(request, poet=None, title=None):
 def revision(request, poet=None, pk=None):
     poem = PoemRevision.objects.get(pk=pk, author__slug__iexact=poet)
     is_mine = poem.author.user == request.user
-    assert (is_mine or not poem.is_draft) and poem.poem.show_draft_revisions
+    if (is_mine or
+            (poem.is_draft and poem.poem.show_draft_revisions) or
+            (not poem.is_draft and poem.poem.show_published_revisions)):
+        pass
+    else:
+        return HttpResponseRedirect(reverse("poems:poem", args=(poem.poet.slug, poem.poem.slug) ))
 
     return locals()
 
