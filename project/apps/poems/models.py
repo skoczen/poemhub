@@ -43,7 +43,10 @@ class Poet(BaseModel):
 
     @property
     def most_recent_update(self):
-        return self.poem_set.order_by("-sort_datetime")[0].sort_datetime
+        if self.poem_set.order_by("-sort_datetime").count() > 0:
+            return self.poem_set.order_by("-sort_datetime")[0].sort_datetime
+        else:
+            return None
 
     @property
     def start_date(self):

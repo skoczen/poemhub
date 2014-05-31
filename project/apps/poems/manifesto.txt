@@ -61,15 +61,35 @@ My notes:
             - explore page busted on tablet (nav)
             - password reset email includes username.  Should include email.
 - revision: drop first and last, follow through to has_revisions
+- by signing up you agree to the terms
+- sitemap.xml / robots 
 - identify poets
 - prepare a demo
 - ask their thoughts, and listen.
+    whose writing (public domain) would you like to see?
+    who is writing right now that you'd like to see here?
+
+    notifications when new posts are made?
+    how do you edit?
+    are there any pain points in how you revise and edit?
+
+    have you submitted to literary journals?  why?
+    which ones? why?
+    how has that experience been?
+
+    have you published online?  why?
+    which places, and why?
+    how has that experience been?
+
+    say there was a great online place where current poets were publishing, that also mixed in older, classic work.  what would you think of such a place?
+    would you consider submitting your work?  what would your biggest fears/hesitations be?
 - get microdata right for poems and poets articles.
 - collections are important sooner rather than later, for pacing reasons (and leaves of grass!).
 - build comments?
     - authors can make individual comments public
     - prevent abuse
 - add images to marketing site?
+- figure out USP, really.
 --- TELL EVERYONE ---
 - build tour
 - reads should show up on your page, even if you didn't spend enough time?  Or, fantastic auto-reads?  "Skimmed"?
