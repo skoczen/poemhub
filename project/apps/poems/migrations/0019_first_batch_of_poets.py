@@ -4,13 +4,28 @@ from south.db import db
 from south.v2 import DataMigration
 from django.db import models
 
+
 class Migration(DataMigration):
 
     def forwards(self, orm):
-        "Write your forwards methods here."
-        # Note: Don't use "from appname.models import ModelName". 
-        # Use orm.ModelName to refer to models in this application,
-        # and orm['appname.ModelName'] for models in other applications.
+        import boto
+        from django.conf import settings
+        from poems.management.commands.import_poet import load_from_source
+        poets = [
+            "Anne Spencer",
+            "Georgia Douglas Johnson",
+            "William Shakespeare",
+            "Nizar Qabbani",
+            "Walt Whitman",
+        ]
+
+        conn = boto.connect_s3(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
+        bucket = conn.get_bucket("poemhub")
+        for p in poets:
+            key = "source/%s.json" % p
+            f = bucket.get_key(key)
+            source = f.get_contents_as_string()
+            load_from_source(source)
 
     def backwards(self, orm):
         "Write your backwards methods here."
@@ -120,8 +135,6 @@ class Migration(DataMigration):
             'Meta': {'object_name': 'Poet'},
             'archive': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'archive_name': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'birthdate': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
-            'deathdate': ('django.db.models.fields.DateField', [], {'null': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'premium_user': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'public_domain': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),

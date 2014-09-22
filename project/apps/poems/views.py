@@ -42,7 +42,7 @@ def explore(request):
 @render_to("poems/my_reading.html")
 @login_required
 def my_reading(request):
-    my_reads = Read.objects.filter(reader=request.user.get_profile()).select_related()
+    my_reads = Read.objects.filter(reader=request.user.get_profile()).select_related().order_by("-read_at")
     # .annotate(Min('read_at')).distinct("poem")
     return locals()
 

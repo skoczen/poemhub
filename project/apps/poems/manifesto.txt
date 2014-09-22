@@ -60,9 +60,15 @@ My notes:
                 Great place to show it off to the world.
             - explore page busted on tablet (nav)
             - password reset email includes username.  Should include email.
+- plan valley of despair
+- follows and notifications
 - revision: drop first and last, follow through to has_revisions
 - by signing up you agree to the terms
-- sitemap.xml / robots 
+- sitemap.xml / robots
+- app: https://www.built.io/?
+- http://pydanny.com/awesome-slugify-human-readable-url-slugs-from-any-string.html
+- email confirm goes to junk. (there's an email confirm?)  Content is iffy.
+- move to sharing settings listed in shower.
 - identify poets
 - prepare a demo
 - ask their thoughts, and listen.
