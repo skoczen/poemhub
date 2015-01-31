@@ -8,9 +8,12 @@ from django.db.models import Count
 from django.db.models import Max, Min
 from django.views.decorators.csrf import csrf_exempt
 from annoying.decorators import render_to, ajax_request
+from zebra.forms import StripePaymentForm
+import stripe
 from poems.models import Backup, Fantastic, Poem, Poet, PoemRevision, Read
 from poems.forms import AccountForm, FantasticForm, PoemForm, ReadForm
 from poems.tasks import generate_backup_zip
+
 
 @render_to("poems/home.html")
 def home(request):
@@ -33,7 +36,7 @@ def explore(request):
     recent_published = Poem.objects.filter(is_draft=False).order_by("-sort_datetime")[:5]
     active_poets = Poet.objects.all().annotate(latest_update=Max('poem__sort_datetime')).order_by("-latest_update")[:5]
     most_favorited = Poem.objects.all().annotate(number_fantastics=Count('fantastic')).order_by("-number_fantastics")[:5]
-    
+
     top_classics = Poem.objects.filter(public_domain=True).order_by("?")[:5]
     great_poets = Poet.objects.filter(public_domain=True).order_by("?")[:5]
     return locals()
@@ -77,6 +80,35 @@ def my_account(request):
         form = AccountForm(instance=me)
 
     return locals()
+
+
+@render_to("poems/premium.html")
+@login_required
+def premium(request):
+    me = request.user
+    poet = me.get_profile()
+    changes_saved = False
+    if request.method == 'POST':
+        zebra_form = StripePaymentForm(request.POST)
+        if zebra_form.is_valid():
+            my_profile = request.user.get_profile()
+            # stripe_customer = stripe.Customer.retrieve(my_profile.stripe_customer_id)
+            # stripe_customer.card = zebra_form.cleaned_data['stripe_token']
+            # stripe_customer.save()
+
+            # my_profile.last_4_digits = zebra_form.cleaned_data['last_4_digits']
+            # my_profile.stripe_customer_id = stripe_customer.id
+            my_profile.premium_user = True
+            my_profile.save()
+
+            # Do something kind for the user
+            changes_saved = True
+
+    else:
+        zebra_form = StripePaymentForm()
+
+    return locals()
+
 
 
 @render_to("poems/poet.html")

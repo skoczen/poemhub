@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% load compress i18n zebra_tags %}
+
+{% block title %}Poemhub: Premium Membership{% endblock %}
+
+{% block js %}{{block.super}}
+{% compress js %}
+<script src="{{STATIC_URL}}main_site/js/site.js"></script>
+<script src="{{STATIC_URL}}main_site/js/password.js"></script>
+{% endcompress %}
+{% zebra_head_and_stripe_key %}
+{% endblock %}
+
+
+{% block content %}
+<div class="page_content">
+    <h1>Premium Membership</h1>
+
+    {% if request.user.get_profile.premium_user %}
+    <p>Your premium membership is active.</p>
+    <p>&nbsp;</p>
+
+    <p><a href="mailto:support@inkandfeet.com" class="button btn-info">Cancel membership</a></p>
+    {% else %}
+
+    <p>Subscribe to Poemhub for unlimited access, uploads, and revisions, for $5 per month.</p>
+
+    {% if changes_saved %}<div class="alert alert-success">Changes saved.</div>{% endif %}
+
+    {% zebra_card_form %}
+    {% endif %}
+    
+</div>
+{% endblock %}

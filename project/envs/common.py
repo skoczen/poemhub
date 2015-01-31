@@ -148,6 +148,7 @@ INSTALLED_APPS = (
     "djcelery",
     "gunicorn",
     "south",
+    "zebra",
 
     "main_site",
     "poems",
@@ -158,6 +159,8 @@ INSTALLED_APPS = (
     "django_nose",
 )
 INSTALLED_APPS = ("longerusernameandemail",) + INSTALLED_APPS
+ZEBRA_ENABLE_APP = True
+
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",

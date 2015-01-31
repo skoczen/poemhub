@@ -5,13 +5,15 @@ url = parser.url
 
 from poems import views
 
-urlpatterns = patterns('',
+urlpatterns = patterns(
+    '',
     url(r'^$', views.home, name='home'),
     url(r'^explore/?$', views.explore, name='explore'),
     url(r'^my-writing/?$', views.my_writing, name='my_writing'),
     url(r'^my-reading/?$', views.my_reading, name='my_reading'),
     url(r'^my-account/?$', views.my_account, name='my_account'),
     url(r'^my-backups/?$', views.my_backups, name='my_backups'),
+    url(r'^premium/?$', views.premium, name='premium'),
     url(r'^generate-backup/?$', views.generate_backup, name='generate_backup'),
     url(r'^new-poem$', views.new, name='new'),
     url(r'^save/{poet:slug}/{title:slug}/?$', views.save_revision, name='save_revision'),
@@ -25,5 +27,4 @@ urlpatterns = patterns('',
     # url(r'^{poet:slug}/{title:slug}/revision/{revision_umb?$', views.revisions, name='revisions'),
 
     url(r'^{poet:slug}/{title:slug}/?$', views.poem, name='poem'),
-    
 )

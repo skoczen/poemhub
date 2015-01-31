@@ -17,12 +17,14 @@ django-selector
 django-staticfiles
 django-storages
 django-ses
+django-zebra
 fabric
 gunicorn
 psycopg2
 titlecase
 south
 splinter
+stripe
 versiontools
 
 # Dev only

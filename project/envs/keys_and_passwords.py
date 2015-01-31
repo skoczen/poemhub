@@ -5,6 +5,8 @@ DB_PASSWORD = None
 GAUGES_SITE_ID = None
 GOOGLE_ANALYTICS_PROPERTY_ID = None
 INTERCOM_APP_ID = None
+STRIPE_SECRET = None
+STRIPE_PUBLISHABLE = None
 
 try:
     from keys_and_passwords_private import *
@@ -12,6 +14,7 @@ except:
     pass
 
 from os import environ
+
 
 def set_env_fallback(key):
 
@@ -25,3 +28,5 @@ set_env_fallback("DB_PASSWORD")
 set_env_fallback("GAUGES_SITE_ID")
 set_env_fallback("GOOGLE_ANALYTICS_PROPERTY_ID")
 set_env_fallback("INTERCOM_APP_ID")
+set_env_fallback("STRIPE_SECRET")
+set_env_fallback("STRIPE_PUBLISHABLE")
