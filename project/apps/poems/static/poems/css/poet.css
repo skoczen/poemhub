@@ -11,6 +11,7 @@
     font-size: 12px;
     padding: 2px 4px;
     transition: color 0.3s ease;
+    line-height: 12px;
 }
 .poem:hover .fantastics, .poem:hover .reads {
     color: #BBB;
