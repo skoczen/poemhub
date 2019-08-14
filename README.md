@@ -1,6 +1,6 @@
 # PoemHub
 
-This is the code for poemhub.org, a community for sharing poetry. 
+This is the Django app for [poemhub.org](http://poemhub.org), a community for sharing poetry. 
 
 ## Status
 
