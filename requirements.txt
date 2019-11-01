@@ -29,7 +29,7 @@ django-ses==0.6.0
 django-staticfiles==1.2.1
 django-storages==1.1.8
 django-zebra==0.4.5
-ecdsa==0.11
+ecdsa==0.13.3
 gunicorn==18.0
 html5lib==0.999
 kombu==3.0.15
