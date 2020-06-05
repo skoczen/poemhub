@@ -1,5 +1,5 @@
 BeautifulSoup==3.2.1
-Django==1.5.5
+Django==1.11.29
 Fabric==1.8.3
 South==0.8.4
 amqp==1.4.5
