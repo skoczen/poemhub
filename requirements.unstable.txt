@@ -2,7 +2,7 @@ beautifulsoup
 bleach
 boto
 django-celery-with-redis
-django<1.6
+django<2.3
 django-analytical>=0.12.1
 django-annoying
 django-allauth
